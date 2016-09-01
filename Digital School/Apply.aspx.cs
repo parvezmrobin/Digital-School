@@ -1,10 +1,6 @@
 ﻿using AspNet.Identity.MySQL;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Digital_School
 {
@@ -14,13 +10,13 @@ namespace Digital_School
 			if (!IsPostBack) {
 				divSuccessful.Visible = false;
 			}
-			if (Session["postid"] == null || Session["type"] == null)
+			if (Request.QueryString["postid"] == null || Request.QueryString["type"] == null)
 				Response.Redirect("~/404.html", true);
 
 			#region Set Application Title
 			MySQLDatabase db = new MySQLDatabase();
 			Dictionary<string, object> dict = new Dictionary<string, object>(1);
-			dict.Add("pid", Session["postid"]);
+			dict.Add("@pid", Session["postid"]);
 			List<Dictionary<string, string>> res = db.Query("getApplicationTitleById", dict);
 			if(res.Count != 0) {
 				applicationTitle.InnerText = res[0]["title"].ToString();
@@ -43,7 +39,7 @@ namespace Digital_School
 		protected void btnApply_Click(object sender, EventArgs e) {
 			if (IsValid) {
 				Dictionary<string, object> dict = new Dictionary<string, object>(6);
-				dict.Add("applicationid", Session["postid"]);
+				dict.Add("applicationid", Request.QueryString["postid"]);
 				dict.Add("firstname", txtFirstName.Text);
 				dict.Add("lastname", txtFirstName.Text);
 				dict.Add("email", Email.Text);

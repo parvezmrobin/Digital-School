@@ -8,7 +8,7 @@ namespace Digital_School
 {
 	public partial class Post : Page
 	{
-		protected void Page_Load(object sender, EventArgs e) {
+		protected void Page_Init(object sender, EventArgs e) {
 
 			MySQLDatabase db = new MySQLDatabase();
 			if (Request.QueryString["posttype"] != null) {
@@ -66,22 +66,6 @@ namespace Digital_School
 
 		}
 
-		private void LoadFirstPostFromList() {
-			//ListBox1.SelectedIndex = 0;
-
-			int? postId = null;
-			foreach (var child in PostList.Controls) {
-				if (child is PostListItem) {
-					postId = (child as PostListItem).PostID;
-					break;
-				}
-			}
-			if (postId != null) {
-				Response.Redirect(Request.Url.AbsoluteUri + "?postid=" + postId, true);
-			} else
-				Response.Redirect("~/Error.html", true);
-		}
-
 		private void LoadPost(int? id) {
 			if (id == null)
 				Response.Redirect("~/Error.html", true);
@@ -93,7 +77,7 @@ namespace Digital_School
 			if (res.Count > 0) {
 				postTitle.InnerText = res[0]["title"];
 				postBody.InnerText = res[0]["body"];
-				Page.Title = res[0]["title"];
+				Title = res[0]["title"];
 			} else {
 				Response.Redirect("~/Error.html");
 			}

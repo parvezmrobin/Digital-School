@@ -19,15 +19,13 @@ namespace Digital_School
 			foreach(var item in res) {
 				Tile tile = LoadControl("~/User Control/Tile.ascx") as Tile;
 				tile.PostID = Convert.ToInt32(item["id"]);
-				tile.Title = item["name"];
-				tile.Detail = item["detail"];
-				tile.Type = Convert.ToInt32(item["type"]);
+				tile.Title = item["title"];
+				tile.Detail = item["summary"];
+				tile.Type = 3;
 				tile.WidthClass = "col-sm-12";
 
 				tile.TitleClick += delegate {
-					Session["postid"] = tile.PostID;
-					Session["type"] = tile.Type;
-					Response.Redirect("~/Post.aspx");
+					Response.Redirect("~/Post.aspx?postid=" + tile.PostID + "&posttype=3");
 				};
 
 				speeches.Controls.Add(tile);
