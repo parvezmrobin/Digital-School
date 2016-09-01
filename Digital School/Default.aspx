@@ -23,7 +23,7 @@
 			</asp:UpdatePanel>
 		</div>
 		<br />
-		<br />
+	
 		<div class="col-xs-12">
 			<div class="col-xs-12 col-md-9">
 				<uc1:Tile ID="sectionNews" runat="server" Title="News" Type="1"
