@@ -76,6 +76,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.8.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.8.8\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -132,23 +136,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Providers">
-      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin">
       <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -182,7 +174,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.html" />
     <Content Include="About.aspx" />
+    <Content Include="Academic.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
@@ -198,10 +192,23 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Album.aspx" />
+    <Content Include="Albums\Album-Thumbnail.png" />
+    <Content Include="Albums\Album1\campus3.png" />
+    <Content Include="Albums\Album1\Moscow_High_School.jpg" />
+    <Content Include="Albums\Album1\Warner-Building-LeChase.jpg" />
+    <Content Include="Albums\Album2\river-003.jpg" />
+    <Content Include="Albums\Album2\River-HD-Wallpapers.jpg" />
+    <Content Include="Albums\Album2\White_River_Arkansas-1.jpg" />
+    <Content Include="Albums\Album3\campus.jpg" />
+    <Content Include="Albums\Album3\Campus_-_The_Danish_Design_School.jpg" />
+    <Content Include="Albums\Album3\StudentsonCampus.jpg" />
+    <Content Include="Apply.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Error.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -210,6 +217,17 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images.aspx" />
+    <Content Include="Post.aspx" />
+    <Content Include="Slideshow\Blue.png" />
+    <Content Include="Slideshow\DarkRed.png" />
+    <Content Include="Slideshow\Green.png" />
+    <Content Include="Slideshow\Oragne.png" />
+    <Content Include="Slideshow\Red.png" />
+    <Content Include="Teachers.aspx" />
+    <Content Include="User Control\Album.ascx" />
+    <Content Include="User Control\PostListItem.ascx" />
+    <Content Include="Xml\slideshow.xml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
@@ -246,8 +264,11 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="User Control\Tile.ascx" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
@@ -261,6 +282,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Academic.aspx.cs">
+      <DependentUpon>Academic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Academic.aspx.designer.cs">
+      <DependentUpon>Academic.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
       <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -366,6 +394,20 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Album.aspx.cs">
+      <DependentUpon>Album.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Album.aspx.designer.cs">
+      <DependentUpon>Album.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Apply.aspx.cs">
+      <DependentUpon>Apply.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Apply.aspx.designer.cs">
+      <DependentUpon>Apply.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -394,7 +436,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Images.aspx.cs">
+      <DependentUpon>Images.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Images.aspx.designer.cs">
+      <DependentUpon>Images.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Post.aspx.cs">
+      <DependentUpon>Post.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Post.aspx.designer.cs">
+      <DependentUpon>Post.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -411,6 +468,35 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Statics.cs" />
+    <Compile Include="Teachers.aspx.cs">
+      <DependentUpon>Teachers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teachers.aspx.designer.cs">
+      <DependentUpon>Teachers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Album.ascx.cs">
+      <DependentUpon>Album.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User Control\Album.ascx.designer.cs">
+      <DependentUpon>Album.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\PostListItem.ascx.cs">
+      <DependentUpon>PostListItem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User Control\PostListItem.ascx.designer.cs">
+      <DependentUpon>PostListItem.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Tile.ascx.cs">
+      <DependentUpon>Tile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User Control\Tile.ascx.designer.cs">
+      <DependentUpon>Tile.ascx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -421,6 +507,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AspNet.Identity.MySQL\AspNet.Identity.MySQL.csproj">
+      <Project>{26f6ecf9-4369-417b-8cf2-54fa92df3660}</Project>
+      <Name>AspNet.Identity.MySQL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

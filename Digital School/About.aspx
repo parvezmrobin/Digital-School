@@ -1,7 +1,68 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="Digital_School.About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
-    <h3>Your application description page.</h3>
-    <p>Use this area to provide additional information.</p>
+	<br />
+	<div class="row">
+
+		<div class="col-sm-6 panel panel-primary">
+			<div class="panel-heading">History</div>
+			<div class="panel-body">
+				a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n
+				o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b
+				c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p
+				q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d
+				e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r
+				s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f
+				g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t
+				u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h
+				i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v
+				w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j
+				k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x
+				y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l
+				m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z
+				a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n
+				o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b
+				c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p
+				q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d
+				e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r
+				s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f
+				g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t
+				u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h
+				i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v
+				w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j
+				k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x
+				y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l
+				m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z
+				a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n
+				o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b
+				c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p
+				q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d
+				e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r
+				s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f
+				g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t
+				u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h
+				i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v
+				w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j
+				k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x
+				y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l
+				m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z
+				a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n
+				o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b
+				c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p
+				q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d
+				e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r
+				s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f
+				g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t
+				u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h
+				i j k l m n o p q r s t u v w x y z 
+			</div>
+		</div>
+
+		<div class="col-sm-6">
+			<div class="panel panel-primary">
+				<div class="panel-body" id="speeches" runat="server">
+				</div>
+			</div>
+		</div>
+	</div>
 </asp:Content>

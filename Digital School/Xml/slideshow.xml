@@ -1,0 +1,17 @@
+<Advertisements>
+  <Ad>
+    <ImageUrl>~/Slideshow\Blue.png</ImageUrl>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/Slideshow\DarkRed.png</ImageUrl>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/Slideshow\Green.png</ImageUrl>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/Slideshow\Oragne.png</ImageUrl>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/Slideshow\Red.png</ImageUrl>
+  </Ad>
+</Advertisements>
