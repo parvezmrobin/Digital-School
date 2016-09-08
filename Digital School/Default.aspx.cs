@@ -42,7 +42,7 @@ namespace Digital_School
 				MySQLDatabase db = new MySQLDatabase();
 				Dictionary<string, object> dict = new Dictionary<string, object>(1);
 				dict.Add("@ptype", 1);
-				List<Dictionary<string, string>> res = db.Query("getLastSummaryByType", dict);
+				List<Dictionary<string, string>> res = db.Query("getLastSummaryByType", dict, true);
 				if (res.Count > 0) {
 					sectionNews.Detail = res[0]["summary"];
 					sectionNews.PostID = Convert.ToInt32(res[0]["id"]);
@@ -50,7 +50,7 @@ namespace Digital_School
 					Response.Redirect(Statics.Error);
 				dict = new Dictionary<string, object>(1);
 				dict.Add("@ptype", 2);
-				res = db.Query("getLastSummaryByType", dict);
+				res = db.Query("getLastSummaryByType", dict, true);
 				if (res.Count > 0) {
 					sectionNotice.Detail = res[0]["summary"];
 					sectionNotice.PostID = Convert.ToInt32(res[0]["id"]);
@@ -65,7 +65,7 @@ namespace Digital_School
 			sectionNews.TitleClick += SectionClick;
 			sectionNotice.TitleClick += SectionClick;
 			sectionGallary.TitleClick += delegate { Response.Redirect("~/Album.aspx"); };
-			sectionTeacher.TitleClick += delegate { Response.Redirect("~/TeacherList.aspx"); };
+			sectionTeacher.TitleClick += delegate { Response.Redirect("~/Teachers.aspx"); };
 		}
 
 		protected void SectionClick(object obj, EventArgs e) {

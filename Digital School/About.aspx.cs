@@ -14,7 +14,7 @@ namespace Digital_School
 		protected void Page_Load(object sender, EventArgs e) {
 
 			MySQLDatabase db = new MySQLDatabase();
-			List<Dictionary<string, string>> res = db.Query("getAllSpeechSummary", null);
+			List<Dictionary<string, string>> res = db.Query("getAllSpeechSummary", null, true);
 
 			foreach(var item in res) {
 				Tile tile = LoadControl("~/User Control/Tile.ascx") as Tile;

@@ -13,6 +13,15 @@ namespace Digital_School.User_Control {
     public partial class PostListItem {
         
         /// <summary>
+        /// divCss control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCss;
+        
+        /// <summary>
         /// heading control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace Digital_School.User_Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button heading;
+        
+        /// <summary>
+        /// spanBadge control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanBadge;
         
         /// <summary>
         /// hf control.

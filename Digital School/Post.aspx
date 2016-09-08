@@ -3,7 +3,6 @@
 	
 		<div class="row ">
 			<br />
-
 			<div class="col-xs-12 btn btn-primary btn-block btn-lg text-left">
 				<h1 id="postTitle" runat="server" enableviewstate="true">Post Title</h1>
 			</div>

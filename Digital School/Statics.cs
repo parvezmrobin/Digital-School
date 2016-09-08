@@ -11,6 +11,8 @@ namespace Digital_School
 	public static class Statics
 	{
 		public static string Error { get { return "~/Error.html"; } }
+		public static string Error404 { get { return "~/404.html"; } }
+		public static string ResponseFolder { get { return "~/Response/"; } }
 		public static string Admin { get { return "Administrator"; } }
 		public static string AdminPassword { get { return "pa$$word"; } }
 		public static string Teacher { get { return "Teacher"; } }
@@ -20,6 +22,22 @@ namespace Digital_School
 		}
 
 		public static string DatabaseName { get; set; } = "sdp";
+		public static string SchoolEmailId { get; internal set; }
+		public static string SchoolEmailPassword { get; internal set; }
+
+		#region Settings Varialbles
+		private static Dictionary<string, bool> settings = new Dictionary<string, bool>() {
+			{"Notification On Transaction", true },
+			{"Notification On Answer", true }
+		};
+		public static Dictionary<string, bool> Settings {
+			get { return settings; }
+		}
+
+		public static string NotificationOnTransaction { get { return "Notification On Transaction"; } }
+		public static string NotificationOnAnswer { get { return "Notification On Answer"; } }
+
+		#endregion
 
 		public static DataSet getDataSetByProc(string procName, params MySqlParameter[] parameters) {
 

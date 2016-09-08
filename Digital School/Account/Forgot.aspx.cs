@@ -27,12 +27,16 @@ namespace Digital_School.Account
                     ErrorMessage.Visible = true;
                     return;
                 }
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send email with the code and the redirect to reset password page
-                //string code = manager.GeneratePasswordResetToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetResetPasswordRedirectUrl(code, Request);
-                //manager.SendEmail(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-                loginForm.Visible = false;
+				// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+				// Send email with the code and the redirect to reset password page
+				string code = manager.GeneratePasswordResetToken(user.Id);
+				string callbackUrl = IdentityHelper.GetResetPasswordRedirectUrl(code, Request);
+				manager.SendEmail(user.Id, "Reset Password", 
+					"Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>." +
+					"<br/> <br/>" +
+					"Click the following link if you are facing problem:<br/>" + callbackUrl
+					);
+				loginForm.Visible = false;
                 DisplayEmail.Visible = true;
             }
         }

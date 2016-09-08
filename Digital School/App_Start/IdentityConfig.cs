@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Digital_School.Models;
+using System.Net.Mail;
 
 namespace Digital_School
 {
@@ -14,6 +15,13 @@ namespace Digital_School
 	{
 		public Task SendAsync(IdentityMessage message) {
 			// Plug in your email service here to send an email.
+			SmtpClient client = new SmtpClient("smpt.gmail.com", 587);
+			client.Credentials = new System.Net.NetworkCredential() {
+				UserName = Statics.SchoolEmailId,
+				Password = Statics.SchoolEmailPassword
+			};
+			client.EnableSsl = true;
+			client.Send(Statics.SchoolEmailId, message.Destination, message.Subject, message.Body);
 			return Task.FromResult(0);
 		}
 	}
@@ -37,11 +45,12 @@ namespace Digital_School
 			var manager = new ApplicationUserManager(
 				new UserStore<ApplicationUser>(
 				context.Get<ApplicationDbContext>() as MySQLDatabase));
+
 			// Configure validation logic for usernames
 			manager.UserValidator = new UserValidator<ApplicationUser>(manager) {
 				AllowOnlyAlphanumericUserNames = false,
 				RequireUniqueEmail = true
-			};
+			};		
 
 			// Configure validation logic for passwords
 			manager.PasswordValidator = new PasswordValidator {
@@ -49,7 +58,7 @@ namespace Digital_School
 				RequireNonLetterOrDigit = false,
 				RequireDigit = false,
 				RequireLowercase = false,
-				RequireUppercase = false,
+				RequireUppercase = false
 			};
 
 			// Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
@@ -75,6 +84,8 @@ namespace Digital_School
 			}
 			return manager;
 		}
+
+
 	}
 
 	public class ApplicationSignInManager : SignInManager<ApplicationUser, string>

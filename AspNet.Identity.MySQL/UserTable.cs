@@ -27,7 +27,7 @@ namespace AspNet.Identity.MySQL
         /// <returns></returns>
         public string GetUserName(string userId)
         {
-            string commandText = "Select Name from Users where Id = @id";
+            string commandText = "Select UserName as Name from Users where Id = @id";
             Dictionary<string, object> parameters = new Dictionary<string, object>() { { "@id", userId } };
 
             return _database.GetStrValue(commandText, parameters);

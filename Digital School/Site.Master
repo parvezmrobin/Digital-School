@@ -60,10 +60,37 @@
 					<asp:LoginView runat="server" ViewStateMode="Disabled">
 						<AnonymousTemplate>
 							<ul class="nav navbar-nav navbar-right">
-								<li><a runat="server" href="~/Account/Register">Register</a></li>
 								<li><a runat="server" href="~/Account/Login">Log in</a></li>
 							</ul>
 						</AnonymousTemplate>
+						<RoleGroups>
+							<asp:RoleGroup Roles="Student">
+								<ContentTemplate>
+									<ul class="nav navbar-nav navbar-right">
+										<li><a runat="server" href="~/Student/Summary.aspx" target="_parent">Summary</a></li>
+										<li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %></a>
+										</li>
+										<li>
+											<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/"
+												OnLoggingOut="Unnamed_LoggingOut" />
+										</li>
+									</ul>
+								</ContentTemplate>
+							</asp:RoleGroup>
+							<asp:RoleGroup Roles="Teacher">
+								<ContentTemplate>
+									<ul class="nav navbar-nav navbar-right">
+										<li><a runat="server" href="~/Teacher/Summary.aspx" target="_parent">Summary</a></li>
+										<li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %></a>
+										</li>
+										<li>
+											<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/"
+												OnLoggingOut="Unnamed_LoggingOut" />
+										</li>
+									</ul>
+								</ContentTemplate>
+							</asp:RoleGroup>
+						</RoleGroups>
 						<LoggedInTemplate>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %>
@@ -83,7 +110,8 @@
 			</asp:ContentPlaceHolder>
 			<hr />
 			<footer>
-				<p>&copy; <%: DateTime.Now.Year %> - Computer Science & Engineering Discipline, Khulna University</p>
+				<p>&copy; <%: DateTime.Now.Year %> - Computer Science & Engineering Discipline, Khulna
+					University</p>
 			</footer>
 		</div>
 	</form>

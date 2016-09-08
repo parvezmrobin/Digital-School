@@ -14,6 +14,7 @@ namespace Digital_School
 			if (!IsPostBack) {
 				MySQLDatabase db = new MySQLDatabase();
 				List<Dictionary<string, string>> res = db.Query("SELECT firstname, lastname, subject FROM teacher", null);
+				//TODO load teacher list
 				gvDetail.DataSource = res;
 				gvDetail.DataBind();
 

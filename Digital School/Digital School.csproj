@@ -224,9 +224,24 @@
     <Content Include="Slideshow\Green.png" />
     <Content Include="Slideshow\Oragne.png" />
     <Content Include="Slideshow\Red.png" />
+    <Content Include="Student\AskQuestion.aspx" />
+    <Content Include="Student\BrowseMarks.aspx" />
+    <Content Include="Student\GraphicalView.aspx" />
+    <Content Include="Student\Notification.aspx" />
+    <Content Include="Student\Summary.aspx" />
     <Content Include="Teachers.aspx" />
+    <Content Include="Teacher\EditStudent.aspx" />
+    <Content Include="Teacher\InputResult.aspx" />
+    <Content Include="Teacher\Miscellaneous.aspx" />
+    <Content Include="Teacher\NotificationQuest.aspx" />
+    <Content Include="Teacher\Promote.aspx" />
+    <Content Include="Teacher\StudentGroup.aspx" />
+    <Content Include="Teacher\Summary.aspx" />
+    <Content Include="Teacher\Transaction.aspx" />
     <Content Include="User Control\Album.ascx" />
+    <Content Include="User Control\MarkPortion.ascx" />
     <Content Include="User Control\PostListItem.ascx" />
+    <Content Include="User Control\Summary.ascx" />
     <Content Include="Xml\slideshow.xml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
@@ -274,6 +289,8 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Mobile.Master" />
+    <Content Include="Teacher\Web.config" />
+    <Content Include="Student\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -445,6 +462,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\Response.cs" />
     <Compile Include="Post.aspx.cs">
       <DependentUpon>Post.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -469,12 +487,103 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Statics.cs" />
+    <Compile Include="Student\AskQuestion.aspx.cs">
+      <DependentUpon>AskQuestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\AskQuestion.aspx.designer.cs">
+      <DependentUpon>AskQuestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\BrowseMarks.aspx.cs">
+      <DependentUpon>BrowseMarks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\BrowseMarks.aspx.designer.cs">
+      <DependentUpon>BrowseMarks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\GraphicalView.aspx.cs">
+      <DependentUpon>GraphicalView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\GraphicalView.aspx.designer.cs">
+      <DependentUpon>GraphicalView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Notification.aspx.cs">
+      <DependentUpon>Notification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Notification.aspx.designer.cs">
+      <DependentUpon>Notification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student\Summary.aspx.cs">
+      <DependentUpon>Summary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\Summary.aspx.designer.cs">
+      <DependentUpon>Summary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Teachers.aspx.cs">
       <DependentUpon>Teachers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Teachers.aspx.designer.cs">
       <DependentUpon>Teachers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\EditStudent.aspx.cs">
+      <DependentUpon>EditStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\EditStudent.aspx.designer.cs">
+      <DependentUpon>EditStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\InputResult.aspx.cs">
+      <DependentUpon>InputResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\InputResult.aspx.designer.cs">
+      <DependentUpon>InputResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\Miscellaneous.aspx.cs">
+      <DependentUpon>Miscellaneous.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\Miscellaneous.aspx.designer.cs">
+      <DependentUpon>Miscellaneous.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\NotificationQuest.aspx.cs">
+      <DependentUpon>NotificationQuest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\NotificationQuest.aspx.designer.cs">
+      <DependentUpon>NotificationQuest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\Promote.aspx.cs">
+      <DependentUpon>Promote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\Promote.aspx.designer.cs">
+      <DependentUpon>Promote.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\StudentGroup.aspx.cs">
+      <DependentUpon>StudentGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\StudentGroup.aspx.designer.cs">
+      <DependentUpon>StudentGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\Summary.aspx.cs">
+      <DependentUpon>Summary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\Summary.aspx.designer.cs">
+      <DependentUpon>Summary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\Transaction.aspx.cs">
+      <DependentUpon>Transaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\Transaction.aspx.designer.cs">
+      <DependentUpon>Transaction.aspx</DependentUpon>
     </Compile>
     <Compile Include="User Control\Album.ascx.cs">
       <DependentUpon>Album.ascx</DependentUpon>
@@ -483,12 +592,26 @@
     <Compile Include="User Control\Album.ascx.designer.cs">
       <DependentUpon>Album.ascx</DependentUpon>
     </Compile>
+    <Compile Include="User Control\MarkPortion.ascx.cs">
+      <DependentUpon>MarkPortion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User Control\MarkPortion.ascx.designer.cs">
+      <DependentUpon>MarkPortion.ascx</DependentUpon>
+    </Compile>
     <Compile Include="User Control\PostListItem.ascx.cs">
       <DependentUpon>PostListItem.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="User Control\PostListItem.ascx.designer.cs">
       <DependentUpon>PostListItem.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Summary.ascx.cs">
+      <DependentUpon>Summary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User Control\Summary.ascx.designer.cs">
+      <DependentUpon>Summary.ascx</DependentUpon>
     </Compile>
     <Compile Include="User Control\Tile.ascx.cs">
       <DependentUpon>Tile.ascx</DependentUpon>
@@ -507,6 +630,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Response\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AspNet.Identity.MySQL\AspNet.Identity.MySQL.csproj">

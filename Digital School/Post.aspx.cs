@@ -14,11 +14,6 @@ namespace Digital_School
 			if (Request.QueryString["posttype"] != null) {
 				ddlCatagory.SelectedValue = Request.QueryString["posttype"].ToString();
 			}
-			//else if (Request.QueryString["postid"] != null) {
-			//	Dictionary<string, object> dict = new Dictionary<string, object>(1);
-			//	dict.Add("@pid", Convert.ToInt32(Request.QueryString["postid"]));
-			//	ddlCatagory.SelectedValue = db.QueryValue("getTypeById", dict).ToString();
-			//}
 
 			LoadPostsAccordingToDDL();
 
@@ -45,11 +40,11 @@ namespace Digital_School
 			MySQLDatabase db = new MySQLDatabase();
 			List<Dictionary<string, string>> res = null;
 			if (ddlCatagory.SelectedValue == "All") {
-				res = db.Query("getAllIdTitle", null);
+				res = db.Query("getAllIdTitle", null, true);
 			} else {
 				Dictionary<string, object> dict = new Dictionary<string, object>(1);
 				dict.Add("@ptype", int.Parse(ddlCatagory.SelectedValue));
-				res = db.Query("getIdTitleByType", dict);
+				res = db.Query("getIdTitleByType", dict, true);
 			}
 
 			PostList.Controls.Clear();
@@ -73,7 +68,7 @@ namespace Digital_School
 			MySQLDatabase db = new MySQLDatabase();
 			Dictionary<string, object> dict = new Dictionary<string, object>(1);
 			dict.Add("@pid", id);
-			List<Dictionary<string, string>> res = db.Query("getPostById", dict);
+			List<Dictionary<string, string>> res = db.Query("getPostById", dict, true);
 			if (res.Count > 0) {
 				postTitle.InnerText = res[0]["title"];
 				postBody.InnerText = res[0]["body"];
