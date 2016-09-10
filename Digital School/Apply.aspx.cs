@@ -16,7 +16,7 @@ namespace Digital_School
 				divSuccessful.Visible = false;
 			}
 			if (Request.QueryString["appid"] == null || Request.QueryString["type"] == null)
-				Response.Redirect(Statics.Error404, true);
+				Server.Transfer(Statics.Error404, true);
 
 			#region Initialize Application Area
 
@@ -30,7 +30,7 @@ namespace Digital_School
 				applicationUrl.HRef = res[0]["noticeUrl"];
 				setVisibility(Convert.ToInt32(Request.QueryString["type"]), Convert.ToInt32(res[0]["idValue"]));
 			} else {
-				Response.Redirect("~/Error.html");
+				Server.Transfer("~/Error.html");
 			}
 
 			#endregion
@@ -90,7 +90,7 @@ namespace Digital_School
 				MySQLDatabase db = new MySQLDatabase();
 				long? id = Convert.ToInt64(db.QueryValue("addResponse", dict, true));
 				if (id == null)
-					Response.Redirect(Statics.Error, true);
+					Server.Transfer(Statics.Error, true);
 				divSuccessful.Visible = true;
 				appId.InnerText = id.ToString();
 				// TODO Send Email with response id

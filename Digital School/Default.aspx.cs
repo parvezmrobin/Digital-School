@@ -56,10 +56,9 @@ namespace Digital_School
 					sectionNotice.PostID = Convert.ToInt32(res[0]["id"]);
 				} else
 					Response.Redirect(Statics.Error);
-				//sectionNews.Detail = Statics.getLastSummaryByType(1);
-				//sectionNotice.Detail = Statics.getLastSummaryByType(2);
 				#endregion
 
+				
 			}
 
 			sectionNews.TitleClick += SectionClick;
@@ -70,10 +69,9 @@ namespace Digital_School
 
 		protected void SectionClick(object obj, EventArgs e) {
 			Tile section = (Tile)obj;
-			//Session["posttype"] = section.Type;
-			//Session["postid"] = section.PostID;
-			//Session.Remove("post");
 			Response.Redirect("~/Post.aspx?postid=" + section.PostID + "&posttype=" + section.Type);
 		}
+
+		
 	}
 }

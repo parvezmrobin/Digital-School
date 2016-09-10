@@ -34,9 +34,7 @@ namespace Digital_School.User_Control
 		}
 
 		protected void btnSubmit_Click(object sender, EventArgs e) {
-			OnSubmitClick(new EventArgs());
+			OnSubmitClick(e);
 		}
-
-		
 	}
 }

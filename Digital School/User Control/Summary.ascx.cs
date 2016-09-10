@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Digital_School.User_Control
 {
@@ -12,21 +7,31 @@ namespace Digital_School.User_Control
 		public event EventHandler Click;
 
 		public string Title {
-			get { return button.Text; }
-			set { button.Text = value; }
+			get { return heading.InnerText; }
+			set { heading.InnerText = value; }
 		}
 		public string Detail {
 			get {
-				return detail.InnerText;
+				return detail.InnerHtml;
 			}
 			set {
-				detail.InnerText = value;
+				detail.InnerHtml = value;
 			}
 		}
 
 		public string WidthClass {
 			get { return widthdiv.Attributes["class"]; }
 			set { widthdiv.Attributes["class"] = value; }
+		}
+
+		public string PostBackUrl {
+			get { return anchor.HRef; }
+			set { anchor.HRef = value; }
+		}
+
+		public string PanelClass {
+			get { return panel.Attributes["class"]; }
+			set { panel.Attributes["class"] = value; }
 		}
 
 		protected void onClick(EventArgs e) {

@@ -76,6 +76,7 @@ namespace Digital_School
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
-    }
+		
+	}
 
 }

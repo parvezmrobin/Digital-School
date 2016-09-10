@@ -22,13 +22,13 @@ namespace Digital_School.Student {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl postTitle;
         
         /// <summary>
-        /// postBody control.
+        /// pushedBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl postBody;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pushedBy;
         
         /// <summary>
         /// PostList control.
@@ -38,5 +38,23 @@ namespace Digital_School.Student {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PostList;
+        
+        /// <summary>
+        /// postBody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl postBody;
+        
+        /// <summary>
+        /// btnDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDelete;
     }
 }

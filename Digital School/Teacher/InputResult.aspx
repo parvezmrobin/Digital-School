@@ -8,11 +8,12 @@
 		}
 	</style>
 	<br />
-	<asp:UpdatePanel runat="server">
-		<ContentTemplate>
-			<div class="row">
-				<h2 style="text-align: center" class="text-info"><%: Title %>.</h2>
-				<hr />
+	<div class="row">
+		<h2 style="text-align: center" class="text-info"><%: Title %>.</h2>
+		<hr />
+		<asp:UpdatePanel runat="server" ID="up">
+			<ContentTemplate>
+
 				<div class="col-md-5 col-lg-4">
 					<div class="form-horizontal">
 						<div class="form-group">
@@ -76,14 +77,22 @@
 					</div>
 
 				</div>
-				<div class="col-md-7 col-lg-8">
-					<div class="form-horizontal" id="marks" runat="server">
+				<div class="col-md-7 col-lg-8" style="align-items: center">
+					<div class="form-horizontal">
+						<div id="marks" runat="server"></div>
+						<asp:Button Text="Submit All" runat="server" ID="btnSubmit" CssClass="btn btn-primary btn-lg col-md-offset-4"
+							OnClick="btnSubmit_Click" />
 					</div>
-					<asp:Button Text="Submit" runat="server" ID="btnSubmit" CssClass="btn btn-info btn-lg"
-						Style="float: right" OnClick="btnSubmit_Click" />
+
 				</div>
 
-			</div>
-		</ContentTemplate>
-	</asp:UpdatePanel>
+
+			</ContentTemplate>
+		</asp:UpdatePanel>
+		<asp:UpdateProgress AssociatedUpdatePanelID="up" DisplayAfter="1" runat="server">
+			<ProgressTemplate>
+					<h1 class="text-info">Loading...</h1>
+			</ProgressTemplate>
+		</asp:UpdateProgress>
+	</div>
 </asp:Content>

@@ -22,6 +22,24 @@ namespace Digital_School.User_Control {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl widthdiv;
         
         /// <summary>
+        /// anchor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor anchor;
+        
+        /// <summary>
+        /// panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl panel;
+        
+        /// <summary>
         /// detail control.
         /// </summary>
         /// <remarks>
@@ -31,12 +49,12 @@ namespace Digital_School.User_Control {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl detail;
         
         /// <summary>
-        /// button control.
+        /// heading control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button button;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl heading;
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using System.ComponentModel.DataAnnotations;
 
 namespace Digital_School.Student
 {
@@ -13,6 +14,7 @@ namespace Digital_School.Student
 	{
 		protected void Page_Load(object sender, EventArgs e) {
 			// TODO Implement BrowseMarks
+			
 			MySQLDatabase db = new MySQLDatabase();
 			var studentId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
 			if (!IsPostBack) {
@@ -48,7 +50,7 @@ namespace Digital_School.Student
 					{"@TSId", ddlSubject.SelectedValue },
 					{"@TId", ddlTerm.SelectedValue } },
 				true);
-
+			
 			gvMark.DataSource = dataSource.Select(x => new {
 				Subject = x["Subject"],
 				PortionName = x["Portion Name"],

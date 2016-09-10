@@ -10,43 +10,7 @@
 namespace Digital_School.Teacher {
     
     
-    public partial class NotificationQuest {
-        
-        /// <summary>
-        /// txtSubject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSubject;
-        
-        /// <summary>
-        /// ddlTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTo;
-        
-        /// <summary>
-        /// txtDetail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDetail;
-        
-        /// <summary>
-        /// btnPush control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPush;
+    public partial class AnswerQuests {
         
         /// <summary>
         /// divQuestions control.
@@ -64,7 +28,7 @@ namespace Digital_School.Teacher {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea quesBody;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl quesBody;
         
         /// <summary>
         /// txtAnswer control.
@@ -74,6 +38,15 @@ namespace Digital_School.Teacher {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAnswer;
+        
+        /// <summary>
+        /// hAnswered control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hAnswered;
         
         /// <summary>
         /// btnReply control.

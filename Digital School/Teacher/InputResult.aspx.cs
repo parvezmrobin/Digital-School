@@ -1,4 +1,5 @@
 ﻿using AspNet.Identity.MySQL;
+using Digital_School.Models;
 using Digital_School.User_Control;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -106,8 +107,9 @@ namespace Digital_School.Teacher
 			if (ViewState["YCSId"] == null)
 				ReloadYCSId(null, null);
 
-			var teacherId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
 			MySQLDatabase db = new MySQLDatabase();
+			var teacherId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
+			
 			#region Load Mark
 			int teacherSubjectId = Convert.ToInt32(
 				db.QueryValue("getTeacherSubjectId",
@@ -124,47 +126,58 @@ namespace Digital_School.Teacher
 				MarkPortion markPortion = LoadControl("~/User Control/MarkPortion.ascx") as MarkPortion;
 				markPortion.PortionName = item["portionname"];
 				markPortion.MarkPortionId = Convert.ToInt32(item["markportionid"]);
-				var resMark = db.Query("getMarkByMPIdSId",
+				var resMark = db.Query("getMarkByMPIdSIdTid",
 					new Dictionary<string, object>() {
 						{"@MPId", item["markportionid"] },
-						{"@SId", ddlStudent.SelectedValue }
+						{"@SId", ddlStudent.SelectedValue },
+						{"@Tid", ddlTerm.SelectedValue }
 					}, true);
-				if (resMark.Count == 0)
-					Response.Redirect(Statics.Error, true);
-				markPortion.Mark = Convert.ToInt32(resMark[0]["mark"]);
-				markPortion.MarkId = Convert.ToInt32(resMark[0]["markid"]);
-				markPortion.SubmitClick += delegate {
-					int mark;
-					if (markPortion.MarkId == null) {
-						if (!string.IsNullOrEmpty(markPortion.Mark.ToString()) &&
-							int.TryParse(markPortion.Mark.ToString(), out mark)) {
-							int SYCSRId = Convert.ToInt32(db.QueryValue("getSYCSRIdByYCSIdSId",
-								new Dictionary<string, object>() {
+				if (resMark.Count == 0) {
+					markPortion.Mark = null;
+					markPortion.MarkId = null;
+				} else {
+					markPortion.Mark = Convert.ToInt32(resMark[0]["mark"]);
+					markPortion.MarkId = Convert.ToInt32(resMark[0]["markid"]);
+				}
+				markPortion.SubmitClick += MarkPortion_SubmitClick;
+				//AsyncPostBackTrigger trigger = new AsyncPostBackTrigger() { ControlID = markPortion.ID, EventName = "SubmitClick" };
+				//up.Triggers.Add(trigger);
+				//(ViewState["clicks"] as List<MarkPortion>).Add(markPortion);
+				marks.Controls.Add(markPortion);
+			}
+			#endregion
+		}
+
+		private void MarkPortion_SubmitClick(object sender, EventArgs e) {
+			MySQLDatabase db = new MySQLDatabase();
+			var teacherId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
+				int mark;
+				MarkPortion mp = (sender as MarkPortion);
+				if (mp.MarkId == null) {
+					if (int.TryParse(mp.Mark.ToString(), out mark)) {
+						int SYCSRId = Convert.ToInt32(db.QueryValue("getSYCSRIdByYCSIdSId",
+							new Dictionary<string, object>() {
 									{ "@YCSId", ViewState["YCSId"] },
 									{ "@SId", ddlStudent.SelectedValue } },
-								true));
+							true));
 
-							db.Execute("addMark", new Dictionary<string, object>() {
-								{ "@MPId", markPortion.MarkPortionId},
+						db.Execute("addMark", new Dictionary<string, object>() {
+								{ "@MPId", mp.MarkPortionId},
 								{ "@SYCSRId", SYCSRId },
 								{ "@termid", ddlTerm.SelectedValue },
 								{ "@mark", mark },
 								{ "@TUId",  teacherId}
 							}, true);
 
-						}
-					} else {
-						db.Execute("updateMark",
-							new Dictionary<string, object>() {
-									{"@pid", markPortion.MarkId },
-									{"@mark", markPortion.Mark }
-							}, true);
 					}
-				};
-				//(ViewState["clicks"] as List<MarkPortion>).Add(markPortion);
-				marks.Controls.Add(markPortion);
-			}
-			#endregion
+				} else {
+					db.Execute("updateMark",
+						new Dictionary<string, object>() {
+									{"@pid", mp.MarkId },
+									{"@mark", mp.Mark }
+						}, true);
+				}
+			
 		}
 
 		protected void ReloadYCSId(object obj, EventArgs ea) {
@@ -180,13 +193,13 @@ namespace Digital_School.Teacher
 		protected void MarkPortion_Click(object sender, EventArgs e) {
 			MySQLDatabase db = new MySQLDatabase();
 			if (sender is MarkPortion) {
-				
+				//TODO Implement single mark update
 			}
 		}
 
 		protected void btnSubmit_Click(object sender, EventArgs e) {
-			foreach (var item in (ViewState["clicks"] as List<MarkPortion>)) {
-				item.OnSubmitClick(new EventArgs());
+			foreach(MarkPortion mark in marks.Controls) {
+				//TODO implement all mark update
 			}
 		}
 	}

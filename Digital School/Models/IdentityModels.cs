@@ -13,9 +13,7 @@ namespace Digital_School.Models
 	// You can add User data for the user by adding more properties to your User class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
 	public class ApplicationUser : IdentityUser
 	{
-		public string FirstName, LastName, FathersName, MothersName, Address, Designation, Qualification, GuardianOccupation, GaurdianOccupationDetail;
-		public int Gender, Class;
-		DateTime BirthDate;
+		
 
 		public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager) {
 			// Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

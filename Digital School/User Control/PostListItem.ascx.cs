@@ -12,8 +12,13 @@ namespace Digital_School.User_Control
 		}
 
 		public string Title {
-			get { return heading.Text; }
-			set { heading.Text = value; }
+			get { return heading.InnerText; }
+			set { heading.InnerText = value; }
+		}
+
+		public string Body {
+			get { return body.InnerText; }
+			set { body.InnerText = value; }
 		}
 
 		public int PostID {
@@ -26,6 +31,10 @@ namespace Digital_School.User_Control
 			set { spanBadge.InnerText = value; }
 		}
 
+		public void SetActive() {
+			divCss.Attributes["class"] = "list-group-item active";
+		}
+
 		protected void onPostClick(EventArgs e) {
 			PostClick?.Invoke(this, e);
 		}
@@ -33,7 +42,5 @@ namespace Digital_School.User_Control
 		protected void heading_Click(object sender, EventArgs e) {
 			onPostClick(new EventArgs());
 		}
-
-
 	}
 }

@@ -11,13 +11,9 @@ using System.Web.UI.WebControls;
 
 namespace Digital_School.Teacher
 {
-	public partial class NotificationQuest : System.Web.UI.Page
+	public partial class AnswerQuests : System.Web.UI.Page
 	{
-		//TODO Split page by Notification and Question
 		protected void Page_Load(object sender, EventArgs e) {
-			if (!IsPostBack) {
-				LoadTeachers();
-			}
 			LoadQuests();
 		}
 
@@ -26,55 +22,31 @@ namespace Digital_School.Teacher
 				new Dictionary<string, object>() { { "@TUN", User.Identity.Name } },
 				true);
 			divQuestions.Controls.Clear();
+
+			int? postId = string.IsNullOrEmpty(Request.QueryString["postid"]) ? (int?)null : Convert.ToInt32(Request.QueryString["postid"]);
 			foreach (var item in res) {
 				PostListItem post = LoadControl("~/User Control/PostListItem.ascx") as PostListItem;
 				post.PostID = Convert.ToInt32(item["id"]);
+				if (postId != null && post.PostID == postId)
+					post.SetActive();
 				post.Title = item["title"];
 				post.Badge = (item["isAnswered"] == "0" ? "new" : "read");
+				post.Body = "- " + item["askedby"];
 				post.PostClick += delegate {
-					hfQuesId.Value = post.PostID.ToString();
-					var res2 = new MySQLDatabase().QueryValue("getQuestionBodyById", new Dictionary<string, object>() { { "@pid", post.PostID } }, true);
-					quesBody.InnerText = res2.ToString();
+					Response.Redirect(Request.Url.AbsolutePath + "?postid=" + post.PostID);
 				};
 				divQuestions.Controls.Add(post);
 			}
+			LoadQuestionDetail(postId);
 		}
 
-		private void LoadTeachers() {
-			ddlTo.DataSource = new MySQLDatabase().Query(
-				"getGroupByTUN",
-				new Dictionary<string, object>() { { "@TUN", User.Identity.Name } },
-				true).Select(x => new {
-					Text = x["group"],
-					Value = x["id"]
-				}).ToList();
-			ddlTo.DataBind();
-		}
-
-		protected void btnPush_Click(object sender, EventArgs e) {
-			if (IsValid) {
-				MySQLDatabase db = new MySQLDatabase();
-				var TUId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
-				var res1 = db.Query("GetStudentIdByGId",
-					new Dictionary<string, object>() {
-					{"@GId", ddlTo.SelectedValue }
-					}, true);
-
-				var id = db.QueryValue("addNotification",
-					new Dictionary<string, object>() {
-					{"@TUId", TUId },
-					{"@ptitle", txtSubject.Text },
-					{"@pbody", txtDetail.Text }
-					}, true);
-
-				foreach (var item in res1) {
-					db.Execute("addStudentNotification",
-						new Dictionary<string, object>() {
-						{ "@SId", item["studentId"] },
-						{ "@NId", id }
-						}, true);
-				}
-			}
+		private void LoadQuestionDetail(int? postId) {
+			if (postId == null)
+				return;
+			var res2 = new MySQLDatabase().QueryValue("getQuestionBodyById", new Dictionary<string, object>() { { "@pid", postId } }, true);
+			quesBody.InnerText = res2.ToString();
+			quesBody.Visible = true;
+			hAnswered.Visible = false;
 		}
 
 		protected void btnReply_Click(object sender, EventArgs e) {
@@ -89,6 +61,8 @@ namespace Digital_School.Teacher
 					{"@panswer", txtAnswer.Text }
 				}, true);
 			txtAnswer.Text = string.Empty;
+			quesBody.Visible = false;
+			hAnswered.Visible = true;
 			if (Statics.Settings[Statics.NotificationOnAnswer]) {
 				//TODO Send notification on ansering question
 			}

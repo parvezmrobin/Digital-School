@@ -3,18 +3,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 	<style>
-		input.form-control {
-			max-width: none;
-		}
-
 		select.form-control {
 			max-width: 280px;
 		}
 	</style>
 	<br />
 	<div class="row">
+		<h2 class="text-info" style="text-align:center"><%:Title %></h2>
+		<hr />
 		<div class="form-horizontal">
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label for="txtGroupName" class="col-md-4 col-sm-6 control-label text-static">
 					Create New Group
 				</label>
@@ -22,16 +20,15 @@
 					<asp:TextBox ID="txtGroupName" ToolTip="Group Name" CssClass="form-control" runat="server"
 						TextMode="SingleLine"></asp:TextBox>
 				</div>
-				<asp:Button Text="Create" CssClass="btn btn-default col-md-2 col-sm-2"
+				<asp:Button Text="Create" CssClass="btn btn-info col-md-2 col-sm-2"
 					ID="btnCreateGroup" OnClick="btnCreateGroup_Click" runat="server" />
 			</div>
 		</div>
-		<hr />
 		<asp:UpdatePanel runat="server">
 			<ContentTemplate>
 				<div class="form-horizontal">
-					<br />
-					<div class="form-group">
+			
+					<div class="form-group col-md-6">
 						<asp:Label Text="Select Group" AssociatedControlID="ddlGroup" runat="server"
 							CssClass="col-md-4 col-sm-6 control-label" />
 						<div class="col-md-6 col-sm-4">
@@ -43,9 +40,9 @@
 							ID="btnRemoveGroup" OnClick="btnRemoveGroup_Click" ToolTip="Remove selected group"
 							runat="server" />
 					</div>
-					<hr />
-					<br />
+					
 				</div>
+				
 			</ContentTemplate>
 		</asp:UpdatePanel>
 		<asp:UpdatePanel runat="server">

@@ -192,6 +192,12 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Admin\Accessibility.aspx" />
+    <Content Include="Admin\Account.aspx" />
+    <Content Include="Admin\Gallery.aspx" />
+    <Content Include="Admin\Settings.aspx" />
+    <Content Include="Admin\SiteData.aspx" />
+    <Content Include="Admin\WebForm1.aspx" />
     <Content Include="Album.aspx" />
     <Content Include="Albums\Album-Thumbnail.png" />
     <Content Include="Albums\Album1\campus3.png" />
@@ -207,6 +213,7 @@
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\HtmlPage1.html" />
     <Content Include="Content\Site.css" />
     <Content Include="Error.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -228,12 +235,15 @@
     <Content Include="Student\BrowseMarks.aspx" />
     <Content Include="Student\GraphicalView.aspx" />
     <Content Include="Student\Notification.aspx" />
+    <Content Include="User Control\SelectableImage.ascx" />
     <Content Include="Student\Summary.aspx" />
     <Content Include="Teachers.aspx" />
+    <Content Include="Teacher\AnswerQuests.aspx" />
+    <Content Include="Teacher\Attendance.aspx" />
     <Content Include="Teacher\EditStudent.aspx" />
     <Content Include="Teacher\InputResult.aspx" />
     <Content Include="Teacher\Miscellaneous.aspx" />
-    <Content Include="Teacher\NotificationQuest.aspx" />
+    <Content Include="Teacher\Notification.aspx" />
     <Content Include="Teacher\Promote.aspx" />
     <Content Include="Teacher\StudentGroup.aspx" />
     <Content Include="Teacher\Summary.aspx" />
@@ -242,7 +252,9 @@
     <Content Include="User Control\MarkPortion.ascx" />
     <Content Include="User Control\PostListItem.ascx" />
     <Content Include="User Control\Summary.ascx" />
+    <Content Include="Xml\history.xml" />
     <Content Include="Xml\slideshow.xml" />
+    <Content Include="Admin\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
@@ -411,6 +423,48 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Accessibility.aspx.cs">
+      <DependentUpon>Accessibility.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Accessibility.aspx.designer.cs">
+      <DependentUpon>Accessibility.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Gallery.aspx.cs">
+      <DependentUpon>Gallery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Gallery.aspx.designer.cs">
+      <DependentUpon>Gallery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SiteData.aspx.cs">
+      <DependentUpon>SiteData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SiteData.aspx.designer.cs">
+      <DependentUpon>SiteData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Album.aspx.cs">
       <DependentUpon>Album.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -515,6 +569,13 @@
     <Compile Include="Student\Notification.aspx.designer.cs">
       <DependentUpon>Notification.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User Control\SelectableImage.ascx.cs">
+      <DependentUpon>SelectableImage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User Control\SelectableImage.ascx.designer.cs">
+      <DependentUpon>SelectableImage.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Student\Summary.aspx.cs">
       <DependentUpon>Summary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -528,6 +589,20 @@
     </Compile>
     <Compile Include="Teachers.aspx.designer.cs">
       <DependentUpon>Teachers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\AnswerQuests.aspx.cs">
+      <DependentUpon>AnswerQuests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\AnswerQuests.aspx.designer.cs">
+      <DependentUpon>AnswerQuests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\Attendance.aspx.cs">
+      <DependentUpon>Attendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\Attendance.aspx.designer.cs">
+      <DependentUpon>Attendance.aspx</DependentUpon>
     </Compile>
     <Compile Include="Teacher\EditStudent.aspx.cs">
       <DependentUpon>EditStudent.aspx</DependentUpon>
@@ -550,12 +625,12 @@
     <Compile Include="Teacher\Miscellaneous.aspx.designer.cs">
       <DependentUpon>Miscellaneous.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Teacher\NotificationQuest.aspx.cs">
-      <DependentUpon>NotificationQuest.aspx</DependentUpon>
+    <Compile Include="Teacher\Notification.aspx.cs">
+      <DependentUpon>Notification.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Teacher\NotificationQuest.aspx.designer.cs">
-      <DependentUpon>NotificationQuest.aspx</DependentUpon>
+    <Compile Include="Teacher\Notification.aspx.designer.cs">
+      <DependentUpon>Notification.aspx</DependentUpon>
     </Compile>
     <Compile Include="Teacher\Promote.aspx.cs">
       <DependentUpon>Promote.aspx</DependentUpon>

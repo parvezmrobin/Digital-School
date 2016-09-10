@@ -52,26 +52,38 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li><a runat="server" href="~/">Home</a></li>
-						<li><a runat="server" href="~/About">About</a></li>
-						<li><a runat="server" href="~/Academic">Academic</a></li>
-						<li><a runat="server" href="~/Contact">Contact</a></li>
+						<li id="menuHome"><a runat="server" href="~/"><span class="glyphicon glyphicon-home">
+						</span> Home</a>
+						</li>
+						<li id="menuAbout"><a runat="server" href="~/About"><span class="glyphicon glyphicon-list">
+						</span> About</a>
+						</li>
+						<li id="menuAcademic"><a runat="server" href="~/Academic"><span class="glyphicon glyphicon-briefcase">
+						</span> Academic</a></li>
+						<li id="menuContact"><a runat="server" href="~/Contact"><span class="glyphicon glyphicon-envelope">
+						</span> Contact</a></li>
 					</ul>
 					<asp:LoginView runat="server" ViewStateMode="Disabled">
 						<AnonymousTemplate>
 							<ul class="nav navbar-nav navbar-right">
-								<li><a runat="server" href="~/Account/Login">Log in</a></li>
+								<li><a runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-log-in">
+								</span> Log in</a></li>
 							</ul>
 						</AnonymousTemplate>
 						<RoleGroups>
 							<asp:RoleGroup Roles="Student">
 								<ContentTemplate>
 									<ul class="nav navbar-nav navbar-right">
-										<li><a runat="server" href="~/Student/Summary.aspx" target="_parent">Summary</a></li>
-										<li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %></a>
+										<li id="studentSummary"><a runat="server" href="~/Student/Summary.aspx" target="_parent">
+											<span class="glyphicon glyphicon-compressed"></span>Summary</a>
+										</li>
+										<li><a runat="server" href="~/Account/Manage" title="Manage your account">
+											<span class="glyphicon glyphicon-dashboard">
+											</span> Hello, <%: Context.User.Identity.GetUserName()  %></a>
 										</li>
 										<li>
-											<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/"
+											<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="<span class='glyphicon glyphicon-log-out'></span> Log out"
+												LogoutPageUrl="~/"
 												OnLoggingOut="Unnamed_LoggingOut" />
 										</li>
 									</ul>
@@ -80,11 +92,31 @@
 							<asp:RoleGroup Roles="Teacher">
 								<ContentTemplate>
 									<ul class="nav navbar-nav navbar-right">
-										<li><a runat="server" href="~/Teacher/Summary.aspx" target="_parent">Summary</a></li>
-										<li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %></a>
+										<li id="teacherSummary"><a runat="server" href="~/Teacher/Summary.aspx" target="_parent">
+											<span class="glyphicon glyphicon-compressed"></span>Summary</a>
 										</li>
 										<li>
-											<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/"
+											<a runat="server" href="~/Account/Manage" title="Manage your account">
+												<span class="glyphicon glyphicon-dashboard"></span> Hello, <%: Context.User.Identity.GetUserName()  %></a>
+										</li>
+										<li>
+											<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="<span class='glyphicon glyphicon-log-out'></span> Log out"
+												LogoutPageUrl="~/"
+												OnLoggingOut="Unnamed_LoggingOut" />
+										</li>
+									</ul>
+								</ContentTemplate>
+							</asp:RoleGroup>
+							<asp:RoleGroup Roles="Admin">
+								<ContentTemplate>
+									<ul class="nav navbar-nav navbar-right">
+										<li>
+											<a runat="server" href="~/Account/Manage" title="Manage your account">
+												<span class="glyphicon glyphicon-dashboard"></span> Hello, <%: Context.User.Identity.GetUserName()  %></a>
+										</li>
+										<li>
+											<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="<span class='glyphicon glyphicon-log-out'></span> Log out"
+												LogoutPageUrl="~/"
 												OnLoggingOut="Unnamed_LoggingOut" />
 										</li>
 									</ul>
@@ -104,14 +136,68 @@
 					</asp:LoginView>
 				</div>
 			</div>
+			<asp:LoginView runat="server">
+				<RoleGroups>
+					<asp:RoleGroup Roles="Admin">
+						<ContentTemplate>
+							<style>
+								body {
+									padding-top: 100px;
+									padding-bottom: 20px;
+								}
+							</style>
+							<div class="container">
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navAdmin"
+										style="background-color: white">
+										<span class="glyphicon glyphicon-circle-arrow-down"></span>
+									</button>
+
+								</div>
+								<div class="navbar-collapse collapse" id="navAdmin">
+									<ul class="nav navbar-nav">
+										<li id="adminSettings"><a runat="server" href="~/Admin/Settings"><span class="glyphicon glyphicon-cog">
+										</span> Settings</a></li>
+										<li id="adminAccount"><a runat="server" href="~/Admin/Account"><span class="glyphicon glyphicon-user">
+										</span> Account</a></li>
+										<li id="adminManage" class="dropdown">
+											<a class="dropdown-toggle" data-toggle="dropdown"
+												href="#"><span class="glyphicon glyphicon-wrench"></span> Manage<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a runat="server" id="a1" href="~/Admin/Class">Class</a></li>
+												<li><a runat="server" id="a2" href="~/Admin/Class">Section</a></li>
+												<li><a runat="server" id="a3" href="~/Admin/Class">Subject</a></li>
+											</ul>
+										</li>
+										<li id="adminAccessibility"><a runat="server" href="~/Admin/Accessibility"><span
+											class="glyphicon glyphicon-remove-circle"></span> Accessibility</a>
+										</li>
+										<li id="adminSiteData">
+											<a runat="server" href="~/Admin/SiteData">
+												<span class="glyphicon glyphicon-folder-open"></span> Site Data
+											</a>
+										</li>
+
+									</ul>
+
+								</div>
+
+							</div>
+						</ContentTemplate>
+					</asp:RoleGroup>
+				</RoleGroups>
+			</asp:LoginView>
 		</div>
 		<div class="container body-content">
+			<br />
 			<asp:ContentPlaceHolder ID="MainContent" runat="server">
 			</asp:ContentPlaceHolder>
 			<hr />
 			<footer>
-				<p>&copy; <%: DateTime.Now.Year %> - Computer Science & Engineering Discipline, Khulna
-					University</p>
+				<p>
+					&copy; <%: DateTime.Now.Year %> - Computer Science & Engineering Discipline, Khulna
+					University
+				</p>
 			</footer>
 		</div>
 	</form>

@@ -13,13 +13,13 @@ namespace Digital_School.Teacher {
     public partial class Summary {
         
         /// <summary>
-        /// SummaryInput control.
+        /// SummaryAttendance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Digital_School.User_Control.Summary SummaryInput;
+        protected global::Digital_School.User_Control.Summary SummaryAttendance;
         
         /// <summary>
         /// SummaryNotifications control.
@@ -29,6 +29,24 @@ namespace Digital_School.Teacher {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Digital_School.User_Control.Summary SummaryNotifications;
+        
+        /// <summary>
+        /// SummaryAnswer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Digital_School.User_Control.Summary SummaryAnswer;
+        
+        /// <summary>
+        /// SummaryInput control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Digital_School.User_Control.Summary SummaryInput;
         
         /// <summary>
         /// SummaryTransaction control.

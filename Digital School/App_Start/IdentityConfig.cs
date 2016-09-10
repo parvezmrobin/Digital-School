@@ -85,7 +85,6 @@ namespace Digital_School
 			return manager;
 		}
 
-
 	}
 
 	public class ApplicationSignInManager : SignInManager<ApplicationUser, string>

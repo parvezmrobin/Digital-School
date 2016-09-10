@@ -25,6 +25,7 @@ namespace Digital_School
 				foreach (var child in PostList.Controls) {
 					if (child is PostListItem) {
 						postId = (child as PostListItem).PostID;
+						(child as PostListItem).SetActive();
 						break;
 					}
 				}
@@ -48,11 +49,14 @@ namespace Digital_School
 			}
 
 			PostList.Controls.Clear();
-
+			int? postId = Convert.ToInt32(Request.QueryString["postid"]);
 			foreach (var item in res) {
 				PostListItem post = LoadControl("~/User Control/PostListItem.ascx") as PostListItem;
 				post.Title = item["title"];
 				post.PostID = Convert.ToInt32(item["id"]);
+				post.Body = item["date"];
+				if (postId != null && postId == post.PostID)
+					post.SetActive();
 				post.PostClick += delegate {
 					Response.Redirect(Request.Url.AbsolutePath + "?postid=" + item["id"] + "&posttype=" + ddlCatagory.SelectedValue, true);
 				};
@@ -63,7 +67,7 @@ namespace Digital_School
 
 		private void LoadPost(int? id) {
 			if (id == null)
-				Response.Redirect("~/Error.html", true);
+				Server.Transfer("~/Error.html", true);
 
 			MySQLDatabase db = new MySQLDatabase();
 			Dictionary<string, object> dict = new Dictionary<string, object>(1);
@@ -74,7 +78,7 @@ namespace Digital_School
 				postBody.InnerText = res[0]["body"];
 				Title = res[0]["title"];
 			} else {
-				Response.Redirect("~/Error.html");
+				Server.Transfer(Statics.Error);
 			}
 		}
 

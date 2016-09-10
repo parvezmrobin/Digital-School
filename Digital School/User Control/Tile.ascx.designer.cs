@@ -37,7 +37,7 @@ namespace Digital_School.User_Control {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button heading;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl heading;
         
         /// <summary>
         /// body control.
@@ -46,7 +46,16 @@ namespace Digital_School.User_Control {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton body;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl body;
+        
+        /// <summary>
+        /// footer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl footer;
         
         /// <summary>
         /// hfPostID control.

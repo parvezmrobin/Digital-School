@@ -19,7 +19,7 @@ namespace Digital_School.User_Control {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCss;
+        protected global::System.Web.UI.WebControls.LinkButton divCss;
         
         /// <summary>
         /// heading control.
@@ -28,7 +28,7 @@ namespace Digital_School.User_Control {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button heading;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl heading;
         
         /// <summary>
         /// spanBadge control.
@@ -38,6 +38,15 @@ namespace Digital_School.User_Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanBadge;
+        
+        /// <summary>
+        /// body control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl body;
         
         /// <summary>
         /// hf control.

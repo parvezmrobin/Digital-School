@@ -42,7 +42,7 @@ namespace AspNet.Identity.MySQL
         {
             int result = 0;
 
-            if (String.IsNullOrEmpty(commandText))
+            if (string.IsNullOrEmpty(commandText))
             {
                 throw new ArgumentException("Command text cannot be null or empty.");
             }
@@ -203,15 +203,15 @@ namespace AspNet.Identity.MySQL
             }
         }
 
-        /// <summary>
-        /// Helper method to return query a string value 
-        /// </summary>
-        /// <param name="commandText">The MySQL query to execute</param>
-        /// <param name="parameters">Parameters to pass to the MySQL query</param>
-        /// <returns>The string value resulting from the query</returns>
-        public string GetStrValue(string commandText, Dictionary<string, object> parameters)
+		/// <summary>
+		/// Helper method to return query a string value 
+		/// </summary>
+		/// <param name="commandText">The MySQL query to execute</param>
+		/// <param name="parameters">Parameters to pass to the MySQL query</param>
+		/// <returns>The string value resulting from the query</returns>
+		public string GetStrValue(string commandText, Dictionary<string, object> parameters, bool isProcedure = false)
         {
-            string value = QueryValue(commandText, parameters) as string;
+            string value = QueryValue(commandText, parameters, isProcedure) as string;
             return value;
         }
 

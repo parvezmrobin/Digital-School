@@ -76,21 +76,12 @@ namespace Digital_School {
         protected global::Digital_School.User_Control.Tile sectionTeacher;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
-        /// cal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar cal;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnSearch;
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace Digital_School
 {
@@ -31,7 +32,9 @@ namespace Digital_School
 				speeches.Controls.Add(tile);
 			}
 
-			
+			if (!IsPostBack) {
+				//TODO Load History from Xml
+			}
 		}
 
 	}
