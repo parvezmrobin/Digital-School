@@ -28,7 +28,8 @@ namespace Digital_School.Student
 				new Dictionary<string, object>() { { "@pid", studentId } },
 				true);
 
-			int? postId = Convert.ToInt32(Request.QueryString["postid"]);
+			int? postId = null;
+			if (Request.QueryString["postid"] != null) { postId = Convert.ToInt32(Request.QueryString["postid"]); }
 			foreach (var item in res) {
 				var noti = LoadControl("~/User Control/PostListItem.ascx") as PostListItem;
 				noti.PostID = Convert.ToInt32(item["id"]);

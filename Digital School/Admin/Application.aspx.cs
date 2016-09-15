@@ -30,7 +30,7 @@ namespace Digital_School.Admin
 				}
 				post.Body = item["date"];
 				post.PostClick += delegate { Response.Redirect(Request.Url.AbsolutePath + "?appid=" + post.PostID); };
-
+				
 				Applications.Controls.Add(post);
 			}
 
@@ -43,8 +43,8 @@ namespace Digital_School.Admin
 					post.PostID = Convert.ToInt32(item["id"]);
 					post.Title = item["name"];
 					post.Body = item["email"];
-					post.PostClick += delegate { Response.Redirect("~/Admin/Response?resid="+post.PostID); };
-
+					//post.PostClick += delegate { Response.Redirect; };
+					post.OnClientClick += "window.open('" + ("Response?resid=" + post.PostID) + "','_blank')";
 					Responses.Controls.Add(post);
 				}
 			}

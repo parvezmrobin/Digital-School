@@ -66,13 +66,16 @@ namespace Digital_School.Admin
 
 				var ext = Path.GetExtension(files[0]);
 				if (ext == ".zip" || ext == ".rar") {
-					aImage.HRef = files[1];
-					imgThumb.Src = "~/" + files[1].Substring(root.Length);
+					//aImage.HRef = files[1];
+					imgThumb.ImageUrl = "~/" + files[1].Substring(root.Length);
 					if (files.Length > 1)
 						aAttachment.HRef = files[0];
+					//imgThumb.OnClientClick = "window.open('" + "file:///"+ files[1] + "','_blank')";
+
 				} else {
-					aImage.HRef = files[0];
-					imgThumb.Src = "~/" + files[0].Substring(root.Length);
+					//aImage.HRef = files[0];
+					//imgThumb.OnClientClick = "window.open('" + "file:///" + files[0] + "','_blank')";
+					imgThumb.ImageUrl = "~/" + files[0].Substring(root.Length);
 					if (files.Length > 1)
 						aAttachment.HRef = files[1];
 				}

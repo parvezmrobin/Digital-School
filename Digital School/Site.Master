@@ -67,7 +67,7 @@
 						<AnonymousTemplate>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-log-in">
-								</span>Log in</a></li>
+								</span> Log in</a></li>
 							</ul>
 						</AnonymousTemplate>
 						<RoleGroups>

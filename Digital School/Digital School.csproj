@@ -534,6 +534,7 @@
       <DependentUpon>Images.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MarkPortion.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Post.aspx.cs">

@@ -2,6 +2,14 @@
 	CodeBehind="Response.aspx.cs" Inherits="Digital_School.Admin.Response" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#<%:imgThumb.ClientID%>').click(function () {
+				window.open('<%:Server.MapPath(imgThumb.ImageUrl)%>', '_blank');
+			});
+		});
+	</script>
+	
 	<div class="row">
 		<h2 class="text-info text-center">Response ID : <span runat="server" id="spanResId">
 		</span></h2>
@@ -20,10 +28,10 @@
 					<a runat="server" id="aAppId" href="#" class=" col-sm-4">
 						<asp:Label runat="server" ID="lblAppId" CssClass="form-control" />
 					</a>
-					<a class="col-sm-3" runat="server" id="aImage" href="#">
-						<img runat="server" id="imgThumb" src="#" class="img img-responsive img-thumbnail"
-							title="Click this thumbnail to see full size image" />
-					</a>
+					<%--<a class="col-sm-3" runat="server" id="aImage" href="#">--%>
+						<%--<img runat="server" id="imgThumb" src="#" class="img img-responsive img-thumbnail"
+							title="Click this thumbnail to see full size image" />--%>
+					<asp:ImageButton ImageUrl="#" runat="server" ID="imgThumb" CssClass="col-sm-3" />
 				</div>
 			</div>
 		</div>

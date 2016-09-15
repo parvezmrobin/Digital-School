@@ -31,6 +31,11 @@ namespace Digital_School.User_Control
 			set { spanBadge.InnerText = value; }
 		}
 
+		public string OnClientClick {
+			get { return divCss.OnClientClick; }
+			set { divCss.OnClientClick = value; }
+		}
+
 		public void SetActive() {
 			divCss.Attributes["class"] = "list-group-item active";
 		}
