@@ -7,54 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Digital_School.User_Control {
+namespace Digital_School.Admin {
     
     
-    public partial class MarkPortion {
+    public partial class Application {
         
         /// <summary>
-        /// lbl control.
+        /// Applications control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Applications;
         
         /// <summary>
-        /// txt control.
+        /// btnRemoveApp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt;
+        protected global::System.Web.UI.WebControls.Button btnRemoveApp;
         
         /// <summary>
-        /// btnSubmit control.
+        /// Responses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSubmit;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Responses;
         
         /// <summary>
-        /// hf1 control.
+        /// btnRemoveRes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hf1;
-        
-        /// <summary>
-        /// hf2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hf2;
+        protected global::System.Web.UI.WebControls.Button btnRemoveRes;
     }
 }

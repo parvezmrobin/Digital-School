@@ -12,5 +12,17 @@ namespace Digital_School.Admin
 		protected void Page_Load(object sender, EventArgs e) {
 
 		}
+
+		protected void SummarySlideShow_Click(object obj, EventArgs e) {
+			
+		}
+
+		protected void SummaryGallery_Click(object obj, EventArgs e) {
+			Response.Redirect("~/Admin/Gallery");
+		}
+
+		protected void SummaryApplication_Click(object obj, EventArgs e) {
+			Response.Redirect("~/Admin/Application");
+		}
 	}
 }

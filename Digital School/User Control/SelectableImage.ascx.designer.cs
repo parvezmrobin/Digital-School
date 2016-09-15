@@ -13,6 +13,24 @@ namespace Digital_School.User_Control {
     public partial class SelectableImage {
         
         /// <summary>
+        /// div control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div;
+        
+        /// <summary>
+        /// cb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cb;
+        
+        /// <summary>
         /// img control.
         /// </summary>
         /// <remarks>

@@ -67,7 +67,7 @@
 						<AnonymousTemplate>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-log-in">
-								</span> Log in</a></li>
+								</span>Log in</a></li>
 							</ul>
 						</AnonymousTemplate>
 						<RoleGroups>
@@ -75,11 +75,10 @@
 								<ContentTemplate>
 									<ul class="nav navbar-nav navbar-right">
 										<li id="studentSummary"><a runat="server" href="~/Student/Summary.aspx" target="_parent">
-											<span class="glyphicon glyphicon-compressed"></span>Summary</a>
+											<span class="glyphicon glyphicon-compressed"></span> Summary</a>
 										</li>
 										<li><a runat="server" href="~/Account/Manage" title="Manage your account">
-											<span class="glyphicon glyphicon-dashboard">
-											</span> Hello, <%: Context.User.Identity.GetUserName()  %></a>
+											<span class="glyphicon glyphicon-dashboard"></span> Hello, <%: Context.User.Identity.GetUserName()  %></a>
 										</li>
 										<li>
 											<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="<span class='glyphicon glyphicon-log-out'></span> Log out"
@@ -93,7 +92,7 @@
 								<ContentTemplate>
 									<ul class="nav navbar-nav navbar-right">
 										<li id="teacherSummary"><a runat="server" href="~/Teacher/Summary.aspx" target="_parent">
-											<span class="glyphicon glyphicon-compressed"></span>Summary</a>
+											<span class="glyphicon glyphicon-compressed"></span> Summary</a>
 										</li>
 										<li>
 											<a runat="server" href="~/Account/Manage" title="Manage your account">
@@ -155,7 +154,7 @@
 
 								</div>
 								<div class="navbar-collapse collapse" id="navAdmin">
-									<ul class="nav navbar-nav">
+									<ul class="nav navbar-nav navbar-right">
 										<li id="adminSettings"><a runat="server" href="~/Admin/Settings"><span class="glyphicon glyphicon-cog">
 										</span> Settings</a></li>
 										<li id="adminAccount"><a runat="server" href="~/Admin/Account"><span class="glyphicon glyphicon-user">
@@ -173,9 +172,25 @@
 											class="glyphicon glyphicon-remove-circle"></span> Accessibility</a>
 										</li>
 										<li id="adminSiteData">
+											<%--<ul>
+												<li>--%>
 											<a runat="server" href="~/Admin/SiteData">
 												<span class="glyphicon glyphicon-folder-open"></span> Site Data
 											</a>
+											<%--</li>
+												<li class="dropdown">
+													<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+														<span class="caret"></a>
+													<ul class="dropdown-menu">
+														<li><a runat="server" id="sda1" href="#">Slide Show</a></li>
+														<li><a runat="server" id="A4" href="~/Admin/Gallery.aspx">Gallery</a></li>
+														<li><a runat="server" id="A5" href="#">Post</a></li>
+														<li><a runat="server" id="A6" href="#">History & Contact</a></li>
+														<li><a runat="server" id="A7" href="#">Application</a></li>
+														<li><a runat="server" id="A8" href="#">Result</a></li>
+													</ul>
+												</li>
+											</ul>--%>
 										</li>
 
 									</ul>
@@ -192,6 +207,7 @@
 			<br />
 			<asp:ContentPlaceHolder ID="MainContent" runat="server">
 			</asp:ContentPlaceHolder>
+			
 			<hr />
 			<footer>
 				<p>
@@ -200,6 +216,12 @@
 				</p>
 			</footer>
 		</div>
+		<noscript>
+			<div class="col-xs-12 bg-info text-center text-danger" style="position: fixed; font-size:x-large;
+				bottom: 5%; opacity: 1">
+				You have javascript disabled. To have a fluent experience, please enable javascript.
+			</div>
+		</noscript>
 	</form>
 </body>
 </html>

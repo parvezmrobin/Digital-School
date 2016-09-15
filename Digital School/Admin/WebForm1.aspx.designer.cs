@@ -20,5 +20,50 @@ namespace Digital_School.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Digital_School.User_Control.SelectableImage SelectableImage;
+        
+        /// <summary>
+        /// SelectableImage1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Digital_School.User_Control.SelectableImage SelectableImage1;
+        
+        /// <summary>
+        /// SelectableImage2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Digital_School.User_Control.SelectableImage SelectableImage2;
+        
+        /// <summary>
+        /// SelectableImage3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Digital_School.User_Control.SelectableImage SelectableImage3;
+        
+        /// <summary>
+        /// SelectableImage4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Digital_School.User_Control.SelectableImage SelectableImage4;
+        
+        /// <summary>
+        /// SelectableImage5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Digital_School.User_Control.SelectableImage SelectableImage5;
     }
 }

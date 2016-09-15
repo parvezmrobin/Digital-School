@@ -194,7 +194,9 @@
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Admin\Accessibility.aspx" />
     <Content Include="Admin\Account.aspx" />
+    <Content Include="Admin\Application.aspx" />
     <Content Include="Admin\Gallery.aspx" />
+    <Content Include="Admin\Response.aspx" />
     <Content Include="Admin\Settings.aspx" />
     <Content Include="Admin\SiteData.aspx" />
     <Content Include="Admin\WebForm1.aspx" />
@@ -202,12 +204,15 @@
     <Content Include="Albums\Album-Thumbnail.png" />
     <Content Include="Albums\Album1\campus3.png" />
     <Content Include="Albums\Album1\Moscow_High_School.jpg" />
-    <Content Include="Albums\Album1\Warner-Building-LeChase.jpg" />
+    <Content Include="Albums\Album1\Warner Building LeChase.jpg" />
     <Content Include="Albums\Album2\river-003.jpg" />
     <Content Include="Albums\Album2\River-HD-Wallpapers.jpg" />
-    <Content Include="Albums\Album2\White_River_Arkansas-1.jpg" />
+    <Content Include="Albums\Album2\White River Arkansas.jpg" />
+    <Content Include="Albums\Album3 - Copy\Campus - The Danish Design School.jpg" />
+    <Content Include="Albums\Album3 - Copy\campus.jpg" />
+    <Content Include="Albums\Album3 - Copy\StudentsonCampus.jpg" />
     <Content Include="Albums\Album3\campus.jpg" />
-    <Content Include="Albums\Album3\Campus_-_The_Danish_Design_School.jpg" />
+    <Content Include="Albums\Album3\Campus - The Danish Design School.jpg" />
     <Content Include="Albums\Album3\StudentsonCampus.jpg" />
     <Content Include="Apply.aspx" />
     <Content Include="Contact.aspx" />
@@ -437,12 +442,26 @@
     <Compile Include="Admin\Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Application.aspx.cs">
+      <DependentUpon>Application.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Application.aspx.designer.cs">
+      <DependentUpon>Application.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Gallery.aspx.cs">
       <DependentUpon>Gallery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\Gallery.aspx.designer.cs">
       <DependentUpon>Gallery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Response.aspx.cs">
+      <DependentUpon>Response.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Response.aspx.designer.cs">
+      <DependentUpon>Response.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Settings.aspx.cs">
       <DependentUpon>Settings.aspx</DependentUpon>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="Summary" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
 	CodeBehind="Summary.aspx.cs" Inherits="Digital_School.Student.Summary" %>
 
 <%@ Register Src="~/User Control/Summary.ascx" TagName="Summary" TagPrefix="uc1" %>
