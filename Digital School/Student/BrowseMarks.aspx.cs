@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using System.ComponentModel.DataAnnotations;
+using Digital_School.Models;
 
 namespace Digital_School.Student
 {
@@ -16,7 +17,7 @@ namespace Digital_School.Student
 			// TODO Implement BrowseMarks
 			
 			MySQLDatabase db = new MySQLDatabase();
-			var studentId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
+            var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
 			if (!IsPostBack) {
 				var res = db.Query("getYearByStudentUserid",
 					new Dictionary<string, object>() { { "@pid", studentId } },
@@ -58,5 +59,9 @@ namespace Digital_School.Student
 			}).ToList();
 			gvMark.DataBind();
 		}
-	}
+
+        protected void gvMark_RowEditing(object sender, GridViewEditEventArgs e) {
+
+        }
+    }
 }
