@@ -4,84 +4,224 @@
 
 <html lang="en">
 <head runat="server">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>
+		<%: (Page.Title.Length==0)?"":(Page.Title+" - ") %>Digital School
+	</title>
 
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<asp:PlaceHolder runat="server">
+		<%: Scripts.Render("~/bundles/modernizr") %>
+	</asp:PlaceHolder>
+	<webopt:BundleReference runat="server" Path="~/Content/css" />
+	<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
 <body>
-    <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="bootstrap" />
-                <asp:ScriptReference Name="respond" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
-            </Scripts>
-        </asp:ScriptManager>
+	<form runat="server">
+		<asp:ScriptManager runat="server">
+			<Scripts>
+				<%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+				<%--Framework Scripts--%>
+				<asp:ScriptReference Name="MsAjaxBundle" />
+				<asp:ScriptReference Name="jquery" />
+				<asp:ScriptReference Name="bootstrap" />
+				<asp:ScriptReference Name="respond" />
+				<asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+				<asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+				<asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+				<asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+				<asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+				<asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+				<asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+				<asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+				<asp:ScriptReference Name="WebFormsBundle" />
+				<%--Site Scripts--%>
+			</Scripts>
+		</asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-						<li><a runat="server" href="~/Academic">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
-                    </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Register</a></li>
-                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
-                            </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                </li>
-                            </ul>
-                        </LoggedInTemplate>
-                    </asp:LoginView>
-                </div>
-            </div>
-        </div>
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </footer>
-        </div>
-    </form>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" runat="server" href="~/">Digital School</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li id="menuHome"><a runat="server" href="~/"><span class="glyphicon glyphicon-home">
+						</span> Home</a>
+						</li>
+						<li id="menuAbout"><a runat="server" href="~/About"><span class="glyphicon glyphicon-list">
+						</span> About</a>
+						</li>
+						<li id="menuAcademic"><a runat="server" href="~/Academic"><span class="glyphicon glyphicon-briefcase">
+						</span> Academic</a></li>
+						<li id="menuContact"><a runat="server" href="~/Contact"><span class="glyphicon glyphicon-envelope">
+						</span> Contact</a></li>
+					</ul>
+					<asp:LoginView runat="server" ViewStateMode="Disabled">
+						<AnonymousTemplate>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a runat="server" href="~/Account/Login"><span class="glyphicon glyphicon-log-in">
+								</span> Log in</a></li>
+							</ul>
+						</AnonymousTemplate>
+						<RoleGroups>
+							<asp:RoleGroup Roles="Student">
+								<ContentTemplate>
+									<ul class="nav navbar-nav navbar-right">
+										<li id="studentSummary"><a runat="server" href="~/Student/Summary.aspx" target="_parent">
+											<span class="glyphicon glyphicon-compressed"></span> Summary</a>
+										</li>
+										<li><a runat="server" href="~/Account/Manage" title="Manage your account">
+											<span class="glyphicon glyphicon-dashboard"></span> Hello, <%: Context.User.Identity.GetUserName()  %></a>
+										</li>
+										<li>
+											<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="<span class='glyphicon glyphicon-log-out'></span> Log out"
+												LogoutPageUrl="~/"
+												OnLoggingOut="Unnamed_LoggingOut" />
+										</li>
+									</ul>
+								</ContentTemplate>
+							</asp:RoleGroup>
+							<asp:RoleGroup Roles="Teacher">
+								<ContentTemplate>
+									<ul class="nav navbar-nav navbar-right">
+										<li id="teacherSummary"><a runat="server" href="~/Teacher/Summary.aspx" target="_parent">
+											<span class="glyphicon glyphicon-compressed"></span> Summary</a>
+										</li>
+										<li>
+											<a runat="server" href="~/Account/Manage" title="Manage your account">
+												<span class="glyphicon glyphicon-dashboard"></span> Hello, <%: Context.User.Identity.GetUserName()  %></a>
+										</li>
+										<li>
+											<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="<span class='glyphicon glyphicon-log-out'></span> Log out"
+												LogoutPageUrl="~/"
+												OnLoggingOut="Unnamed_LoggingOut" />
+										</li>
+									</ul>
+								</ContentTemplate>
+							</asp:RoleGroup>
+							<asp:RoleGroup Roles="Admin">
+								<ContentTemplate>
+									<ul class="nav navbar-nav navbar-right">
+										<li>
+											<a runat="server" href="~/Account/Manage" title="Manage your account">
+												<span class="glyphicon glyphicon-dashboard"></span> Hello, <%: Context.User.Identity.GetUserName()  %></a>
+										</li>
+										<li>
+											<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="<span class='glyphicon glyphicon-log-out'></span> Log out"
+												LogoutPageUrl="~/"
+												OnLoggingOut="Unnamed_LoggingOut" />
+										</li>
+									</ul>
+								</ContentTemplate>
+							</asp:RoleGroup>
+						</RoleGroups>
+						<LoggedInTemplate>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %>
+									!</a></li>
+								<li>
+									<asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/"
+										OnLoggingOut="Unnamed_LoggingOut" />
+								</li>
+							</ul>
+						</LoggedInTemplate>
+					</asp:LoginView>
+				</div>
+			</div>
+			<asp:LoginView runat="server">
+				<RoleGroups>
+					<asp:RoleGroup Roles="Admin">
+						<ContentTemplate>
+							<style>
+								body {
+									padding-top: 100px;
+									padding-bottom: 20px;
+								}
+							</style>
+							<div class="container">
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navAdmin"
+										style="background-color: white">
+										<span class="glyphicon glyphicon-circle-arrow-down"></span>
+									</button>
+
+								</div>
+								<div class="navbar-collapse collapse" id="navAdmin">
+									<ul class="nav navbar-nav navbar-right">
+										<li id="adminSettings"><a runat="server" href="~/Admin/Settings"><span class="glyphicon glyphicon-cog">
+										</span> Settings</a></li>
+										<li id="adminAccount"><a runat="server" href="~/Admin/Account"><span class="glyphicon glyphicon-user">
+										</span> Account</a></li>
+										<li id="adminManage" class="dropdown">
+											<a class="dropdown-toggle" data-toggle="dropdown"
+												href="#"><span class="glyphicon glyphicon-wrench"></span> Manage<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a runat="server" id="a1" href="~/Admin/Class">Class</a></li>
+												<li><a runat="server" id="a2" href="~/Admin/Class">Section</a></li>
+												<li><a runat="server" id="a3" href="~/Admin/Class">Subject</a></li>
+											</ul>
+										</li>
+										<li id="adminAccessibility"><a runat="server" href="~/Admin/Accessibility"><span
+											class="glyphicon glyphicon-remove-circle"></span> Accessibility</a>
+										</li>
+										<li id="adminSiteData">
+											<%--<ul>
+												<li>--%>
+											<a runat="server" href="~/Admin/SiteData">
+												<span class="glyphicon glyphicon-folder-open"></span> Site Data
+											</a>
+											<%--</li>
+												<li class="dropdown">
+													<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+														<span class="caret"></a>
+													<ul class="dropdown-menu">
+														<li><a runat="server" id="sda1" href="#">Slide Show</a></li>
+														<li><a runat="server" id="A4" href="~/Admin/Gallery.aspx">Gallery</a></li>
+														<li><a runat="server" id="A5" href="#">Post</a></li>
+														<li><a runat="server" id="A6" href="#">History & Contact</a></li>
+														<li><a runat="server" id="A7" href="#">Application</a></li>
+														<li><a runat="server" id="A8" href="#">Result</a></li>
+													</ul>
+												</li>
+											</ul>--%>
+										</li>
+
+									</ul>
+
+								</div>
+
+							</div>
+						</ContentTemplate>
+					</asp:RoleGroup>
+				</RoleGroups>
+			</asp:LoginView>
+		</div>
+		<div class="container body-content">
+			<br />
+			<asp:ContentPlaceHolder ID="MainContent" runat="server">
+			</asp:ContentPlaceHolder>
+			
+			<hr />
+			<footer>
+				<p>
+					&copy; <%: DateTime.Now.Year %> - Computer Science & Engineering Discipline, Khulna
+					University
+				</p>
+			</footer>
+		</div>
+		<noscript>
+			<div class="col-xs-12 bg-info text-center text-danger" style="position: fixed; font-size:x-large;
+				bottom: 5%; opacity: 1">
+				You have javascript disabled. To have a fluent experience, please enable javascript.
+			</div>
+		</noscript>
+	</form>
 </body>
 </html>

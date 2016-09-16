@@ -9,6 +9,7 @@ namespace AspNet.Identity.MySQL
     /// </summary>
     public class IdentityUser : IUser
     {
+
         /// <summary>
         /// Default constructor 
         /// </summary>
@@ -86,5 +87,25 @@ namespace AspNet.Identity.MySQL
         ///     Used to record failures for the purposes of lockout
         /// </summary>
         public virtual int AccessFailedCount { get; set; }
-    }
+
+		/// <summary>
+		/// Additional fields
+		/// </summary>
+		public virtual string FirstName { get; set; }
+		public virtual string LastName { get; set; }
+		public virtual string FullName {
+			get { return FirstName + " " + LastName; }
+		}
+		public virtual string FathersName { get; set; }
+		public virtual string MothersName { get; set; }
+		public virtual string Address { get; set; }
+		public virtual string Designation { get; set; }
+		public virtual string Qualification { get; set; }
+		public virtual string GuardianOccupation { get; set; }
+		public virtual string GaurdianOccupationDetail { get; set; }
+		public virtual int Gender { get; set; }
+		public virtual int Class { get; set; }
+		public virtual DateTime BirthDate { get; set; }
+
+	}
 }

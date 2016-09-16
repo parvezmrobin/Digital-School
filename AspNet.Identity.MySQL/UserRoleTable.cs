@@ -53,13 +53,29 @@ namespace AspNet.Identity.MySQL
             return _database.Execute(commandText, parameters);
         }
 
-        /// <summary>
-        /// Inserts a new role for a user in the UserRoles table
-        /// </summary>
-        /// <param name="user">The User</param>
-        /// <param name="roleId">The Role's id</param>
-        /// <returns></returns>
-        public int Insert(IdentityUser user, string roleId)
+		/// <summary>
+		/// Deletes all roles from a user in the UserRoles table
+		/// </summary>
+		/// <param name="userId">The user's id</param>
+		/// <returns></returns>
+		public int Delete(string userId, string role) {
+			RoleTable roleTable = new RoleTable(_database);
+			string roleId = roleTable.GetRoleId(role);
+			string commandText = "Delete from UserRoles where UserId = @userId AND RoleId = @roleId";
+			Dictionary<string, object> parameters = new Dictionary<string, object>();
+			parameters.Add("UserId", userId);
+			parameters.Add("RoleId", roleId);
+
+			return _database.Execute(commandText, parameters);
+		}
+
+		/// <summary>
+		/// Inserts a new role for a user in the UserRoles table
+		/// </summary>
+		/// <param name="user">The User</param>
+		/// <param name="roleId">The Role's id</param>
+		/// <returns></returns>
+		public int Insert(IdentityUser user, string roleId)
         {
             string commandText = "Insert into UserRoles (UserId, RoleId) values (@userId, @roleId)";
             Dictionary<string, object> parameters = new Dictionary<string, object>();

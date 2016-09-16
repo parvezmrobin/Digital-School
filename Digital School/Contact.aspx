@@ -13,7 +13,11 @@
 		}
 		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
-
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#menuContact').attr('class', 'active');
+		});
+	</script>
 	<h2>Contact Info</h2>
 
 	<div class="row" id="divContact">

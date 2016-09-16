@@ -7,23 +7,24 @@ namespace Digital_School.User_Control
 	{
 		public event EventHandler TitleClick;
 
-		protected void Page_Load(object sender, EventArgs e) {
-
-		}
-
 		public string WidthClass {
 			get { return divwidth.Attributes["class"]; }
 			set { divwidth.Attributes["class"] = value; }
 		}
 		public string Title {
-			get { return heading.Text; }
-			set { heading.Text = value; }
+			get { return heading.InnerText; }
+			set { heading.InnerText = value; }
 		}
 
 
 		public string Detail {
 			get { return body.InnerText; }
 			set { body.InnerText = value; }
+		}
+
+		public string Footer {
+			get { return footer.InnerText; }
+			set { footer.InnerText = value; }
 		}
 
 		public int PostID {

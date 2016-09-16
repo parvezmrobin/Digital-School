@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AspNet.Identity.MySQL;
+using Microsoft.AspNet.Identity;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace AspNet.Identity.MySQL
 		private UserClaimsTable userClaimsTable;
 		private UserLoginsTable userLoginsTable;
 		public MySQLDatabase Database { get; private set; }
-
+		
 		public IQueryable<TUser> Users {
 			get {
 				string connstr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -42,8 +43,7 @@ namespace AspNet.Identity.MySQL
 				MySqlDataReader reader = cmd.ExecuteReader();
 				List<TUser> users = new List<TUser>();
 				while (reader.Read()) {
-					
-					IdentityUser user = new IdentityUser();
+					TUser user = (TUser)Activator.CreateInstance(typeof(TUser));
 					user.Id = reader["Id"].ToString();
 					user.Email = reader["Email"].ToString();
 					user.EmailConfirmed = (bool)reader["EmailConfirmed"];
@@ -51,14 +51,14 @@ namespace AspNet.Identity.MySQL
 					user.SecurityStamp = reader["SecurityStamp"].ToString();
 					user.PhoneNumber = reader["PhoneNumber"].ToString();
 					user.PhoneNumberConfirmed = (bool)reader["PhoneNumberConfirmed"];
-					user.TwoFactorEnabled = (Boolean)reader["TwoFactorEnabled"];
+					user.TwoFactorEnabled = (bool)reader["TwoFactorEnabled"];
 					try {
 						user.LockoutEndDateUtc = DateTime.Parse(reader["LockoutEndDateUtc"].ToString());
 					} catch (Exception) { }
 					user.LockoutEnabled = (bool)reader["LockoutEnabled"];
 					user.AccessFailedCount = Convert.ToInt32(reader["AccessFailedCount"]);
 					user.UserName = reader["UserName"].ToString();
-					users.Add((TUser)user);
+					users.Add(user);
 				}
 				conn.Close();
 				return users.AsQueryable();
@@ -315,6 +315,40 @@ namespace AspNet.Identity.MySQL
 
 			return Task.FromResult<object>(null);
 		}
+		/// <summary>
+		/// Inserts a entry in the UserRoles table and Teacher / Student table
+		/// </summary>
+		/// <param name="user">User to have role added</param>
+		/// <param name="roleName">Name of the role to be added to user</param>
+		/// <param name="param">Additional parameters for insertion in Teacher/Student table</param>
+		/// <returns></returns>
+		public Task AddToRoleAsync(TUser user, string roleName, Dictionary<string, object> param) {
+			if (user == null) {
+				throw new ArgumentNullException("user");
+			}
+
+			if (string.IsNullOrEmpty(roleName)) {
+				throw new ArgumentException("Argument cannot be null or empty: roleName.");
+			}
+
+			string roleId = roleTable.GetRoleId(roleName);
+			if (!string.IsNullOrEmpty(roleId)) {
+				userRolesTable.Insert(user, roleId);
+			}
+
+			param.Add("@userid", user.Id);
+			FillAdditionalTable(user.Id, roleName, param);
+
+			return Task.FromResult<object>(null);
+		}
+
+		public void FillAdditionalTable(string userId,string roleName, Dictionary<string, object> param) {
+			if (roleName == RoleTable.Student) {
+				Database.Execute("addStudent", param, true);
+			} else if (roleName == RoleTable.Teacher) {
+				Database.Execute("addTeacher", param, true);
+			}
+		}
 
 		/// <summary>
 		/// Returns the roles for a given TUser
@@ -368,7 +402,16 @@ namespace AspNet.Identity.MySQL
 		/// <param name="role"></param>
 		/// <returns></returns>
 		public Task RemoveFromRoleAsync(TUser user, string role) {
-			throw new NotImplementedException();
+			if (user == null) {
+				throw new ArgumentNullException("user");
+			}
+
+			if (string.IsNullOrEmpty(role)) {
+				throw new ArgumentNullException("role");
+			}
+			userRolesTable.Delete(user.Id, role);
+			
+			return Task.FromResult<Object>(null);
 		}
 
 		/// <summary>

@@ -1,0 +1,21 @@
+﻿<div class="col-md-3 col-sm-6 col-xs-9 ">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+
+            <asp:Calendar CssClass="table table-striped " FirstDayOfWeek="Saturday"
+                          NextPrevFormat="ShortMonth"
+                          Caption="Academic Calendar" ID="cal" runat="server" CaptionAlign="Top" DayHeaderStyle-CssClass="text-info"
+                          DayStyle-CssClass="success" OtherMonthDayStyle-CssClass="danger" SelectedDayStyle-BackColor="DarkCyan"
+                          SelectedDayStyle-Font-Bold="true" SelectedDayStyle-Font-Size="120%" SelectedDayStyle-ForeColor="AliceBlue"
+                          ShowTitle="true" OnSelectionChanged="cal_SelectionChanged" OnDayRender="cal_DayRender"></asp:Calendar>
+            <asp:TextBox runat="server" CssClass="form-control" Style="max-width: none" ID="txtDate"
+                         TextMode="Date" ViewStateMode="Enabled" />
+            <uc1:PostListItem runat="server" ID="PostListItem" />
+
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="cal" EventName="Load" />
+            <asp:AsyncPostBackTrigger ControlID="cal" EventName="SelectionChanged" />
+        </Triggers>
+    </asp:UpdatePanel>
+</div>

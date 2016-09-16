@@ -38,11 +38,11 @@ namespace AspNet.Identity.MySQL
         /// <param name="commandText">The MySQL query to execute</param>
         /// <param name="parameters">Optional parameters to pass to the query</param>
         /// <returns>The count of records affected by the MySQL statement</returns>
-        public int Execute(string commandText, Dictionary<string, object> parameters, bool isProcedure = true)
+        public int Execute(string commandText, Dictionary<string, object> parameters, bool isProcedure = false)
         {
             int result = 0;
 
-            if (String.IsNullOrEmpty(commandText))
+            if (string.IsNullOrEmpty(commandText))
             {
                 throw new ArgumentException("Command text cannot be null or empty.");
             }
@@ -67,7 +67,7 @@ namespace AspNet.Identity.MySQL
         /// <param name="commandText">The MySQL query to execute</param>
         /// <param name="parameters">Optional parameters to pass to the query</param>
         /// <returns></returns>
-        public object QueryValue(string commandText, Dictionary<string, object> parameters, bool isProcedure = true)
+        public object QueryValue(string commandText, Dictionary<string, object> parameters, bool isProcedure = false)
         {
             object result = null;
 
@@ -97,7 +97,7 @@ namespace AspNet.Identity.MySQL
         /// <param name="parameters">Parameters to pass to the MySQL query</param>
         /// <returns>A list of a Dictionary of Key, values pairs representing the 
         /// ColumnName and corresponding value</returns>
-        public List<Dictionary<string, string>> Query(string commandText, Dictionary<string, object> parameters, bool isProcedure = true)
+        public List<Dictionary<string, string>> Query(string commandText, Dictionary<string, object> parameters, bool isProcedure = false)
         {
             List<Dictionary<string, string>> rows = null;
             if (String.IsNullOrEmpty(commandText))
@@ -203,15 +203,15 @@ namespace AspNet.Identity.MySQL
             }
         }
 
-        /// <summary>
-        /// Helper method to return query a string value 
-        /// </summary>
-        /// <param name="commandText">The MySQL query to execute</param>
-        /// <param name="parameters">Parameters to pass to the MySQL query</param>
-        /// <returns>The string value resulting from the query</returns>
-        public string GetStrValue(string commandText, Dictionary<string, object> parameters)
+		/// <summary>
+		/// Helper method to return query a string value 
+		/// </summary>
+		/// <param name="commandText">The MySQL query to execute</param>
+		/// <param name="parameters">Parameters to pass to the MySQL query</param>
+		/// <returns>The string value resulting from the query</returns>
+		public string GetStrValue(string commandText, Dictionary<string, object> parameters, bool isProcedure = false)
         {
-            string value = QueryValue(commandText, parameters) as string;
+            string value = QueryValue(commandText, parameters, isProcedure) as string;
             return value;
         }
 

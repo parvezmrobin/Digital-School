@@ -9,12 +9,14 @@ namespace AspNet.Identity.MySQL
     public class RoleTable 
     {
         private MySQLDatabase _database;
-
-        /// <summary>
-        /// Constructor that takes a MySQLDatabase instance 
-        /// </summary>
-        /// <param name="database"></param>
-        public RoleTable(MySQLDatabase database)
+		public static string Student { get { return "Student"; } }
+		public static string Teacher { get { return "Teacher"; } }
+		public static string Admin { get { return "Admin"; } }
+		/// <summary>
+		/// Constructor that takes a MySQLDatabase instance 
+		/// </summary>
+		/// <param name="database"></param>
+		public RoleTable(MySQLDatabase database)
         {
             _database = database;
         }

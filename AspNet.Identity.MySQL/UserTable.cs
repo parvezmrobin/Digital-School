@@ -27,7 +27,7 @@ namespace AspNet.Identity.MySQL
         /// <returns></returns>
         public string GetUserName(string userId)
         {
-            string commandText = "Select Name from Users where Id = @id";
+            string commandText = "Select UserName as Name from Users where Id = @id";
             Dictionary<string, object> parameters = new Dictionary<string, object>() { { "@id", userId } };
 
             return _database.GetStrValue(commandText, parameters);
@@ -73,6 +73,11 @@ namespace AspNet.Identity.MySQL
                 user.LockoutEnabled = row["LockoutEnabled"] == "1" ? true : false;
                 user.LockoutEndDateUtc = string.IsNullOrEmpty(row["LockoutEndDateUtc"]) ? DateTime.Now : DateTime.Parse(row["LockoutEndDateUtc"]);
                 user.AccessFailedCount = string.IsNullOrEmpty(row["AccessFailedCount"]) ? 0 : int.Parse(row["AccessFailedCount"]);
+				user.FirstName = row["firstname"];
+				user.LastName = row["lastname"];
+				user.FathersName = row["fathersname"];
+				user.MothersName = row["mothersname"];
+				//TODO implement rest of properties in UserTable
             }
 
             return user;
@@ -105,7 +110,12 @@ namespace AspNet.Identity.MySQL
                 user.TwoFactorEnabled = row["TwoFactorEnabled"] == "1" ? true : false;
                 user.LockoutEndDateUtc = string.IsNullOrEmpty(row["LockoutEndDateUtc"]) ? DateTime.Now : DateTime.Parse(row["LockoutEndDateUtc"]);
                 user.AccessFailedCount = string.IsNullOrEmpty(row["AccessFailedCount"]) ? 0 : int.Parse(row["AccessFailedCount"]);
-                users.Add(user);
+				user.FirstName = row["firstname"];
+				user.LastName = row["lastname"];
+				user.FathersName = row["fathersname"];
+				user.MothersName = row["mothersname"];
+				//TODO implement rest of properties in UserTable
+				users.Add(user);
             }
 
             return users;
@@ -113,8 +123,35 @@ namespace AspNet.Identity.MySQL
 
         public List<TUser> GetUserByEmail(string email)
         {
-            return null;
-        }
+			List<TUser> users = new List<TUser>();
+			string commandText = "Select * from Users where Email = @email";
+			Dictionary<string, object> parameters = new Dictionary<string, object>() { { "@email", email } };
+
+			var rows = _database.Query(commandText, parameters);
+			foreach (var row in rows) {
+				TUser user = (TUser)Activator.CreateInstance(typeof(TUser));
+				user.Id = row["Id"];
+				user.UserName = row["UserName"];
+				user.PasswordHash = string.IsNullOrEmpty(row["PasswordHash"]) ? null : row["PasswordHash"];
+				user.SecurityStamp = string.IsNullOrEmpty(row["SecurityStamp"]) ? null : row["SecurityStamp"];
+				user.Email = string.IsNullOrEmpty(row["Email"]) ? null : row["Email"];
+				user.EmailConfirmed = row["EmailConfirmed"] == "1" ? true : false;
+				user.PhoneNumber = string.IsNullOrEmpty(row["PhoneNumber"]) ? null : row["PhoneNumber"];
+				user.PhoneNumberConfirmed = row["PhoneNumberConfirmed"] == "1" ? true : false;
+				user.LockoutEnabled = row["LockoutEnabled"] == "1" ? true : false;
+				user.TwoFactorEnabled = row["TwoFactorEnabled"] == "1" ? true : false;
+				user.LockoutEndDateUtc = string.IsNullOrEmpty(row["LockoutEndDateUtc"]) ? DateTime.Now : DateTime.Parse(row["LockoutEndDateUtc"]);
+				user.AccessFailedCount = string.IsNullOrEmpty(row["AccessFailedCount"]) ? 0 : int.Parse(row["AccessFailedCount"]);
+				user.FirstName = row["firstname"];
+				user.LastName = row["lastname"];
+				user.FathersName = row["fathersname"];
+				user.MothersName = row["mothersname"];
+				//TODO implement rest of properties in UserTable
+				users.Add(user);
+			}
+
+			return users;
+		}
 
         /// <summary>
         /// Return the user's password hash
@@ -188,7 +225,7 @@ namespace AspNet.Identity.MySQL
             parameters.Add("@lockoutenabled", user.LockoutEnabled);
             parameters.Add("@lockoutenddate", user.LockoutEndDateUtc);
             parameters.Add("@twofactorenabled", user.TwoFactorEnabled);
-
+			//TODO Implement Insert User 
             return _database.Execute(commandText, parameters);
         }
 
@@ -240,7 +277,7 @@ namespace AspNet.Identity.MySQL
             parameters.Add("@lockoutenabled", user.LockoutEnabled);
             parameters.Add("@lockoutenddate", user.LockoutEndDateUtc);
             parameters.Add("@twofactorenabled", user.TwoFactorEnabled);
-
+			//Implement Update User
             return _database.Execute(commandText, parameters);
         }
     }

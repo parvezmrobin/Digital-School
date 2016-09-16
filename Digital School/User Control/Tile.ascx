@@ -1,14 +1,15 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Tile.ascx.cs" Inherits="Digital_School.User_Control.Tile" %>
 <div id="divwidth" runat="server" class="col-sm-6" style="padding: 5px">
+	<a runat="server" onserverclick="heading_Click">
 	<div id="panel" runat="server" class="panel panel-primary">
-		<asp:Button Text="Heading" runat="server" CssClass="panel-heading col-xs-12" Style="white-space: normal"
-			OnClick="heading_Click" ID="heading" />
-		<button style="text-align: justify; white-space: normal; height: 200px; overflow-y: scroll;"
-			class="col-xs-12 btn btn-default"
-			id="body" onserverclick="heading_Click"
-			runat="server">
-		</button>
+		<p runat="server" Class="panel-heading" ID="heading" style="font-size:xx-large" ></p>
+		<p style="text-align: justify; white-space: normal; height: 150px; overflow-y: scroll;"
+			class="panel-body" id="body" runat="server">
+		</p>
+		<p runat="server" id="footer"></p>
+		<br />
 		<asp:HiddenField ID="hfPostID" runat="server" />
 		<asp:HiddenField ID="hfType" runat="server" />
 	</div>
+	</a>
 </div>

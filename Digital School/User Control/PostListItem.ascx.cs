@@ -6,13 +6,19 @@ namespace Digital_School.User_Control
 	{
 		public event EventHandler PostClick;
 
-		protected void Page_Load(object sender, EventArgs e) {
-
+		public string CssClass {
+			get { return divCss.Attributes["class"]; }
+			set { divCss.Attributes["class"] = value; }
 		}
 
 		public string Title {
-			get { return heading.Text; }
-			set { heading.Text = value; }
+			get { return heading.InnerText; }
+			set { heading.InnerText = value; }
+		}
+
+		public string Body {
+			get { return body.InnerText; }
+			set { body.InnerText = value; }
 		}
 
 		public int PostID {
@@ -20,9 +26,18 @@ namespace Digital_School.User_Control
 			set { hf.Value = value.ToString(); }
 		}
 
-		public string CssClass {
-			get { return heading.CssClass; }
-			set { heading.CssClass = value; }
+		public string Badge {
+			get { return spanBadge.InnerText; }
+			set { spanBadge.InnerText = value; }
+		}
+
+		public string OnClientClick {
+			get { return divCss.OnClientClick; }
+			set { divCss.OnClientClick = value; }
+		}
+
+		public void SetActive() {
+			divCss.Attributes["class"] = "list-group-item active";
 		}
 
 		protected void onPostClick(EventArgs e) {
