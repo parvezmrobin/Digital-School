@@ -22,15 +22,6 @@ namespace Digital_School.Teacher {
         protected global::System.Web.UI.UpdatePanel up;
         
         /// <summary>
-        /// ddlYear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlYear;
-        
-        /// <summary>
         /// ddlClass control.
         /// </summary>
         /// <remarks>

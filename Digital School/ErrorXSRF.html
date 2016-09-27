@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <title>Error XSRF!</title>
+</head>
+<body>
+    <form id="form1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2">
+                    <h1 class="text-danger">Validation of Anti-XSRF token failed!</h1>
+                    <hr />
+                    <h4>Probably you are trying to log in while you are already logged in. Or someone is trying to <span class="text-danger"><abbr title="Cross-Site Request Forgery">CSRF</abbr></span> through your account. </h4>
+                    <h3>Please log out and log in again.</h3>
+                    <h4>
+                        <a href="Default.aspx" target="_parent">Click here</a> to go back to home page.
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

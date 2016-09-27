@@ -16,14 +16,14 @@
 
 				<div class="col-md-5 col-lg-4">
 					<div class="form-horizontal">
-						<div class="form-group">
+						<%--<div class="form-group">
 							<asp:Label Text="Select Year" AssociatedControlID="ddlYear" runat="server" CssClass="col-md-4 control-label" />
 							<div class="col-md-8">
 								<asp:DropDownList ID="ddlYear" OnSelectedIndexChanged="ReloadYCSId" CssClass="form-control"
 									runat="server" AutoPostBack="true">
 								</asp:DropDownList>
 							</div>
-						</div>
+						</div>--%>
 						<br />
 						<div class="form-group">
 							<asp:Label Text="Select Class" AssociatedControlID="ddlClass" runat="server" CssClass="col-md-4 control-label" />

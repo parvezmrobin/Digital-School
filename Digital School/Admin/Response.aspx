@@ -173,8 +173,8 @@
 			<div class="form-group">
 				<label class="control-label text-static col-sm-3" for="lblAttachment">Attachment</label>
 				<div class=" col-sm-7">
-					<a runat="server" id="aAttachment" href="#">
-						<label id="lblAttachment" class="form-control">Download</label>
+					<a runat="server" id="aAttachment" href="#" class="form-control">
+						Download
 					</a>
 				</div>
 			</div>

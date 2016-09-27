@@ -53,22 +53,22 @@ namespace Digital_School
 				RequireNonLetterOrDigit = false,
 				RequireUppercase = false
 			};
-			if((from user in userManager.Users where user.UserName == RoleTable.Student select user).Count() == 0) {
-				ApplicationUser user = new ApplicationUser() { UserName = RoleTable.Student, Email = "student@student.com" };
+			if((from user in userManager.Users where user.UserName == "Student2" select user).Count() == 0) {
+				ApplicationUser user = new ApplicationUser() { UserName = "Student2", Email = "student@student.com" };
 				resUser = userManager.Create(user, RoleTable.Student);
 				if (!resUser.Succeeded)
 					throw new Exception(resUser.Errors.FirstOrDefault());
-				string userId = userManager.FindByName(RoleTable.Student).Id;
+				string userId = userManager.FindByName("Student2").Id;
 				resRole = userManager.AddToRole(userId, RoleTable.Student);
 				if (!resRole.Succeeded)
 					throw new Exception(resRole.Errors.FirstOrDefault());
 			}
-			if ((from user in userManager.Users where user.UserName == RoleTable.Teacher select user).Count() == 0) {
-				ApplicationUser user = new ApplicationUser() { UserName = RoleTable.Teacher, Email = "teacher@teacher.com" };
+			if ((from user in userManager.Users where user.UserName == "Teacher2" select user).Count() == 0) {
+				ApplicationUser user = new ApplicationUser() { UserName = "Teacher2", Email = "teacher@teacher.com" };
 				resUser = userManager.Create(user, RoleTable.Teacher);
 				if (!resUser.Succeeded)
 					throw new Exception(resUser.Errors.FirstOrDefault());
-				string userId = userManager.FindByName(RoleTable.Teacher).Id;
+				string userId = userManager.FindByName("Teacher2").Id;
 				resRole = userManager.AddToRole(userId, RoleTable.Teacher);
 				if (!resRole.Succeeded)
 					throw new Exception(resRole.Errors.FirstOrDefault());
@@ -98,6 +98,10 @@ namespace Digital_School
 					},
 					true);
 				ex = ex.InnerException;
+			}
+
+			if(ex is InvalidOperationException && ex.Message == "Validation of Anti-XSRF token failed.") {
+				Server.Transfer("~/ErrorXSRF.html");
 			}
 		}
 

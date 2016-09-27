@@ -17,26 +17,16 @@ namespace Digital_School.Teacher
 		protected void Page_Init(object sender, EventArgs e) {
 			MySQLDatabase db = new MySQLDatabase();
 			var teacherId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
+			var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
 
 			if (!IsPostBack) {
-
-				#region Load ddlYear
-				var res = db.Query(
-					"getYearByTUId",
-					new Dictionary<string, object>() { { "@TUId", teacherId } },
-					true);
-				ddlYear.Items.Clear();
-				foreach (var item in res) {
-					ddlYear.Items.Add(new ListItem(item["year"], item["yearid"]));
-				}
-				#endregion
 
 				#region Load ddlClass
 				ddlClass.DataSource = db.Query(
 					"getClassByTUIdYId",
 					new Dictionary<string, object>() {
 						{ "@TUId", teacherId },
-						{ "@YId", ddlYear.SelectedValue } },
+						{ "@YId", yearId } },
 					true)
 					.Select(x => new {
 						Text = x["class"],
@@ -52,7 +42,7 @@ namespace Digital_School.Teacher
 					"getSectionByTUIdYIdCId",
 					new Dictionary<string, object>() {
 						{"@TUId", teacherId },
-						{"@YId", ddlYear.SelectedValue },
+						{"@YId", yearId },
 						{"@CId", ddlClass.SelectedValue }
 					}, true)
 					.Select(x => new {
@@ -181,10 +171,11 @@ namespace Digital_School.Teacher
 		}
 
 		protected void ReloadYCSId(object obj, EventArgs ea) {
+			var yearId = new MySQLDatabase().QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
 			ViewState["YCSId"] = Convert.ToInt32(new MySQLDatabase().QueryValue(
 					"getYearClassSectionId",
 					new Dictionary<string, object>() {
-						{"@pyearid", ddlYear.SelectedValue },
+						{"@pyearid", yearId },
 						{"@pclassid", ddlClass.SelectedValue },
 						{"@psectionid", ddlSection.SelectedValue } },
 					true));

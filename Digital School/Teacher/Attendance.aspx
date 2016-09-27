@@ -13,7 +13,7 @@
 								<asp:Label Text="Select Class" AssociatedControlID="ddlClass" runat="server" CssClass="col-md-4 col-sm-6 control-label" />
 								<div class="col-md-8 col-sm-6">
 									<asp:DropDownList ID="ddlClass" CssClass="form-control" runat="server" DataTextField="Text"
-										DataValueField="Value" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged"
+										DataValueField="Value" OnSelectedIndexChanged="ReloadDDLSection"
 										AutoPostBack="true">
 									</asp:DropDownList>
 								</div>
@@ -24,7 +24,7 @@
 									CssClass="col-md-4 col-sm-6 control-label" />
 								<div class="col-md-8 col-sm-6">
 									<asp:DropDownList ID="ddlSection" CssClass="form-control" runat="server" DataTextField="Text"
-										DataValueField="Value" OnSelectedIndexChanged="ddlSection_SelectedIndexChanged"
+										DataValueField="Value" OnSelectedIndexChanged="ReloadYCSId"
 										AutoPostBack="true">
 									</asp:DropDownList>
 								</div>

@@ -4,13 +4,8 @@
 		<div class="col-md-12">
 			<h2>Teachers</h2>
 			<asp:GridView AllowSorting="true" CssClass="table table-striped table-hover " ID="gvDetail"
-				runat="server" GridLines="Horizontal" AutoGenerateColumns="false">
-				<Columns>
-					<asp:ButtonField ButtonType="Link" Text="Detail" />
-					<asp:BoundField DataField="firstname" HeaderText="First Name" HeaderStyle-CssClass="text-primary" />
-					<asp:BoundField DataField="lastname" HeaderText="Last Name" HeaderStyle-CssClass="text-primary" />
-					<asp:BoundField DataField="subject" HeaderText="Subject" HeaderStyle-CssClass="text-primary" />
-				</Columns>
+				runat="server" GridLines="Horizontal" AutoGenerateColumns="true">
+				
 			</asp:GridView>
 		</div>
 	</div>

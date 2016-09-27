@@ -49,6 +49,15 @@ namespace Digital_School.Teacher {
         protected global::System.Web.UI.WebControls.Label lblDue;
         
         /// <summary>
+        /// ddlType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlType;
+        
+        /// <summary>
         /// txtAmount control.
         /// </summary>
         /// <remarks>
@@ -67,13 +76,22 @@ namespace Digital_School.Teacher {
         protected global::System.Web.UI.WebControls.Button btnPay;
         
         /// <summary>
-        /// divDueStudentName control.
+        /// ddlClassDue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDueStudentName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlClassDue;
+        
+        /// <summary>
+        /// ddlSectionDue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSectionDue;
         
         /// <summary>
         /// txtDueGreaterThen control.
@@ -92,6 +110,24 @@ namespace Digital_School.Teacher {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
+        /// cblDue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList cblDue;
+        
+        /// <summary>
+        /// hSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hSuccess;
         
         /// <summary>
         /// btnCreateGroup control.

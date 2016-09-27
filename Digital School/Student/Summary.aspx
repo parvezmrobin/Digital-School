@@ -14,9 +14,12 @@
 		});
 	</script>
 	<div class="row">
-		<h2 runat="server" class="text-info" style="text-align:center">
-			<%:new AspNet.Identity.MySQL.UserTable<Digital_School.Models.ApplicationUser>(new AspNet.Identity.MySQL.MySQLDatabase()).GetUserByName(User.Identity.Name).Select(x=> x.FullName).FirstOrDefault() %>
-		</h2>
+		<section>
+			<h2 runat="server" class="text-info col-md-8" style="text-align: center">
+				<%:new AspNet.Identity.MySQL.UserTable<Digital_School.Models.ApplicationUser>(new AspNet.Identity.MySQL.MySQLDatabase()).GetUserByName(User.Identity.Name).Select(x=> x.FullName).FirstOrDefault() %>
+			</h2>
+			<h4 class="text-danger text-right col-md-4" runat="server" id="pDue"></h4>
+		</section>
 		<hr />
 		<br />
 		<uc1:Summary ID="SummaryNotification" runat="server" Title="Notification"

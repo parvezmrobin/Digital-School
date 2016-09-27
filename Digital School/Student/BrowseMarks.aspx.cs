@@ -8,14 +8,13 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.ComponentModel.DataAnnotations;
 using Digital_School.Models;
+using System.Data;
 
 namespace Digital_School.Student
 {
 	public partial class BrowseMarks : System.Web.UI.Page
 	{
 		protected void Page_Load(object sender, EventArgs e) {
-			// TODO Implement BrowseMarks
-			
 			MySQLDatabase db = new MySQLDatabase();
             var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
 			if (!IsPostBack) {
@@ -26,6 +25,7 @@ namespace Digital_School.Student
 				foreach (var item in res) {
 					ddlYear.Items.Add(new ListItem(item["year"], item["YearClassSectionId"]));
 				}
+				
 
 				res = db.Query("getSubjectBySUIdYCSId",
 					new Dictionary<string, object>() { { "@SUId", studentId }, { "@YCSId", ddlYear.SelectedValue } },
@@ -35,6 +35,7 @@ namespace Digital_School.Student
 					ddlSubject.Items.Add(new ListItem(item["subject"], item["teacherSubjectId"]));
 				}
 				ddlSubject.Items.Insert(0, new ListItem("All", "all"));
+				
 			}
 
 			var dataSource = (ddlSubject.SelectedValue == "all") ?
@@ -51,12 +52,22 @@ namespace Digital_School.Student
 					{"@TSId", ddlSubject.SelectedValue },
 					{"@TId", ddlTerm.SelectedValue } },
 				true);
+			List<string> markPortions = dataSource.Select(x => x["Portion Name"]).Distinct().ToList();
+			DataTable pivotTable = new DataTable();
+			pivotTable.Columns.Add("Subject", typeof(string));
+			foreach (var item in markPortions) {
+				pivotTable.Columns.Add(item, typeof(string));
+			}
+			var subjects = dataSource.GroupBy(x => x["Subject"]).ToList();
+			foreach (var item in subjects) {
+				DataRow newRow = pivotTable.Rows.Add();
+				newRow["Subject"] = item.Key;
+				foreach (var item2 in item) {
+					newRow[item2["Portion Name"]] = item2["Mark"];
+				}
+			}
 			
-			gvMark.DataSource = dataSource.Select(x => new {
-				Subject = x["Subject"],
-				PortionName = x["Portion Name"],
-				Mark = x["Mark"]
-			}).ToList();
+			gvMark.DataSource = pivotTable;
 			gvMark.DataBind();
 		}
 

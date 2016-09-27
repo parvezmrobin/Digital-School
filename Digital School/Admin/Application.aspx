@@ -17,7 +17,7 @@
 		<div class="panel panel-info col-md-6">
 			<p class="panel-heading" style="font-size: xx-large">Responses</p>
 			<div class="panel-body">
-				<div id="Responses" runat="server"></div>
+				<asp:CheckBoxList id="Responses" runat="server"></asp:CheckBoxList>
 				<br />
 				<div>
 					<asp:Button Text="Remove" CssClass="btn btn-danger" ID="btnRemoveRes" ToolTip="Remove selected responses"

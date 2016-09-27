@@ -1,4 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GraphicalView.aspx.cs" Inherits="Digital_School.Student.GraphicalView" %>
+﻿<%@ Page Title="Graphical View" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GraphicalView.aspx.cs" Inherits="Digital_School.Student.GraphicalView" %>
+
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+	Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 	<script type="text/javascript">
@@ -8,53 +11,57 @@
 
 		$(window).trigger('resize');
 	</script>
-	<br />
 	<div class="row">
-		<div class="col-sm-5 col-md-4">
+		<h2 class="text-info text-center"><%:Title %></h2>
+		<hr />
+		<div class="col-sm-6 col-md-5">
 			<div class="form-horizontal">
+				<br />
 				<div class="form-group">
-					<asp:Label Text="Select Exam" AssociatedControlID="ddlExam" runat="server" CssClass="col-sm-5 control-label" />
-					<div class="col-sm-7">
-						<asp:DropDownList ID="ddlExam" CssClass="form-control" runat="server">
+					<asp:Label Text="Select Year" AssociatedControlID="ddlYear" runat="server" CssClass="col-md-4 control-label" />
+					<div class="col-md-8">
+						<asp:DropDownList ID="ddlYear" CssClass="form-control" runat="server" OnSelectedIndexChanged="ReloadChart" AutoPostBack="true">
+						</asp:DropDownList>
+
+					</div>
+				</div>
+				<br />
+				<div class="form-group">
+					<asp:Label Text="Select Term" AssociatedControlID="ddlTerm" runat="server"
+						CssClass="col-md-4 control-label" />
+					<div class="col-md-8">
+						<asp:DropDownList ID="ddlTerm" CssClass="form-control" runat="server" OnSelectedIndexChanged="ReloadChart"
+							AutoPostBack="true">
+							<asp:ListItem Text="First Term" Value="1"></asp:ListItem>
+							<asp:ListItem Text="Second Term" Value="2"></asp:ListItem>
+							<asp:ListItem Text="Final Term" Value="3"></asp:ListItem>
+						</asp:DropDownList>
+
+					</div>
+				</div>
+				<br />
+				<div class="form-group">
+					<asp:Label Text="Select Portion" AssociatedControlID="ddlPortion"
+						runat="server"
+						CssClass="col-md-4 control-label" />
+					<div class="col-md-8">
+						<asp:DropDownList ID="ddlPortion" CssClass="form-control" OnSelectedIndexChanged="ReloadChart"
+							runat="server" AutoPostBack="true">
 							<asp:ListItem Text="All" Value="All"></asp:ListItem>
 						</asp:DropDownList>
-					</div>
-				</div>
-				<hr />
-				<h3 class="text-static" style="text-align: center">Time Span</h3>
-				<div class="form-group">
-					<asp:Label Text="Select Exam" AssociatedControlID="ddlExam" runat="server" CssClass="col-sm-5 control-label" />
-					<div class="col-sm-7">
-						<asp:TextBox ID="txtFrom" CssClass="form-control" TextMode="Date" runat="server">
-						</asp:TextBox>
-					</div>
-				</div>
-				<div class="form-group">
-					<asp:Label Text="Select Exam" AssociatedControlID="ddlExam" runat="server" CssClass="col-sm-5 control-label" />
-					<div class="col-sm-7">
-						<asp:TextBox ID="txtTo" CssClass="form-control" TextMode="Date"
-							runat="server">
-						</asp:TextBox>
 					</div>
 				</div>
 			</div>
 		</div>
 		
-		<div id="chart" class="col-sm-7 col-md-8">
-			<%--<asp:Chart ID="Chart1" runat="server" Style="height: inherit; width: inherit">
-				<Series>
-					<asp:Series Name="Series1" ChartType="SplineArea" YValuesPerPoint="1">
-						<Points>
-							<asp:DataPoint AxisLabel="1st Term" YValues="50,0" />
-							<asp:DataPoint AxisLabel="2nd Term" YValues="40,0" />
-							<asp:DataPoint AxisLabel="3rd Term" YValues="80,0" />
-						</Points>
-					</asp:Series>
-				</Series>
+		<div id="chart" class="col-sm-6 col-md-7">
+			
+			<asp:Chart ID="Chart1" runat="server" Width="500px" Height="500px" CssClass="img img-resposive img-thumbnail" >
 				<ChartAreas>
-					<asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+					<asp:ChartArea Name="ChartArea1"  >
+					</asp:ChartArea>
 				</ChartAreas>
-			</asp:Chart>--%>
+			</asp:Chart>
 		</div>
 	</div>
 </asp:Content>

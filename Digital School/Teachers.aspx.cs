@@ -13,11 +13,12 @@ namespace Digital_School
 		protected void Page_Load(object sender, EventArgs e) {
 			if (!IsPostBack) {
 				MySQLDatabase db = new MySQLDatabase();
-				List<Dictionary<string, string>> res = db.Query("SELECT firstname, lastname, subject FROM teacher", null);
+				List<Dictionary<string, string>> res = db.Query("getAllTeacher", null, true);
 				//TODO load teacher list
-				gvDetail.DataSource = res;
+				gvDetail.DataSource = res.Select(x => new {
+					Name = x["name"], Designation = x["designation"], Qualification = x["qualification"]
+				}).ToList();
 				gvDetail.DataBind();
-
 			}
 		}
 

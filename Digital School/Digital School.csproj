@@ -85,6 +85,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -221,6 +222,7 @@
     <Content Include="Content\HtmlPage1.html" />
     <Content Include="Content\Site.css" />
     <Content Include="Error.html" />
+    <Content Include="ErrorXSRF.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -240,6 +242,7 @@
     <Content Include="Student\BrowseMarks.aspx" />
     <Content Include="Student\GraphicalView.aspx" />
     <Content Include="Student\Notification.aspx" />
+    <Content Include="Teacher\InputMark.aspx" />
     <Content Include="User Control\SelectableImage.ascx" />
     <Content Include="Student\Summary.aspx" />
     <Content Include="Teachers.aspx" />
@@ -538,6 +541,7 @@
     <Compile Include="Models\MarkPortion.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\TextValuePair.cs" />
     <Compile Include="Post.aspx.cs">
       <DependentUpon>Post.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -589,6 +593,13 @@
     </Compile>
     <Compile Include="Student\Notification.aspx.designer.cs">
       <DependentUpon>Notification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\InputMark.aspx.cs">
+      <DependentUpon>InputMark.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\InputMark.aspx.designer.cs">
+      <DependentUpon>InputMark.aspx</DependentUpon>
     </Compile>
     <Compile Include="User Control\SelectableImage.ascx.cs">
       <DependentUpon>SelectableImage.ascx</DependentUpon>
