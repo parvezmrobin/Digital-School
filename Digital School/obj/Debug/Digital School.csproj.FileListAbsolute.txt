@@ -294,3 +294,77 @@ D:\GitHub\Digital-School\Digital School\bin\Microsoft.Owin.Security.OAuth.xml
 D:\GitHub\Digital-School\Digital School\obj\Debug\Digital School.csprojResolveAssemblyReference.cache
 D:\GitHub\Digital-School\Digital School\obj\Debug\Digital School.dll
 D:\GitHub\Digital-School\Digital School\obj\Debug\Digital School.pdb
+E:\github\Digital-School\Digital School\bin\ApplicationInsights.config
+E:\github\Digital-School\Digital School\bin\roslyn\csc.exe
+E:\github\Digital-School\Digital School\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\github\Digital-School\Digital School\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\github\Digital-School\Digital School\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\github\Digital-School\Digital School\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\github\Digital-School\Digital School\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\github\Digital-School\Digital School\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\github\Digital-School\Digital School\bin\roslyn\System.Collections.Immutable.dll
+E:\github\Digital-School\Digital School\bin\roslyn\System.Reflection.Metadata.dll
+E:\github\Digital-School\Digital School\bin\roslyn\vbc.exe
+E:\github\Digital-School\Digital School\bin\roslyn\VBCSCompiler.exe
+E:\github\Digital-School\Digital School\bin\roslyn\VBCSCompiler.exe.config
+E:\github\Digital-School\Digital School\bin\Digital School.dll.config
+E:\github\Digital-School\Digital School\bin\Digital School.dll
+E:\github\Digital-School\Digital School\bin\Digital School.pdb
+E:\github\Digital-School\Digital School\bin\Antlr3.Runtime.dll
+E:\github\Digital-School\Digital School\bin\AspNet.Identity.MySQL.dll
+E:\github\Digital-School\Digital School\bin\AspNet.ScriptManager.bootstrap.dll
+E:\github\Digital-School\Digital School\bin\AspNet.ScriptManager.jQuery.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.AI.Agent.Intercept.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.AI.DependencyCollector.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.AI.Web.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.AI.WindowsServer.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.ApplicationInsights.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.AspNet.FriendlyUrls.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.AspNet.Identity.Core.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.Cookies.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.Facebook.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.Google.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.OAuth.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.Twitter.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.ScriptManager.MSAjax.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.ScriptManager.WebForms.dll
+E:\github\Digital-School\Digital School\bin\Microsoft.Web.Infrastructure.dll
+E:\github\Digital-School\Digital School\bin\MySql.Data.dll
+E:\github\Digital-School\Digital School\bin\Newtonsoft.Json.dll
+E:\github\Digital-School\Digital School\bin\Owin.dll
+E:\github\Digital-School\Digital School\bin\System.Web.Optimization.dll
+E:\github\Digital-School\Digital School\bin\WebGrease.dll
+E:\github\Digital-School\Digital School\bin\AspNet.Identity.MySQL.pdb
+E:\github\Digital-School\Digital School\bin\Microsoft.AI.DependencyCollector.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.AI.Web.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.AI.WindowsServer.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.ApplicationInsights.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\github\Digital-School\Digital School\bin\System.Web.Optimization.xml
+E:\github\Digital-School\Digital School\bin\Antlr3.Runtime.pdb
+E:\github\Digital-School\Digital School\bin\Newtonsoft.Json.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.AspNet.FriendlyUrls.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.AspNet.Identity.Core.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.Facebook.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.Cookies.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.Google.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.Twitter.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\github\Digital-School\Digital School\bin\Microsoft.Owin.Security.OAuth.xml
+E:\github\Digital-School\Digital School\obj\Debug\Digital School.csprojResolveAssemblyReference.cache
+E:\github\Digital-School\Digital School\obj\Debug\Digital School.dll
+E:\github\Digital-School\Digital School\obj\Debug\Digital School.pdb
