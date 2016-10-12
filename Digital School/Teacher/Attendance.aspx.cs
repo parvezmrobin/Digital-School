@@ -12,9 +12,9 @@ namespace Digital_School.Teacher
 {
 	public partial class Attendance : Page
 	{
-		protected void Page_Load(object sender, EventArgs e) {
+		MySQLDatabase db = new MySQLDatabase();
+		protected void Page_Init(object sender, EventArgs e) {
 			if (!IsPostBack) {
-				MySQLDatabase db = new MySQLDatabase();
 				var teacherId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
 				var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
 				#region Load ddlClass
@@ -35,12 +35,10 @@ namespace Digital_School.Teacher
 
 				ReloadDDLSection(null, null);
 			}
-
-
 		}
 
 		private void BindCheckBoxes(object p1, EventArgs p2) {
-			cbAttendance.DataSource = new MySQLDatabase().Query(
+			cbAttendance.DataSource = db.Query(
 				"getStudentByTUNYCSId",
 				 new Dictionary<string, object>() {
 					 {"@TUN", User.Identity.Name }  ,
@@ -50,10 +48,13 @@ namespace Digital_School.Teacher
 					 Value = x["studentid"]
 				 }).ToList();
 			cbAttendance.DataBind();
+			foreach (ListItem item in cbAttendance.Items) {
+				item.Selected = true;
+			}
 		}
 
 		protected void ReloadYCSId(object obj, EventArgs ea) {
-			var yearId = new MySQLDatabase().QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
+			var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
 			ViewState["YCSId"] = Convert.ToInt32(new MySQLDatabase().QueryValue(
 					"getYearClassSectionId",
 					new Dictionary<string, object>() {
@@ -65,7 +66,6 @@ namespace Digital_School.Teacher
 		}
 
 		protected void ReloadDDLSection(object obje, EventArgs ea) {
-			MySQLDatabase db = new MySQLDatabase();
 			var teacherId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
 			var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
 
@@ -88,7 +88,23 @@ namespace Digital_School.Teacher
 		}
 
 		protected void btnSubmint_Click(object obj, EventArgs ea) {
-			throw new NotImplementedException();
+			//TODO Not checked
+			//TODO add trigger
+			if (ViewState["YCSId"] == null)
+				ReloadYCSId(null, null);
+			var markPortionId = db.QueryValue("getMarkPortionIdByYCSIdPId",
+				new Dictionary<string, object>() {
+					{"@YCSId", Convert.ToInt32(ViewState["YCSId"]) },
+					{"@PId", 1 }
+				}, true);
+
+			foreach (ListItem item in cbAttendance.Items) {
+				db.Execute("addAttendance", new Dictionary<string, object>() {
+					{"@MPId", markPortionId },
+					{"@SId", item.Value },
+					{"@isPresent", item.Selected }
+				}, true);
+			}
 		}
 	}
 }

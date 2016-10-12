@@ -14,12 +14,14 @@
 		});
 	</script>
 	<div class="row">
-		<section>
+		<div class="col-md-12">
 			<h2 runat="server" class="text-info col-md-8" style="text-align: center">
 				<%:new AspNet.Identity.MySQL.UserTable<Digital_School.Models.ApplicationUser>(new AspNet.Identity.MySQL.MySQLDatabase()).GetUserByName(User.Identity.Name).Select(x=> x.FullName).FirstOrDefault() %>
 			</h2>
-			<h4 class="text-danger text-right col-md-4" runat="server" id="pDue"></h4>
-		</section>
+			<div class="text-right col-md-4">
+				<asp:LinkButton ID="btnDue" PostBackUrl="~/Student/TransactionHistory" style="font-size:x-large" runat="server" />
+			</div>
+		</div>
 		<hr />
 		<br />
 		<uc1:Summary ID="SummaryNotification" runat="server" Title="Notification"

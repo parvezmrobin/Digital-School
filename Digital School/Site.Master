@@ -163,9 +163,9 @@
 											<a class="dropdown-toggle" data-toggle="dropdown"
 												href="#"><span class="glyphicon glyphicon-wrench"></span> Manage<span class="caret"></span></a>
 											<ul class="dropdown-menu">
-												<li><a runat="server" id="a1" href="~/Admin/Class">Class</a></li>
-												<li><a runat="server" id="a2" href="~/Admin/Class">Section</a></li>
-												<li><a runat="server" id="a3" href="~/Admin/Class">Subject</a></li>
+												<li id="adminClass"><a runat="server" href="~/Admin/Class">Class</a></li>
+												<li id="adminSubject"><a runat="server" href="~/Admin/Subject">Subject</a></li>
+												<li id="adminNewEntry"><a runat="server" href="~/Admin/NewEntry">New Entry</a></li>
 											</ul>
 										</li>
 										<li id="adminAccessibility"><a runat="server" href="~/Admin/Accessibility"><span

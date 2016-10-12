@@ -12,13 +12,13 @@ namespace Digital_School.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterHyperLink.NavigateUrl = "Register";
+            //RegisterHyperLink.NavigateUrl = "Register";
 			// Enable this once you have account confirmation enabled for password reset functionality
 			ForgotPasswordHyperLink.NavigateUrl = "Forgot";
 			var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             if (!string.IsNullOrEmpty(returnUrl))
             {
-                RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+                //RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
             }
         }
 

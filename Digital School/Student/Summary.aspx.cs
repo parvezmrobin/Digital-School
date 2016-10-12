@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AspNet.Identity.MySQL;
+using Microsoft.AspNet.Identity;
+using System;
+using System.Collections.Generic;
 using System.Web.UI;
 
 namespace Digital_School.Student
@@ -7,17 +10,36 @@ namespace Digital_School.Student
 	{
 		protected void Page_Load(object o, EventArgs e) {
 			if (!IsPostBack) {
-				var res = new AspNet.Identity.MySQL.MySQLDatabase().QueryValue("SELECT due FROM studentview WHERE UserName = '" + User.Identity.Name+"' LIMIT 1", null);
-				var due = Convert.ToInt32(res);
-				if (due <= 0) {
-					pDue.Attributes["class"] = "text-success text-right col-md-4";
-					pDue.InnerHtml = "You have no due";
-				} else {
-					pDue.Attributes["class"] = "text-danger text-right col-md-4";
-					pDue.InnerHtml = "You have ৳" + due.ToString() + " due";
-				}
+				ShowDue();
 			}
 		}
+
+		private void ShowDue() {
+			MySQLDatabase db = new MySQLDatabase();
+			var studentId=db.QueryValue("SELECT id from student where userid='"+User.Identity.GetUserId()+"' limit 1",null);
+			var debit = db.Query("getDebitBySId", new Dictionary<string, object>() { { "@SId", studentId } }, true);
+			var totalDebit = 0;
+			foreach (var item in debit) {
+				totalDebit += int.Parse(item["amount"]);
+			}
+			var credit = db.Query("getCreditBySId", new Dictionary<string, object>() { { "@SId", studentId } }, true);
+			var totalCredit = 0;
+			foreach (var item in credit) {
+				totalCredit += int.Parse(item["amount"]);
+
+			}
+			if (totalCredit >= totalDebit) {
+				btnDue.Text = "Payment Due: "+(totalCredit - totalDebit).ToString();
+				btnDue.CssClass = "text-danger";
+			} else {
+				btnDue.Text = "Payment Advance: " + (totalDebit - totalCredit).ToString();
+				btnDue.CssClass = "text-success";
+			}
+
+			Session["debit"] = debit;
+			Session["credit"] = credit;
+		}
+
 		protected void SummaryNotification_Click(object sender, EventArgs e) {
 			Response.Redirect("~/Student/Notification.aspx");
 		}

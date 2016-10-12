@@ -8,8 +8,8 @@
 	</script>
 	<div class="row">
 
-		<div class="col-sm-6 panel panel-primary">
-			<div class="panel-heading">History</div>
+		<div class="col-sm-6 panel panel-primary" style="border:none">
+			<h2 class="panel-heading">History</h2>
 			<div class="panel-body">
 				a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n
 				o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b
@@ -63,7 +63,7 @@
 		</div>
 
 		<div class="col-sm-6">
-			<div class="panel panel-primary">
+			<div class="panel panel-primary" style="border:none">
 				<div class="panel-body" id="speeches" runat="server">
 				</div>
 			</div>

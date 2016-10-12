@@ -15,7 +15,7 @@
 		}
 	</style>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-6 col-md-offset-3">
 			<asp:UpdatePanel runat="server">
 				<ContentTemplate>
 					<div class="panel panel-primary">
@@ -54,11 +54,10 @@
 								</div>
 								<br />
 								<div class="form-group">
-									<asp:Label Text="Due" AssociatedControlID="lblDue" runat="server"
+									<asp:Label  AssociatedControlID="btnDue" runat="server" ID="lblDue"
 										CssClass="col-md-3 control-label" />
 									<div class="col-md-9">
-										<asp:Label ID="lblDue" Style="max-width: 280px" CssClass="form-control" runat="server">
-										</asp:Label>
+										<asp:LinkButton ToolTip="Click here to see transaction history" id="btnDue" PostBackUrl="~/Teacher/TransactionHistory" runat="server" Width="280px" />
 									</div>
 								</div>
 
@@ -95,7 +94,7 @@
 				</ContentTemplate>
 			</asp:UpdatePanel>
 		</div>
-		<div class="col-md-7">
+		<%--<div class="col-md-7">
 			<div class="panel panel-primary">
 				<p class="panel-heading">Students With Due</p>
 
@@ -162,6 +161,6 @@
 				</div>
 
 			</div>
-		</div>
+		</div>--%>
 	</div>
 </asp:Content>

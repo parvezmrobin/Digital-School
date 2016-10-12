@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace Digital_School
 {
-	public partial class Images : System.Web.UI.Page
+	public partial class Images : Page
 	{
 		protected void Page_Load(object sender, EventArgs e) {
 			if (Request.QueryString["album"] != null) {

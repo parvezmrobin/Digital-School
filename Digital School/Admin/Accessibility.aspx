@@ -12,11 +12,10 @@
 	</script>
 
 	<div class="row">
-		<h2 class="text-info" style="text-align: center">Transaction Accessibility</h2>
-		<hr />
-		<div class="panel panel-info">
-			<p class="panel-heading" style="font-size: xx-large; text-align: center">
-				Choose Teacher
+		<div class="panel panel-info col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1" style="border-width:2px">
+			<p class="panel-heading" style="font-size: xx-large;
+				text-align: center">
+				Transaction Accessibility
 			</p>
 			<div class="panel body">
 				<h3 runat="server" id="hInfo" style="text-align: center"></h3>

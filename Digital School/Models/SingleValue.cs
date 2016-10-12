@@ -5,9 +5,8 @@ using System.Web;
 
 namespace Digital_School.Models
 {
-	public class TextValuePair
+	public class SingleValue
 	{
-		public string Text { get; set; }
-		public string Value { get; set; }
+		public string Value;
 	}
 }

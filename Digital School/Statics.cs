@@ -22,8 +22,8 @@ namespace Digital_School
 		//}
 
 		//public static string DatabaseName { get; set; } = "sdp";
-		public static string SchoolEmailId { get; internal set; }
-		public static string SchoolEmailPassword { get; internal set; }
+		public static string SchoolEmailId { get { return "dscseku@gmail.com"; } internal set { SchoolEmailId = value; } }
+		public static string SchoolEmailPassword { get { return "Digital School"; } internal set { SchoolEmailPassword = value; } }
 
 		#region Settings Varialbles
 		private static Dictionary<string, bool> settings = new Dictionary<string, bool>() {

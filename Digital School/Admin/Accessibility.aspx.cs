@@ -10,6 +10,7 @@ namespace Digital_School.Admin
 {
 	public partial class Accessibility : Page
 	{
+		private MySQLDatabase db = new MySQLDatabase();
 		//ddlTransact not working
 		protected void Page_Load(object sender, EventArgs e) {
 			if (!IsPostBack) {
@@ -20,25 +21,17 @@ namespace Digital_School.Admin
 		}
 
 		private void LoadDDLTeacher() {
-			MySQLDatabase db = new MySQLDatabase();
-			ddlTeacher.DataSource = db.Query("getAllTeacher", null, true).Select(x => new { Text = x["name"], Value = x["id"] }).ToList();
+			
+			ddlTeacher.DataSource = new TeacherTable(db).GetAllTeacher().Select(x => new { Text = x.FullName, Value = x.ID.ToString() }).ToList();
 			ddlTeacher.DataBind();
 
 			hInfo.Visible = false;
 		}
 
 		private void LoadStudentClass() {
-			MySQLDatabase db = new MySQLDatabase();
-			var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
+			var yearId = new YearTable(db).GetYearId(DateTime.Now.Year);
 
-			ddlClass.DataSource = db.Query(
-				"getClassByYId",
-				new Dictionary<string, object>() { { "@YId", yearId } },
-				true)
-				.Select(x => new {
-					Text = x["class"],
-					Value = x["classid"]
-				}).ToList();
+			ddlClass.DataSource = new YearClassSectionTable(db).GetClassByYear(yearId);
 			ddlClass.DataBind();
 
 			if (ddlClass.Items.Count > 0)
@@ -47,18 +40,8 @@ namespace Digital_School.Admin
 				ddlSection.Items.Clear();
 			}
 		}
-		private void ReloadDDLSection(object yearId) {
-			MySQLDatabase db = new MySQLDatabase();
-			ddlSection.DataSource = db.Query(
-					"getSectionByYIdCId",
-					new Dictionary<string, object>() {
-						{"@YId", yearId },
-						{"@CId", Convert.ToInt32(ddlClass.SelectedValue) }
-					}, true)
-					.Select(x => new {
-						Text = x["section"],
-						Value = x["sectionid"]
-					}).ToList();
+		private void ReloadDDLSection(int yearId) {
+			ddlSection.DataSource = new YearClassSectionTable(db).GetSectionByYearClass(yearId, Convert.ToInt32(ddlClass.SelectedValue));
 			ddlSection.DataBind();
 
 			if (ddlSection.Items.Count > 0)
@@ -68,14 +51,8 @@ namespace Digital_School.Admin
 			hInfo.Visible = false;
 		}
 
-		private void ReloadDDLCanTransact(object yearId) {
-			MySQLDatabase db = new MySQLDatabase();
-			var YCSId = db.QueryValue("getYearClassSectionId",
-				new Dictionary<string, object>() {
-					{"@pyearid", yearId },
-					{"@pclassid", Convert.ToInt32(ddlClass.SelectedValue) },
-					{"@psectionid", Convert.ToInt32(ddlSection.SelectedValue) }
-				}, true);
+		private void ReloadDDLCanTransact(int yearId) {
+			var YCSId = new YearClassSectionTable(db).GetYearClassSectionId(yearId, Convert.ToInt32(ddlClass.SelectedValue), Convert.ToInt32(ddlSection.SelectedValue));
 
 			ddlTransact.SelectedValue = db.Execute(
 				"canTransact",
@@ -86,22 +63,18 @@ namespace Digital_School.Admin
 		}
 
 		protected void ddlClass_SelectedIndexChanged(object sender, EventArgs e) {
-			MySQLDatabase db = new MySQLDatabase();
-			var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
-			//var teacherId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
+			var yearId = new YearTable(db).GetYearId(DateTime.Now.Year);
 			ReloadDDLSection(yearId);
 		}
 		protected void ddlSection_SelectedIndexChanged(object sender, EventArgs e) {
-			MySQLDatabase db = new MySQLDatabase();
-			var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
+			var yearId = new YearTable(db).GetYearId(DateTime.Now.Year);
 			//var teacherId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
 			ReloadDDLCanTransact(yearId);
 			hInfo.Visible = false;
 		}
 
 		protected void ddlTeacher_SelectedIndexChanged(object sender, EventArgs e) {
-			MySQLDatabase db = new MySQLDatabase();
-			var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
+			var yearId = new YearTable(db).GetYearId(DateTime.Now.Year);
 			//var teacherId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
 			ReloadDDLCanTransact(yearId);
 			hInfo.Visible = false;
@@ -109,13 +82,8 @@ namespace Digital_School.Admin
 
 		protected void ddlTransact_SelectedIndexChanged(object sender, EventArgs e) {
 			MySQLDatabase db = new MySQLDatabase();
-			var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
-			var YCSId = db.QueryValue("getYearClassSectionId",
-				new Dictionary<string, object>() {
-					{"@pyearid", yearId },
-					{"@pclassid", ddlClass.SelectedValue },
-					{"@psectionid", ddlSection.SelectedValue }
-				}, true);
+			var yearId = new YearTable(db).GetYearId(DateTime.Now.Year);
+			var YCSId = new YearClassSectionTable(db).GetYearClassSectionId(yearId, Convert.ToInt32(ddlClass.SelectedValue), Convert.ToInt32(ddlSection.SelectedValue));
 
 			if (ddlTransact.SelectedValue == "1") {
 				db.Execute("addTransactionAccessibility",

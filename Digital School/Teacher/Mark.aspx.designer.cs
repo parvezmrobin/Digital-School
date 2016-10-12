@@ -7,63 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Digital_School.Admin {
+namespace Digital_School.Teacher {
     
     
-    public partial class WebForm1 {
+    public partial class Mark {
         
         /// <summary>
-        /// SelectableImage control.
+        /// ddlClass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Digital_School.User_Control.SelectableImage SelectableImage;
+        protected global::System.Web.UI.WebControls.DropDownList ddlClass;
         
         /// <summary>
-        /// SelectableImage1 control.
+        /// ddlSecion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Digital_School.User_Control.SelectableImage SelectableImage1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSecion;
         
         /// <summary>
-        /// SelectableImage2 control.
+        /// ddlTerm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Digital_School.User_Control.SelectableImage SelectableImage2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTerm;
         
         /// <summary>
-        /// SelectableImage3 control.
+        /// ddlSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Digital_School.User_Control.SelectableImage SelectableImage3;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubject;
         
         /// <summary>
-        /// SelectableImage4 control.
+        /// gvMark control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Digital_School.User_Control.SelectableImage SelectableImage4;
-        
-        /// <summary>
-        /// SelectableImage5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Digital_School.User_Control.SelectableImage SelectableImage5;
+        protected global::System.Web.UI.WebControls.GridView gvMark;
     }
 }

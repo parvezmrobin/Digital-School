@@ -187,7 +187,13 @@
     <Content Include="Account\ManageLogins.aspx" />
     <Content Include="Account\ManagePassword.aspx" />
     <Content Include="Account\OpenAuthProviders.ascx" />
-    <Content Include="Account\Register.aspx" />
+    <Content Include="Admin\CauseFee.aspx" />
+    <Content Include="Admin\Class.aspx" />
+    <Content Include="Admin\NewEntry.aspx" />
+    <Content Include="Admin\Section.aspx" />
+    <Content Include="Admin\Subject.aspx" />
+    <Content Include="Admin\Term.aspx" />
+    <Content Include="Registration\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
@@ -200,7 +206,6 @@
     <Content Include="Admin\Response.aspx" />
     <Content Include="Admin\Settings.aspx" />
     <Content Include="Admin\SiteData.aspx" />
-    <Content Include="Admin\WebForm1.aspx" />
     <Content Include="Album.aspx" />
     <Content Include="Albums\Album-Thumbnail.png" />
     <Content Include="Albums\Album1\campus3.png" />
@@ -209,9 +214,6 @@
     <Content Include="Albums\Album2\river-003.jpg" />
     <Content Include="Albums\Album2\River-HD-Wallpapers.jpg" />
     <Content Include="Albums\Album2\White River Arkansas.jpg" />
-    <Content Include="Albums\Album3 - Copy\Campus - The Danish Design School.jpg" />
-    <Content Include="Albums\Album3 - Copy\campus.jpg" />
-    <Content Include="Albums\Album3 - Copy\StudentsonCampus.jpg" />
     <Content Include="Albums\Album3\campus.jpg" />
     <Content Include="Albums\Album3\Campus - The Danish Design School.jpg" />
     <Content Include="Albums\Album3\StudentsonCampus.jpg" />
@@ -233,6 +235,7 @@
     </Content>
     <Content Include="Images.aspx" />
     <Content Include="Post.aspx" />
+    <Content Include="Registration\RegistrationWebService.asmx" />
     <Content Include="Slideshow\Blue.png" />
     <Content Include="Slideshow\DarkRed.png" />
     <Content Include="Slideshow\Green.png" />
@@ -242,7 +245,11 @@
     <Content Include="Student\BrowseMarks.aspx" />
     <Content Include="Student\GraphicalView.aspx" />
     <Content Include="Student\Notification.aspx" />
+    <Content Include="Student\TransactionHistory.aspx" />
     <Content Include="Teacher\InputMark.aspx" />
+    <Content Include="Teacher\Mark.aspx" />
+    <Content Include="Teacher\MarkWebService.asmx" />
+    <Content Include="Teacher\TransactionHistory.aspx" />
     <Content Include="User Control\SelectableImage.ascx" />
     <Content Include="Student\Summary.aspx" />
     <Content Include="Teachers.aspx" />
@@ -264,6 +271,7 @@
     <Content Include="Xml\history.xml" />
     <Content Include="Xml\slideshow.xml" />
     <Content Include="Admin\Web.config" />
+    <Content Include="Registration\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
@@ -390,11 +398,55 @@
     <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
       <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Account\Register.aspx.cs">
+    <Compile Include="Admin\CauseFee.aspx.cs">
+      <DependentUpon>CauseFee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CauseFee.aspx.designer.cs">
+      <DependentUpon>CauseFee.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Class.aspx.cs">
+      <DependentUpon>Class.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Class.aspx.designer.cs">
+      <DependentUpon>Class.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewEntry.aspx.cs">
+      <DependentUpon>NewEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\NewEntry.aspx.designer.cs">
+      <DependentUpon>NewEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Section.aspx.cs">
+      <DependentUpon>Section.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Section.aspx.designer.cs">
+      <DependentUpon>Section.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Subject.aspx.cs">
+      <DependentUpon>Subject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Subject.aspx.designer.cs">
+      <DependentUpon>Subject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Term.aspx.cs">
+      <DependentUpon>Term.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Term.aspx.designer.cs">
+      <DependentUpon>Term.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SingleValue.cs" />
+    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Registration\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\Register.aspx.designer.cs">
+    <Compile Include="Registration\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\RegisterExternalLogin.aspx.cs">
@@ -481,13 +533,6 @@
     <Compile Include="Admin\SiteData.aspx.designer.cs">
       <DependentUpon>SiteData.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Album.aspx.cs">
       <DependentUpon>Album.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -541,7 +586,6 @@
     <Compile Include="Models\MarkPortion.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Response.cs" />
-    <Compile Include="Models\TextValuePair.cs" />
     <Compile Include="Post.aspx.cs">
       <DependentUpon>Post.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -550,6 +594,10 @@
       <DependentUpon>Post.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registration\RegistrationWebService.asmx.cs">
+      <DependentUpon>RegistrationWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -594,12 +642,37 @@
     <Compile Include="Student\Notification.aspx.designer.cs">
       <DependentUpon>Notification.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Student\TransactionHistory.aspx.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student\TransactionHistory.aspx.designer.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Teacher\InputMark.aspx.cs">
       <DependentUpon>InputMark.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Teacher\InputMark.aspx.designer.cs">
       <DependentUpon>InputMark.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\Mark.aspx.cs">
+      <DependentUpon>Mark.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\Mark.aspx.designer.cs">
+      <DependentUpon>Mark.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\MarkWebService.asmx.cs">
+      <DependentUpon>MarkWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Teacher\TransactionHistory.aspx.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\TransactionHistory.aspx.designer.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="User Control\SelectableImage.ascx.cs">
       <DependentUpon>SelectableImage.ascx</DependentUpon>

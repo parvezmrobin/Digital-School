@@ -17,7 +17,7 @@
                         </p>
                     </asp:PlaceHolder>
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="txtUsername" CssClass="col-md-2 control-label">Email</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="txtUsername" CssClass="col-md-2 control-label">Username</asp:Label>
                         <div class="col-md-10">
                             <asp:TextBox runat="server" ID="txtUsername" CssClass="form-control" TextMode="SingleLine" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUsername"
@@ -46,9 +46,9 @@
                         </div>
                     </div>
                 </div>
-                <p>
+               <%-- <p>
                     <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
-                </p>
+                </p>--%>
                 <p>
                     <%-- Enable this once you have account confirmation enabled for password reset functionality--%>
                     <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>

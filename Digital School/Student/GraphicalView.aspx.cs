@@ -12,21 +12,22 @@ namespace Digital_School.Student
 {
 	public partial class GraphicalView : System.Web.UI.Page
 	{
+		//TODO Browse Subjectwise
+		private MySQLDatabase db = new MySQLDatabase();
+
 		protected void Page_Init(object sender, EventArgs e) {
-			MySQLDatabase db = new MySQLDatabase();
 			var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
 			if (!IsPostBack) {
-				var res = db.Query("getYearByStudentUserid",
-					new Dictionary<string, object>() { { "@pid", studentId } },
+				var res = db.Query("getYearBySUId",
+					new Dictionary<string, object>() { { "@SUId", studentId } },
 					true);
 				ddlYear.Items.Clear();
 				foreach (var item in res) {
-					ddlYear.Items.Add(new ListItem(item["year"], item["YearClassSectionId"]));
+					ddlYear.Items.Add(new ListItem(item["year"], item["SYCSRId"]));
 				}
 
-
-				res = db.Query("getPortionBySUIdYCSId",
-					new Dictionary<string, object>() { { "@SUId", studentId }, { "@YCSId", ddlYear.SelectedValue } },
+				res = db.Query("getPortionBySYCSRId",
+					new Dictionary<string, object>() { { "@SYCSRId", ddlYear.SelectedValue } },
 					true);
 				ddlPortion.Items.Clear();
 				foreach (var item in res) {
@@ -38,28 +39,28 @@ namespace Digital_School.Student
 		}
 
 		protected void ReloadChart(object sender, EventArgs e) {
-			MySQLDatabase db = new MySQLDatabase();
 			var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
+
 			var dataSource = (ddlPortion.SelectedValue == "all") ?
-				db.Query("getMarkBySUIdYCSIdTId",
+				db.Query("getMarkBySYCSRIdTid",
 				new Dictionary<string, object>() {
-					{ "@SUId", studentId },
-					{ "@YCSId", ddlYear.SelectedValue },
-					{"@TId", ddlTerm.SelectedValue } },
+					{ "@SYCSRId", ddlYear.SelectedValue },
+					{ "@TId", ddlTerm.SelectedValue } },
 				true) :
-				db.Query("getMarkBySUIdYCSIdTidPId",
+				db.Query("getMarkBySYCSRIdTidPId",
 				new Dictionary<string, object>() {
-					{ "@SUId", studentId },
-					{ "@YCSId", ddlYear.SelectedValue },
-					{"@PId", ddlPortion.SelectedValue },
-					{"@TId", ddlTerm.SelectedValue } },
+					{ "@SYCSRId", ddlYear.SelectedValue },
+					{ "@PId", ddlPortion.SelectedValue },
+					{ "@TId", ddlTerm.SelectedValue } },
 				true);
+
 			Series series;
 			foreach (var grp in dataSource.GroupBy(x => x["Portion Name"])) {
 				series = new Series(grp.Key);
 				
 				series.ChartType = SeriesChartType.Spline;
 				Chart1.Series.Add(series);
+				
 				foreach (var item in grp) {
 					series.Points.AddXY(item["Subject"], item["Mark"]);
 				}

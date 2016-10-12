@@ -14,29 +14,42 @@ namespace Digital_School.Student
 {
 	public partial class BrowseMarks : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e) {
-			MySQLDatabase db = new MySQLDatabase();
-            var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
-			if (!IsPostBack) {
-				var res = db.Query("getYearByStudentUserid",
-					new Dictionary<string, object>() { { "@pid", studentId } },
-					true);
-				ddlYear.Items.Clear();
-				foreach (var item in res) {
-					ddlYear.Items.Add(new ListItem(item["year"], item["YearClassSectionId"]));
-				}
-				
-
-				res = db.Query("getSubjectBySUIdYCSId",
-					new Dictionary<string, object>() { { "@SUId", studentId }, { "@YCSId", ddlYear.SelectedValue } },
-					true);
-				ddlSubject.Items.Clear();
-				foreach (var item in res) {
-					ddlSubject.Items.Add(new ListItem(item["subject"], item["teacherSubjectId"]));
-				}
-				ddlSubject.Items.Insert(0, new ListItem("All", "all"));
-				
+		private MySQLDatabase db = new MySQLDatabase();
+		protected void Page_Init(object sender, EventArgs e) {
+			
+            if (!IsPostBack) {
+				LoadDDLYear(null, null);
 			}
+		}
+
+		protected void LoadDDLYear(object obj, EventArgs e) {
+			var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
+			var res = db.Query("getYearBySUId",
+					new Dictionary<string, object>() { { "@SUId", studentId } },
+					true);
+			ddlYear.Items.Clear();
+			foreach (var item in res) {
+				//Text = Year 
+				//Value = StudentYearClassSectionRoll Id
+				ddlYear.Items.Add(new ListItem(item["year"], item["SYCSRId"]));
+				LoadDDLSubject(null, null);
+			}
+		}	
+
+		protected void LoadDDLSubject(object obj, EventArgs e) {
+			var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
+			var res = db.Query("getSubjectBySYCSRIdTId",
+					new Dictionary<string, object>() { { "@SYCSRId", ddlYear.SelectedValue }, { "@TId", ddlTerm.SelectedValue } },
+					true);
+			ddlSubject.Items.Clear();
+			foreach (var item in res) {
+				ddlSubject.Items.Add(new ListItem(item["subject"], item["teacherSubjectId"]));
+			}
+			ddlSubject.Items.Insert(0, new ListItem("All", "all"));
+			LoadGridView(null, null);
+		}
+		protected void LoadGridView(object sender, EventArgs e) {
+			var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
 
 			var dataSource = (ddlSubject.SelectedValue == "all") ?
 				db.Query("getMarkBySUIdYCSIdTId",
@@ -45,10 +58,9 @@ namespace Digital_School.Student
 					{ "@YCSId", ddlYear.SelectedValue },
 					{"@TId", ddlTerm.SelectedValue } },
 				true) :
-				db.Query("getMarkBySUIdYCSIdTidTSId",
+				db.Query("getMarkBySUIdTidTSId",
 				new Dictionary<string, object>() {
 					{ "@SUId", studentId },
-					{ "@YCSId", ddlYear.SelectedValue },
 					{"@TSId", ddlSubject.SelectedValue },
 					{"@TId", ddlTerm.SelectedValue } },
 				true);
@@ -66,13 +78,11 @@ namespace Digital_School.Student
 					newRow[item2["Portion Name"]] = item2["Mark"];
 				}
 			}
-			
+
 			gvMark.DataSource = pivotTable;
 			gvMark.DataBind();
 		}
 
-        protected void gvMark_RowEditing(object sender, GridViewEditEventArgs e) {
-
-        }
-    }
+		
+	}
 }

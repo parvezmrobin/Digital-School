@@ -69,9 +69,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MarkTable.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="ClassTable.cs" />
     <Compile Include="IdentityRole.cs" />
     <Compile Include="RoleStore.cs" />
     <Compile Include="IdentityUser.cs" />
+    <Compile Include="SectionTable.cs" />
+    <Compile Include="StudentMark.cs" />
+    <Compile Include="Teacher.cs" />
+    <Compile Include="TeacherSubjectTable.cs" />
+    <Compile Include="TeacherTable.cs" />
+    <Compile Include="TermYearClassSectionTable.cs" />
+    <Compile Include="TextValuePair.cs" />
     <Compile Include="UserLoginsTable.cs" />
     <Compile Include="UserClaimsTable.cs" />
     <Compile Include="UserStore.cs" />
@@ -82,6 +92,8 @@
     <Compile Include="UserTable.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="YearTable.cs" />
+    <Compile Include="YearClassSectionTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

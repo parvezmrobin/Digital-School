@@ -58,7 +58,7 @@
 			
 			<asp:Chart ID="Chart1" runat="server" Width="500px" Height="500px" CssClass="img img-resposive img-thumbnail" >
 				<ChartAreas>
-					<asp:ChartArea Name="ChartArea1"  >
+					<asp:ChartArea Name="ChartArea1">
 					</asp:ChartArea>
 				</ChartAreas>
 			</asp:Chart>

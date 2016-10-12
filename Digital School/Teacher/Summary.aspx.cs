@@ -6,7 +6,7 @@ namespace Digital_School.Teacher
 	{
 		protected void Page_Load(object sender, EventArgs e) {
 			SummaryAttendance.Click += delegate { Response.Redirect("~/Teacher/Attendance"); };
-			SummaryInput.Click += delegate { Response.Redirect("~/Teacher/InputResult", true); };
+			SummaryInput.Click += delegate { Response.Redirect("~/Teacher/Mark", true); };
 			SummaryNotifications.Click += delegate { Response.Redirect("~/Teacher/Notification", true); };
 			SummaryAnswer.Click += delegate { Response.Redirect("~/Teacher/AnswerQuests"); };
 			SummaryTransaction.Click += delegate { Response.Redirect("~/Teacher/Transaction", true); };

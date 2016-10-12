@@ -16,7 +16,7 @@
 	</style>
 	<br />
 	<div class="row">
-		<div class="col-md-6 panel panel-info">
+		<div class="col-md-6 panel panel-info" style="border:none">
 			<p class="panel-heading" style="font-size: xx-large">Teacher Account</p>
 			<h3 class="text-success" id="success1" runat="server">Teacher designation updated successfully.
 			</h3>
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6 panel panel-info">
+		<div class="col-md-6 panel panel-info" style="border:none">
 			<p class="panel-heading" style="font-size: xx-large">Student Account</p>
 			<div class="panel-body">
 				<div class="form-horizontal">
@@ -90,20 +90,20 @@
 					<%-- Text Boxes for updating info --%>
 					<div class="form-group">
 						<label for="txtClass" class="col-md-4 col-sm-6 control-label text-static">
-							Class
+							Level of Class
 						</label>
 						<div class="col-md-8 col-sm-6">
-							<asp:TextBox ID="txtClass" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
+							<asp:TextBox ID="txtClass" placeholder="Level of Class" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
 						</div>
 					</div>
 					<br />
 					<div class="form-group">
 						<label for="txtSection" class="col-md-4 col-sm-6 control-label text-static">
-							Section
+							Serial of Section
 						</label>
 						<div class="col-md-8 col-sm-6">
-							<asp:TextBox ID="txtSection" CssClass="form-control" runat="server" TextMode="Number"
-								></asp:TextBox>
+							<asp:TextBox ID="txtSection" placeholder="Serial of Section" CssClass="form-control"
+								runat="server" TextMode="Number"></asp:TextBox>
 						</div>
 					</div>
 					<br />
@@ -112,12 +112,17 @@
 							Roll
 						</label>
 						<div class="col-md-8 col-sm-6">
-							<asp:TextBox ID="txtRoll" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
+							<asp:TextBox ID="txtRoll" placeholder="Roll of Student" CssClass="form-control" runat="server"
+								TextMode="Number"></asp:TextBox>
 						</div>
 					</div>
-					<asp:Button Text="Apply" CssClass="btn btn-success btn-lg"
-						runat="server" ID="btnApply" Style="float: right" OnClick="btnApply_Click" />
+					<div class="form-group">
+						<div class="col-md-offset-4 col-sm-offset-6 col-md-8 col-sm-6">
+							<asp:Button Text="Apply" CssClass="btn btn-success"
+								runat="server" ID="btnApply" Font-Size="Large" OnClick="btnApply_Click" />
 
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

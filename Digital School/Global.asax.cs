@@ -100,8 +100,9 @@ namespace Digital_School
 				ex = ex.InnerException;
 			}
 
-			if(ex is InvalidOperationException && ex.Message == "Validation of Anti-XSRF token failed.") {
+			if(ex is InvalidOperationException && ex.InnerException.Message.Contains("Anti-XSRF")) {
 				Server.Transfer("~/ErrorXSRF.html");
+				Server.ClearError();
 			}
 		}
 
