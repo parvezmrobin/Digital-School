@@ -14,8 +14,9 @@ namespace Digital_School.Student
 {
 	public partial class Notification : Page
 	{
+		private MySQLDatabase db = new MySQLDatabase();
 		protected void Page_Load(object sender, EventArgs e) {
-			MySQLDatabase db = new MySQLDatabase();
+
 			PostList.Controls.Clear();
 			var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 			var studentId = Convert.ToInt32(db.QueryValue(

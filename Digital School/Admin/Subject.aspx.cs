@@ -1,7 +1,9 @@
 ﻿using AspNet.Identity.MySQL;
-using Digital_School.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Digital_School.Admin
 {
-	public partial class Subject : System.Web.UI.Page
+	public partial class Subject : Page
 	{
 		private MySQLDatabase db = new MySQLDatabase();
 		protected void Page_LoadComplete(object sender, EventArgs e) {
@@ -29,69 +31,81 @@ namespace Digital_School.Admin
 			}
 		}
 
+		protected void LoadDDLYear(object o, EventArgs e) {
+			ddlYear.DataSource = new YearTable(db).GetAllYear();
+			ddlYear.DataBind();
+
+			SelectedYearChanged(null, null);
+		}
 		protected void SelectedYearChanged(object o, EventArgs e) {
 			LoadDDLClass(null, null);
 			LoadDDLSubject(null, null);
 		}
 
-		protected void LoadDDLYear(object o, EventArgs e) {
-			ddlYear.DataSource = db.Query("getAllYear", null, true).
-				Select(x => new TextValuePair { Text = x["year"], Value = x["yearid"] }).ToList();
-			ddlYear.DataBind();
-
-			SelectedYearChanged(null, null);
-		}
-
 		protected void LoadDDLClass(object o, EventArgs e) {
-			ddlClass.DataSource = db.Query("getClassByYId", new Dictionary<string, object>() { { "@yid", ddlYear.SelectedValue } }, true).
-				Select(x => new TextValuePair { Text = x["class"], Value = x["classid"] }).ToList();
-			ddlClass.DataBind();
+			if (ddlYear.Items.Count > 0) {
+				ddlClass.DataSource = new YearClassSectionTable(db).GetClassByYear(ddlYear.SelectedValue);
+				ddlClass.DataBind();
+			} else {
+				ddlClass.Items.Clear();
+			}
 
 			LoadDDLSection(null, null);
 		}
 
 		protected void LoadDDLSection(object o, EventArgs e) {
-			var res = db.Query("getSectionByYIdCId",
-				new Dictionary<string, object>() {
-					{"@YId", ddlYear.SelectedValue },
-					{"@CId", ddlClass.SelectedValue }
-				}, true).
-				Select(x => new TextValuePair { Text = x["section"], Value = x["sectionid"] }).ToList();
-			ddlSection.DataSource = res;
-			ddlSection.DataBind();
+			if (ddlClass.Items.Count > 0) {
+				ddlSection.DataSource = new YearClassSectionTable(db).GetSectionByYearClass(ddlYear.SelectedValue, ddlClass.SelectedValue);
+				ddlSection.DataBind();
+			} else {
+				ddlSection.Items.Clear();
+			}
 
 			LoadGVDDLExistingSubject(null, null);
 		}
 
 		protected void LoadGVDDLExistingSubject(object o, EventArgs e) {
-			var YCSId = db.QueryValue("getYearClassSectionId",
-				new Dictionary<string, object>() {
-					{"@pyearid", ddlYear.SelectedValue },
-					{"@pclassid", ddlClass.SelectedValue },
-					{"@psectionid", ddlSection.SelectedValue }
-				}, true);
+			if (ddlSection.Items.Count > 0) {
+				var YCSId = new YearClassSectionTable(db).GetYearClassSectionId(ddlYear.SelectedValue, ddlClass.SelectedValue, ddlSection.SelectedValue);
+                gvSubject.Columns[0].Visible = true;
+                var res = new TeacherSubjectTable(db).GetTeacherSubject(YCSId);
+                gvSubject.DataSource = res.Select(x => new {
+                    Teacher = x.Teacher.FullName,
+                    SubjectId = x.SubjectCode,
+                    SubjectName = x.Name,
+                    TotalMark = x.TotalMark,
+                    TSId = x.TeacherSubjectId
+				}).ToList();
+				gvSubject.DataBind();
 
-			var res = db.Query("getSubjectByYCSId", new Dictionary<string, object>() {
-				{"@YCSId", YCSId }
-			}, true);
-			gvSubject.DataSource = res.Select(x => new {
-				Teacher = x["teacher"],
-				SubjectId = x["subjectcode"],
-				SubjectName = x["subject"],
-				TotalMark = x["totalmark"]
-			}).ToList();
-			gvSubject.DataBind();
-
-			ddlExistingSubject.DataSource = res.Select(x => new TextValuePair { Text = x["subject"], Value = x["teachersubjectid"] }).ToList();
-			ddlExistingSubject.DataBind();
-
+				ddlExistingSubject.DataSource = res.Select(x => new TextValuePair { Text = x.Name, Value = x.TeacherSubjectId }).ToList();
+				ddlExistingSubject.DataBind();
+                gvSubject.Columns[0].Visible = false;
+            } else {
+                gvSubject.Columns[0].Visible = true;
+                gvSubject.DataSource = new DataTable();
+				gvSubject.DataBind();
+				ddlExistingSubject.Items.Clear();
+                gvSubject.Columns[0].Visible = true;
+            }
 			LoadGVExistingMarkPortion(null, null);
 		}
 
 		protected void LoadGVExistingMarkPortion(object o, EventArgs e) {
-			gvExistingMarkPortion.DataSource = db.Query("getMarkPortionByTSId", new Dictionary<string, object>() { { "@TSId", ddlExistingSubject.SelectedValue } }, true).
-				Select(x => new TextValuePair { Text = x["portionname"], Value = x["percentage"] }).ToList();
-			gvExistingMarkPortion.DataBind();
+			if (ddlExistingSubject.Items.Count > 0) {
+                gvExistingMarkPortion.Columns[2].Visible = true;
+                gvExistingMarkPortion.DataSource =
+                    //new MarkPortionTable(db).GetMarkPortionPercentage(ddlExistingSubject.SelectedValue);
+                db.Query("getMarkPortionByTSId", new Dictionary<string, object>() { { "@TSId", ddlExistingSubject.SelectedValue } }, true).
+ Select(x => new { Text = x["portionname"], Value = x["percentage"], Id = x["markportionid"] }).ToList();
+                gvExistingMarkPortion.DataBind();
+                gvExistingMarkPortion.Columns[2].Visible = false;
+            } else {
+                gvExistingMarkPortion.Columns[2].Visible = true;
+                gvExistingMarkPortion.DataSource = new DataTable();
+				gvExistingMarkPortion.DataBind();
+                gvExistingMarkPortion.Columns[2].Visible = false;
+            }
 		}
 
 		protected void LoadDDLAllSubject(object o, EventArgs e) {
@@ -101,18 +115,19 @@ namespace Digital_School.Admin
 		}
 
 		protected void LoadDDLTeacher(object o, EventArgs e) {
-			ddlTeacher.DataSource = db.Query("getAllTeacher", null, true).
-				Select(x => new TextValuePair { Text = x["name"], Value = x["id"] }).ToList();
+			ddlTeacher.DataSource = new TeacherTable(db).GetAllTeacher().Select(x => new TextValuePair { Text = x.FirstName + " " + x.LastName, Value = x.ID.ToString() }).ToList();
 			ddlTeacher.DataBind();
 		}
 
 		protected void LoadDDLSubject(object o, EventArgs e) {
-			ddlSubject.DataSource = db.Query("getSubjectByYId", new Dictionary<string, object>() { { "@YId", ddlYear.SelectedValue } }, true).
-				Select(x => new TextValuePair { Text = x["subject"], Value = x["subjectid"] }).ToList();
-			ddlSubject.DataBind();
+			if (ddlYear.Items.Count > 0) {
+				ddlSubject.DataSource = new SubjectYearTable(db).GetSubject(ddlYear.SelectedValue).
+					Select(x => new TextValuePair { Text = x.ToString(), Value = x.ID }).ToList();
+				ddlSubject.DataBind();
+			} else {
+				ddlSubject.Items.Clear();
+			}
 		}
-
-
 
 		protected void LoadGVMarkPortion(object o, EventArgs e) {
 			gvMarkPortions.DataSource = db.Query("getAllPortion", null, true).
@@ -120,36 +135,20 @@ namespace Digital_School.Admin
 			gvMarkPortions.DataBind();
 		}
 
-		//protected void LoadDDLExistingSubject(object o, EventArgs e) {
-
-		//	var res = db.Query("getSubjectByYCSId", new Dictionary<string, object>() { {"@YCSId",YCSId } }, true);
-
-		//	ddlExistingSubject.DataSource = res.Select(x => new TextValuePair {
-		//		Text = x["subjectid"] + " - " + x["subject"],
-		//		Value = x["teachersubjectid"]
-		//	}).ToList();
-		//	ddlExistingSubject.DataBind();
-		//}
-
-
-
 		protected void btnAssign_Click(object sender, EventArgs e) {
-			var YCSId = db.QueryValue("getYearClassSectionId", new Dictionary<string, object>() {
-				{"@pyearid", ddlYear.SelectedValue },
-				{"@pclassid", ddlClass.SelectedValue },
-				{"@psectionid", ddlSection.SelectedValue }
-			}, true);
+			var YCSId = new YearClassSectionTable(db).GetYearClassSectionId(ddlYear.SelectedValue, ddlClass.SelectedValue, ddlSection.SelectedValue);
 
-			var teacherSubjectId = db.QueryValue("addTeacherSubject", new Dictionary<string, object>() {
-				{"@TId", ddlTeacher.SelectedValue },
-				{"@SId", ddlSubject.SelectedValue },
-				{"@YCSId", YCSId }
-			}, true);
+			TeacherSubjectTable TSTable = new TeacherSubjectTable(db);
+			TSTable.RemoveTeacherSubject(ddlTeacher.SelectedValue, ddlSubject.SelectedValue, YCSId);
+			var teacherSubjectId = TSTable.AddTeacherSubject(ddlTeacher.SelectedValue, ddlSubject.SelectedValue, YCSId);
+
 			foreach (GridViewRow row in gvMarkPortions.Rows) {
 				if ((row.FindControl("cbInclude") as CheckBox).Checked) {
-
+					string strPerrcent;
+					if (string.IsNullOrEmpty(strPerrcent = (row.FindControl("txtPercentage") as TextBox).Text))
+						continue;
 					var portionId = Convert.ToInt32((row.FindControl("hfPortionId") as HiddenField).Value);
-					var percentage = Convert.ToInt32((row.FindControl("txtPercentage") as TextBox).Text);
+					var percentage = Convert.ToInt32(strPerrcent);
 
 					db.Execute("addMarkPortion", new Dictionary<string, object>() {
 						{"@TSId", teacherSubjectId },
@@ -165,20 +164,33 @@ namespace Digital_School.Admin
 
 		protected void btnAddSubjectYear_Click(object sender, EventArgs e) {
 			if (IsValid) {
-				db.Execute("INSERT INTO subejctyear VALUES(null, '" + ddlAllSubject.SelectedValue + "', '" + ddlYear.SelectedValue + "', " + txtTotalMark.Text + ");", null);
+				SubjectYearTable SYTable = new SubjectYearTable(db);
+				if (!SYTable.HasSubject(ddlAllSubject.SelectedValue, ddlYear.SelectedValue)) {
+					SYTable.AddSubjectYear(ddlAllSubject.SelectedValue, ddlYear.SelectedValue, txtTotalMark.Text);
+					LoadDDLSubject(null, null);
+				}
 			}
 		}
 
-		//protected void btnCreateSection_ServerClick(object o, EventArgs e) {
-		//	db.Execute("INSERT INTO subject VALUES(null, '" + txtSubjectCode.Text + "', '" + txtSubjectName.Text + "');", null);
-		//	LoadDDLSubject(null, null);
-		//}
+        protected void gvExistingMarkPortion_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
 
-		//protected void btnCreatePortion_ServerClick(object o, EventArgs e) {
-		//	db.Execute("INSERT INTO portion VALUES(null, '" + txtPortionName.Text + "');", null);
-		//	LoadGVMarkPortion(null, null);
-		//}
+            var markPortionId=gvExistingMarkPortion.Rows[e.RowIndex].Cells[2].Text;
+            //var markPortionId= Convert.ToInt32((e.Values[FindControl("hfPortionId")] as HiddenField).Value);
 
+            // int key = Convert.ToInt32(gvExistingMarkPortion.DataKeys[e.RowIndex].Value.ToString());
+            MarkPortionTable MPTable = new MarkPortionTable(db);
+            MPTable.RemoveMarkPortionFromSubject(Convert.ToInt32(markPortionId));
 
-	}
+            LoadGVDDLExistingSubject(null, null);
+        }
+
+        protected void gvSubject_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            var teacherSubjectId = gvSubject.Rows[e.RowIndex].Cells[0].Text;
+            TeacherSubjectTable TSTable = new TeacherSubjectTable(db);
+            TSTable.RemoveTeacherSubject(teacherSubjectId);
+            LoadGVDDLExistingSubject(null, null);
+        }
+    }
 }

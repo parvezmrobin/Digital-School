@@ -153,8 +153,8 @@
 									</button>
 
 								</div>
-								<div class="navbar-collapse collapse" id="navAdmin">
-									<ul class="nav navbar-nav navbar-right">
+								<div class="navbar-collapse collapse" id="navAdmin" style="overflow: visible">
+									<ul class="nav navbar-nav navbar-right" >
 										<li id="adminSettings"><a runat="server" href="~/Admin/Settings"><span class="glyphicon glyphicon-cog">
 										</span> Settings</a></li>
 										<li id="adminAccount"><a runat="server" href="~/Admin/Account"><span class="glyphicon glyphicon-user">
@@ -165,6 +165,7 @@
 											<ul class="dropdown-menu">
 												<li id="adminClass"><a runat="server" href="~/Admin/Class">Class</a></li>
 												<li id="adminSubject"><a runat="server" href="~/Admin/Subject">Subject</a></li>
+												<li id="adminTerm"><a runat="server" href="~/Admin/Term">Term</a></li>
 												<li id="adminNewEntry"><a runat="server" href="~/Admin/NewEntry">New Entry</a></li>
 											</ul>
 										</li>
@@ -177,20 +178,7 @@
 											<a runat="server" href="~/Admin/SiteData">
 												<span class="glyphicon glyphicon-folder-open"></span> Site Data
 											</a>
-											<%--</li>
-												<li class="dropdown">
-													<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-														<span class="caret"></a>
-													<ul class="dropdown-menu">
-														<li><a runat="server" id="sda1" href="#">Slide Show</a></li>
-														<li><a runat="server" id="A4" href="~/Admin/Gallery.aspx">Gallery</a></li>
-														<li><a runat="server" id="A5" href="#">Post</a></li>
-														<li><a runat="server" id="A6" href="#">History & Contact</a></li>
-														<li><a runat="server" id="A7" href="#">Application</a></li>
-														<li><a runat="server" id="A8" href="#">Result</a></li>
-													</ul>
-												</li>
-											</ul>--%>
+											
 										</li>
 
 									</ul>
@@ -205,6 +193,10 @@
 		</div>
 		<div class="container body-content">
 			<br />
+			<div class="visible-sm">
+				<br />
+				<br />
+			</div>
 			<asp:ContentPlaceHolder ID="MainContent" runat="server">
 			</asp:ContentPlaceHolder>
 			

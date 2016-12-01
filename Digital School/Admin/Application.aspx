@@ -9,7 +9,7 @@
 				<div id="Applications" runat="server"></div>
 				<br />
 				<div>
-					<asp:CheckBox Text="Show inactives" ToolTip="Show inactive applications as well" AutoPostBack="true" runat="server" />
+					<asp:CheckBox Visible="false" Text="Show inactives" ToolTip="Show inactive applications as well" AutoPostBack="true" runat="server" />
 					<asp:Button Text="Remove" CssClass="btn btn-danger" ID="btnRemoveApp" ToolTip="Remove selected application and all corresponding responses" style="float:right" runat="server" />
 				</div>
 			</div>
@@ -17,7 +17,7 @@
 		<div class="panel panel-info col-md-6">
 			<p class="panel-heading" style="font-size: xx-large">Responses</p>
 			<div class="panel-body">
-				<asp:CheckBoxList id="Responses" runat="server"></asp:CheckBoxList>
+				<asp:Panel id="Responses" runat="server"></asp:Panel>
 				<br />
 				<div>
 					<asp:Button Text="Remove" CssClass="btn btn-danger" ID="btnRemoveRes" ToolTip="Remove selected responses"

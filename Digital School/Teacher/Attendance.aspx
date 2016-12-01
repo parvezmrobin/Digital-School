@@ -24,7 +24,7 @@
 									CssClass="col-md-4 col-sm-6 control-label" />
 								<div class="col-md-8 col-sm-6">
 									<asp:DropDownList ID="ddlSection" CssClass="form-control" runat="server" DataTextField="Text"
-										DataValueField="Value" OnSelectedIndexChanged="ReloadYCSId"
+										DataValueField="Value" OnSelectedIndexChanged="BindCheckBoxes"
 										AutoPostBack="true">
 									</asp:DropDownList>
 								</div>

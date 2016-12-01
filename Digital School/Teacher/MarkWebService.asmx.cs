@@ -28,24 +28,20 @@ namespace Digital_School.Teacher
 		}
 
 		[WebMethod]
-		public SingleValue AddMark(int markPortionId, int studentId, int classId, int sectionId, int termId, int mark, string teacherId) {
+		public SingleValue AddMark(int markPortionId, int studentId, int classId, int sectionId, int termYearClassSectionId, int mark, string teacherId) {
 			MySQLDatabase db = new MySQLDatabase();
-			var YCSId = db.QueryValue("getYearClassSectionId", new Dictionary<string, object>() {
-				{"@pyearid", db.QueryValue("getYearId", new Dictionary<string, object>() { {"@pyear", DateTime.Now.Year } }, true) },
-				{"@pclassId", classId},
-				{"@psectionId", sectionId }
-			}, true);
+			var YCSId = new YearClassSectionTable(db).GetYearClassSectionId(
+				new YearTable(db).GetYearId(DateTime.Now.Year),
+				classId,
+				sectionId);
 
-			var SYCSRId = db.QueryValue("getSYCSRIdByYCSIdSId", new Dictionary<string, object>() {
-				{"@ycsid", YCSId },
-				{"@Sid", studentId }
-			}, true);
+			var SYCSRId = new StudentYearClassSectionRollTable(db).GetStudentYearClassSectionRollId(YCSId, studentId);
 
 			return new SingleValue() {
 				Value = db.QueryValue("addMark", new Dictionary<string, object>() {
 					{"@MPId", markPortionId },
 					{"@SYCSRId", SYCSRId },
-					{"@termid", termId },
+					{"@TYCSId", termYearClassSectionId },
 					{"@mark", mark },
 					{"@TUId", teacherId }
 				}, true).ToString()

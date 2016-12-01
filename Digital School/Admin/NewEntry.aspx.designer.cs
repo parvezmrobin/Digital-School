@@ -40,15 +40,6 @@ namespace Digital_School.Admin {
         protected global::System.Web.UI.WebControls.Button btnAddYear;
         
         /// <summary>
-        /// txtClassLevel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtClassLevel;
-        
-        /// <summary>
         /// txtClassLabel control.
         /// </summary>
         /// <remarks>
@@ -67,15 +58,6 @@ namespace Digital_School.Admin {
         protected global::System.Web.UI.WebControls.Button btnAddClass;
         
         /// <summary>
-        /// txtSectionSerial control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSectionSerial;
-        
-        /// <summary>
         /// txtSectionLabel control.
         /// </summary>
         /// <remarks>
@@ -92,6 +74,24 @@ namespace Digital_School.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddSection;
+        
+        /// <summary>
+        /// txtTerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTerm;
+        
+        /// <summary>
+        /// btnAddTerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddTerm;
         
         /// <summary>
         /// txtSubjectCode control.

@@ -16,86 +16,61 @@ namespace Digital_School.Teacher
 		protected void Page_Init(object sender, EventArgs e) {
 			if (!IsPostBack) {
 				var teacherId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
-				var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
-				#region Load ddlClass
-				ddlClass.DataSource = db.Query(
-					"getClassByTUIdYId",
-					new Dictionary<string, object>() {
-						{ "@TUId", teacherId },
-						{ "@YId", yearId } },
-					true)
-					.Select(x => new {
-						Text = x["class"],
-						Value = x["classid"]
-					}).ToList();
+				var yearId = new YearTable(db).GetYearId(DateTime.Now.Year);
+
+				ddlClass.DataSource = new TeacherSubjectTable(db).GetClass(teacherId, yearId);
 				ddlClass.DataTextField = "Text";
 				ddlClass.DataValueField = "Value";
 				ddlClass.DataBind();
-				#endregion
 
 				ReloadDDLSection(null, null);
 			}
 		}
 
-		private void BindCheckBoxes(object p1, EventArgs p2) {
-			cbAttendance.DataSource = db.Query(
-				"getStudentByTUNYCSId",
-				 new Dictionary<string, object>() {
-					 {"@TUN", User.Identity.Name }  ,
-					 {"@YCSId", ViewState["YCSId"] }
-				 }, true).Select(x => new {
-					 Text = x["roll"] + ". " + x["student"],
-					 Value = x["studentid"]
-				 }).ToList();
+		protected void BindCheckBoxes(object p1, EventArgs p2) {
+			var YCSId = new YearClassSectionTable(db).GetYearClassSectionId(new YearTable(db).GetYearId(DateTime.Now.Year), ddlClass.SelectedValue, ddlSection.SelectedValue);
+			cbAttendance.DataSource = new TeacherSubjectTable(db).GetStudent(User.Identity.Name, YCSId).Select(x => new TextValuePair {
+				Text = x.ToString(),
+				Value = x.ID
+			}).ToList();
 			cbAttendance.DataBind();
 			foreach (ListItem item in cbAttendance.Items) {
 				item.Selected = true;
 			}
 		}
 
-		protected void ReloadYCSId(object obj, EventArgs ea) {
-			var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
-			ViewState["YCSId"] = Convert.ToInt32(new MySQLDatabase().QueryValue(
-					"getYearClassSectionId",
-					new Dictionary<string, object>() {
-						{"@pyearid", yearId },
-						{"@pclassid", ddlClass.SelectedValue },
-						{"@psectionid", ddlSection.SelectedValue } },
-					true));
-			BindCheckBoxes(null, null);
-		}
+		//protected void ReloadYCSId(object obj, EventArgs ea) {
+		//	var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
+		//	ViewState["YCSId"] = Convert.ToInt32(new MySQLDatabase().QueryValue(
+		//			"getYearClassSectionId",
+		//			new Dictionary<string, object>() {
+		//				{"@pyearid", yearId },
+		//				{"@pclassid", ddlClass.SelectedValue },
+		//				{"@psectionid", ddlSection.SelectedValue } },
+		//			true));
+			
+		//}
 
 		protected void ReloadDDLSection(object obje, EventArgs ea) {
-			var teacherId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
-			var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
+			var teacherId = new UserTable<IdentityUser>(db).GetUserId(User.Identity.Name);
+			var yearId = new YearTable(db).GetYearId(DateTime.Now.Year);
 
-			ddlSection.DataSource = db.Query(
-				"getSectionByTUIdYIdCId",
-				new Dictionary<string, object>() {
-						{"@TUId", teacherId },
-						{"@YId", yearId },
-						{"@CId", ddlClass.SelectedValue }
-				}, true)
-				.Select(x => new {
-					Text = x["section"],
-					Value = x["sectionid"]
-				}).ToList();
+			ddlSection.DataSource = new TeacherSubjectTable(db).GetSection(teacherId, yearId, ddlClass.SelectedValue);
 			ddlSection.DataTextField = "Text";
 			ddlSection.DataValueField = "Value";
 			ddlSection.DataBind();
 
-			ReloadYCSId(null, null);
+			BindCheckBoxes(null, null);
 		}
 
 		protected void btnSubmint_Click(object obj, EventArgs ea) {
 			//TODO Not checked
 			//TODO add trigger
-			if (ViewState["YCSId"] == null)
-				ReloadYCSId(null, null);
+			var YCSID = new YearClassSectionTable(db).GetYearClassSectionId(new YearTable(db).GetYearId(DateTime.Now.Year), ddlClass.SelectedValue, ddlSection.SelectedValue); 
 			var markPortionId = db.QueryValue("getMarkPortionIdByYCSIdPId",
 				new Dictionary<string, object>() {
 					{"@YCSId", Convert.ToInt32(ViewState["YCSId"]) },
-					{"@PId", 1 }
+					{"@PId", -1 }
 				}, true);
 
 			foreach (ListItem item in cbAttendance.Items) {

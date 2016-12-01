@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <section id="loginForm">
                 <div class="form-horizontal">
-                    <h4>Use a local account to log in.</h4>
+                    <h4 runat="server" id="hLogin" class="text-danger">You are not autorized to view requested page. Please login with an authorized account first.</h4>
                     <hr />
                     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                         <p class="text-danger">

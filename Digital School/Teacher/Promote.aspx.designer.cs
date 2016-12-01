@@ -13,22 +13,58 @@ namespace Digital_School.Teacher {
     public partial class Promote {
         
         /// <summary>
-        /// ddlClass control.
+        /// ddlFromYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlClass;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFromYear;
         
         /// <summary>
-        /// ddlSection control.
+        /// ddlFromClass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSection;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFromClass;
+        
+        /// <summary>
+        /// ddlFromSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFromSection;
+        
+        /// <summary>
+        /// ddlToYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlToYear;
+        
+        /// <summary>
+        /// ddlToClass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlToClass;
+        
+        /// <summary>
+        /// ddlToSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlToSection;
         
         /// <summary>
         /// gvPromote control.

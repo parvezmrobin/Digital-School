@@ -24,17 +24,17 @@ namespace Digital_School.Student
 
 		protected void LoadDDLYear(object obj, EventArgs e) {
 			var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
-			var res = db.Query("getYearBySUId",
-					new Dictionary<string, object>() { { "@SUId", studentId } },
-					true);
-			ddlYear.Items.Clear();
-			foreach (var item in res) {
-				//Text = Year 
-				//Value = StudentYearClassSectionRoll Id
-				ddlYear.Items.Add(new ListItem(item["year"], item["SYCSRId"]));
-				LoadDDLSubject(null, null);
-			}
+			ddlYear.DataSource = new StudentYearClassSectionRollTable(db).GetYearByStudentUserId(studentId);
+			ddlYear.DataBind();
+			LoadDDLTerm(null, null);
 		}	
+
+		protected void LoadDDLTerm(object o, EventArgs e) {
+			ddlTerm.DataSource = db.Query("getTermBySYCSRId", new Dictionary<string, object>() { { "SYCSRId", ddlYear.SelectedValue } }, true)
+				.Select(x => new TextValuePair { Text = x["term"], Value = x["termid"] }).ToList();
+			ddlTerm.DataBind();
+			LoadDDLSubject(null, null);
+		}
 
 		protected void LoadDDLSubject(object obj, EventArgs e) {
 			var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);

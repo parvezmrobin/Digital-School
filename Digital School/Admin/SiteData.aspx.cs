@@ -22,7 +22,21 @@ namespace Digital_School.Admin
 		}
 
 		protected void SummaryApplication_Click(object obj, EventArgs e) {
+			Response.Redirect("~/Admin/CreateApplication");
+		}
+
+        protected void SummaryHistoryContact_Click(object obj, EventArgs e)
+        {
+            Response.Redirect("~/Admin/EditHistoryContact");
+        }
+
+        protected void SummaryHistoryContact_Click_2(object obj, EventArgs e)
+        {
 			Response.Redirect("~/Admin/Application");
+		}
+
+		protected void SummaryPost_Click(object o, EventArgs e) {
+			Response.Redirect("~/Admin/EditPost", true);
 		}
 	}
 }

@@ -40,12 +40,30 @@ namespace Digital_School.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlSection;
         
         /// <summary>
-        /// blTerm control.
+        /// gvTerm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.BulletedList blTerm;
+        protected global::System.Web.UI.WebControls.GridView gvTerm;
+        
+        /// <summary>
+        /// gvAddTerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAddTerm;
+        
+        /// <summary>
+        /// btnAddTerm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddTerm;
     }
 }

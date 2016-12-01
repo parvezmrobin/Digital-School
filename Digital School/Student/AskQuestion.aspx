@@ -35,14 +35,14 @@
 			<div class="form-group col-sm-4">
 				<asp:Label Text="To" AssociatedControlID="ddlTo" runat="server" CssClass="col-sm-4 control-label" />
 				<div class="col-sm-8">
-					<asp:DropDownList ID="ddlTo" CssClass="form-control" runat="server">
+					<asp:DropDownList ID="ddlTo" CssClass="form-control" runat="server" DataTextField="Text" DataValueField="Value">
 					</asp:DropDownList>
 				</div>
 
 			</div>
 		</div>
 		<div class="col-sm-12" style="padding: 10px">
-			<asp:TextBox ID="txtQuestion" Style="min-height: 300px" CssClass="form-control" TextMode="MultiLine"
+			<asp:TextBox ID="txtQuestion" Style="min-height: 300px; max-width:none" CssClass="form-control" TextMode="MultiLine"
 				runat="server"></asp:TextBox>
 		</div>
 		<br />

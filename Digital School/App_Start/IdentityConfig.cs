@@ -15,7 +15,7 @@ namespace Digital_School
 	{
 		public Task SendAsync(IdentityMessage message) {
 			// Plug in your email service here to send an email.
-			SmtpClient client = new SmtpClient("smpt.gmail.com", 587);
+			SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
 			client.Credentials = new System.Net.NetworkCredential() {
 				UserName = Statics.SchoolEmailId,
 				Password = Statics.SchoolEmailPassword

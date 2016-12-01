@@ -17,15 +17,15 @@
 		<uc1:Summary runat="server" ID="SummaryGallery" WidthClass="col-lg-4 col-md-6" Title="Gallery"
 			Detail="<ul><li>Create and/or edit albums</li></ul>" OnClick="SummaryGallery_Click" />
 		<uc1:Summary runat="server" ID="SummaryPost" WidthClass="col-lg-4 col-md-6" Title="Post"
-			Detail="<ul><li>Create, edit and/or delete news, notice and speech</li></ul>" />
+			Detail="<ul><li>Create and edit news, notice and speech</li></ul>" OnClick="SummaryPost_Click" />
 		<uc1:Summary runat="server" ID="SummaryHistoryContact" WidthClass="col-lg-4 col-md-6"
-			Title="History"
-			Detail="<ul><li>Edit 'History' page</li></ul>" />
+			Title="History And Contacts"
+			Detail="<ul><li>Edit 'History And Contact' page</li></ul>" OnClick="SummaryHistoryContact_Click"/>
 		<uc1:Summary runat="server" ID="Summary1" WidthClass="col-lg-4 col-md-6"
-			Title="Contact"
-			Detail="<ul><li>Edit 'Contact' page</li></ul>" />
+            Title="Application Response"
+            Detail="<ul><li>Response</li></ul>" OnClick="SummaryHistoryContact_Click_2" />
 		<uc1:Summary runat="server" ID="SummaryApplication" WidthClass="col-lg-4 col-md-6"
-			Title="Application" OnClick="SummaryApplication_Click"
+			Title="Create Application" OnClick="SummaryApplication_Click"
 			Detail="<ul><li>Create new application for admitting student or recruiting teacher</li></ul>" />
 		
 	</div>

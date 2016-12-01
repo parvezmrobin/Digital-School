@@ -24,7 +24,7 @@ namespace Digital_School.Account
             {
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
-                var user = manager.FindByName(Email.Text);
+                var user = manager.FindByName(UserName.Text);
                 if (user == null)
                 {
                     ErrorMessage.Text = "No user found";

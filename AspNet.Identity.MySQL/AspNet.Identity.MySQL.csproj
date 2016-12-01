@@ -69,6 +69,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MarkPortion.cs" />
+    <Compile Include="MarkPortionTable.cs" />
     <Compile Include="MarkTable.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="ClassTable.cs" />
@@ -77,9 +79,16 @@
     <Compile Include="IdentityUser.cs" />
     <Compile Include="SectionTable.cs" />
     <Compile Include="StudentMark.cs" />
+    <Compile Include="StudentTable.cs" />
+    <Compile Include="StudentYearClassSectionRollTable.cs" />
+    <Compile Include="Subject.cs" />
+    <Compile Include="SubjectYearTable.cs" />
     <Compile Include="Teacher.cs" />
+    <Compile Include="TeacherSubject.cs" />
     <Compile Include="TeacherSubjectTable.cs" />
     <Compile Include="TeacherTable.cs" />
+    <Compile Include="TermTable.cs" />
+    <Compile Include="TermYearClassSection.cs" />
     <Compile Include="TermYearClassSectionTable.cs" />
     <Compile Include="TextValuePair.cs" />
     <Compile Include="UserLoginsTable.cs" />

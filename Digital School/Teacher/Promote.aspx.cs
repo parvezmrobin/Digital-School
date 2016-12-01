@@ -12,77 +12,67 @@ namespace Digital_School.Teacher
 {
 	public partial class Promote : Page
 	{
+		MySQLDatabase db = new MySQLDatabase();
+
 		protected void Page_Load(object sender, EventArgs e) {
 			if (!IsPostBack) {
-				MySQLDatabase db = new MySQLDatabase();
-				var teacherId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
-				var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
-				#region Load ddlClass
-				ddlClass.DataSource = db.Query(
-					"getClassByTUIdYId",
-					new Dictionary<string, object>() {
-						{ "@TUId", teacherId },
-						{ "@YId", yearId } },
-					true)
-					.Select(x => new {
-						Text = x["class"],
-						Value = x["classid"]
-					}).ToList();
-				ddlClass.DataTextField = "Text";
-				ddlClass.DataValueField = "Value";
-				ddlClass.DataBind();
-				#endregion
+				var res = new TeacherSubjectTable(db).GetYear(User.Identity.GetUserId());
+				ddlFromYear.DataSource = res;
+				ddlFromYear.DataBind();
+				ReloadDDLFromClass(null, null);
 
-				ReloadDDLSection(null, null);
-			}		
+				ddlToYear.DataSource = res;
+				ddlToYear.DataBind();
+				ReloadDDLToClass(null, null);
+			}
 		}
 
-		private void BindGridView(object p1, EventArgs p2) {
-			gvPromote.DataSource = new MySQLDatabase().Query(
-				"getStudentByTUNYCSId",
-				 new Dictionary<string, object>() {
-					 {"@TUN", User.Identity.Name }  ,
-					 {"@YCSId", ViewState["YCSId"] }
-				 }, true).Select(x => new {
-					 Roll = x["roll"],
-					 Name = x["student"]
-				 }).ToList();
-			gvPromote.DataBind();
+		protected void ReloadDDLFromClass(object o, EventArgs e) {
+			ddlFromClass.DataSource = new TeacherSubjectTable(db).GetClass(User.Identity.GetUserId(), ddlFromYear.SelectedValue);
+			ddlFromClass.DataBind();
+
+			ReloadDDLFromSection(null, null);
 		}
 
-		protected void ReloadYCSId(object obj, EventArgs ea) {
-			var yearId = new MySQLDatabase().QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
-			ViewState["YCSId"] = Convert.ToInt32(new MySQLDatabase().QueryValue(
-					"getYearClassSectionId",
-					new Dictionary<string, object>() {
-						{"@pyearid", yearId },
-						{"@pclassid", ddlClass.SelectedValue },
-						{"@psectionid", ddlSection.SelectedValue } },
-					true));
+		protected void ReloadDDLFromSection(object obje, EventArgs ea) {
+			ddlFromSection.DataSource = new TeacherSubjectTable(db).GetSection(User.Identity.GetUserId(), ddlFromYear.SelectedValue, ddlFromClass.SelectedValue);
+			ddlFromSection.DataBind();
+
 			BindGridView(null, null);
 		}
 
-		protected void ReloadDDLSection(object obje, EventArgs ea) {
-			MySQLDatabase db = new MySQLDatabase();
-			var teacherId = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByName(User.Identity.Name).Id;
-			var yearId = db.QueryValue("getYearId", new Dictionary<string, object>() { { "@pyear", DateTime.Now.Year } }, true);
+		protected void ReloadDDLToClass(object o, EventArgs e) {
+			ddlToClass.DataSource = new YearClassSectionTable(db).GetClassByYear((ddlToYear.SelectedValue));
+			ddlToClass.DataBind();
 
-			ddlSection.DataSource = db.Query(
-				"getSectionByTUIdYIdCId",
-				new Dictionary<string, object>() {
-						{"@TUId", teacherId },
-						{"@YId", yearId },
-						{"@CId", ddlClass.SelectedValue }
-				}, true)
-				.Select(x => new {
-					Text = x["section"],
-					Value = x["sectionid"]
-				}).ToList();
-			ddlSection.DataTextField = "Text";
-			ddlSection.DataValueField = "Value";
-			ddlSection.DataBind();
+			ReloadDDLToSection(null, null);
+		}
 
-			ReloadYCSId(null, null);
+		protected void ReloadDDLToSection(object o, EventArgs e) {
+			ddlToSection.DataSource = new YearClassSectionTable(db).GetSectionByYearClass(ddlToYear.SelectedValue, ddlToClass.SelectedValue);
+			ddlToSection.DataBind();
+		}
+		protected void BindGridView(object p1, EventArgs p2) {
+			var students = new StudentTable(db).GetStudents(ddlFromYear.SelectedValue, ddlFromClass.SelectedValue, ddlFromSection.SelectedValue);
+			var marks = new MarkTable(db).GetYearlyMark(ddlFromYear.SelectedValue, ddlFromClass.SelectedValue, ddlFromSection.SelectedValue);
+			var orderedMarks = marks.OrderByDescending(x => x.Mark).ToList();
+			for (int i = 0; i < orderedMarks.Count; i++) {
+				marks.Find(x => x.Student.ID == orderedMarks[i].Student.ID).MarkId = (i + 1).ToString();
+			}
+			gvPromote.DataSource = marks;
+			gvPromote.DataBind();
+		}
+
+		protected void Unnamed_Click(object sender, EventArgs e) {
+			foreach (GridViewRow row in gvPromote.Rows) {
+				if((row.FindControl("cb") as CheckBox).Checked) {
+					new StudentYearClassSectionRollTable(db).AddStudentYearClassSectionRoll(
+						(row.FindControl("StudentId") as HiddenField).Value,
+						new YearClassSectionTable(db).GetYearClassSectionId(ddlToYear.SelectedValue, ddlToClass.SelectedValue, ddlToSection.SelectedValue),
+						(row.FindControl("NextRoll") as Label).Text
+						);
+				}
+			}
 		}
 	}
 }

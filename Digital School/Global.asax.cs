@@ -14,81 +14,31 @@ namespace Digital_School
 {
 	public class Global : HttpApplication
 	{
+		internal static string root = null;
 		void Application_Start(object sender, EventArgs e) {
 			// Code that runs on application startup
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
-			createDemoRoleAndAccount();
+
+
+			root = Server.MapPath("~");
+			Settings.ReadXml();
 		}
 
-		private void createDemoRoleAndAccount() {
-			ApplicationDbContext context = new ApplicationDbContext();
-			var roleStore = new RoleStore<IdentityRole>(context);
-			var roleManager = new RoleManager<IdentityRole>(roleStore);
-			IdentityResult resRole, resUser;
-			if (!roleManager.RoleExists(RoleTable.Student)) {
-				resRole = roleManager.Create(new IdentityRole(RoleTable.Student));
-				if (!resRole.Succeeded)
-					throw new InvalidOperationException(resRole.Errors.FirstOrDefault());
-			}
-
-			if (!roleManager.RoleExists(RoleTable.Teacher)) {
-				resRole = roleManager.Create(new IdentityRole(RoleTable.Teacher));
-				if (!resRole.Succeeded)
-					throw new InvalidOperationException(resRole.Errors.FirstOrDefault());
-			}
-
-			if (!roleManager.RoleExists(RoleTable.Admin)) {
-				resRole = roleManager.Create(new IdentityRole(RoleTable.Admin));
-				if (!resRole.Succeeded)
-					throw new InvalidOperationException(resRole.Errors.FirstOrDefault());
-			}
-
-			var userStore = new UserStore<ApplicationUser>(context);
-			var userManager = new UserManager<ApplicationUser>(userStore);
-			userManager.PasswordValidator = new PasswordValidator() {
-				RequireDigit = false,
-				RequiredLength = 1,
-				RequireLowercase = false,
-				RequireNonLetterOrDigit = false,
-				RequireUppercase = false
-			};
-			if((from user in userManager.Users where user.UserName == "Student2" select user).Count() == 0) {
-				ApplicationUser user = new ApplicationUser() { UserName = "Student2", Email = "student@student.com" };
-				resUser = userManager.Create(user, RoleTable.Student);
-				if (!resUser.Succeeded)
-					throw new Exception(resUser.Errors.FirstOrDefault());
-				string userId = userManager.FindByName("Student2").Id;
-				resRole = userManager.AddToRole(userId, RoleTable.Student);
-				if (!resRole.Succeeded)
-					throw new Exception(resRole.Errors.FirstOrDefault());
-			}
-			if ((from user in userManager.Users where user.UserName == "Teacher2" select user).Count() == 0) {
-				ApplicationUser user = new ApplicationUser() { UserName = "Teacher2", Email = "teacher@teacher.com" };
-				resUser = userManager.Create(user, RoleTable.Teacher);
-				if (!resUser.Succeeded)
-					throw new Exception(resUser.Errors.FirstOrDefault());
-				string userId = userManager.FindByName("Teacher2").Id;
-				resRole = userManager.AddToRole(userId, RoleTable.Teacher);
-				if (!resRole.Succeeded)
-					throw new Exception(resRole.Errors.FirstOrDefault());
-			}
-			if ((from user in userManager.Users where user.UserName == RoleTable.Admin select user).Count() == 0) {
-				ApplicationUser user = new ApplicationUser() { UserName = RoleTable.Admin, Email = "admin@admin.com" };
-				resUser = userManager.Create(user, RoleTable.Admin);
-				if (!resUser.Succeeded)
-					throw new Exception(resUser.Errors.FirstOrDefault());
-				string userId = userManager.FindByName(RoleTable.Admin).Id;
-				resRole = userManager.AddToRole(userId, RoleTable.Admin);
-				if (!resRole.Succeeded)
-					throw new Exception(resRole.Errors.FirstOrDefault());
-			}
-		}
-
+		
 		void Application_Error(object sender, EventArgs e) {
 			Exception ex = Server.GetLastError();
+			LogError(ex);
+
+			if(ex is InvalidOperationException && ex.InnerException.Message.Contains("Anti-XSRF")) {
+				Response.Redirect("~/ErrorXSRF.html", true);
+				Server.ClearError();
+			}
+		}
+
+		public static void LogError(Exception ex) {
 			MySQLDatabase db = new MySQLDatabase();
-			while(ex != null) {
+			while (ex != null) {
 				db.Execute("logError",
 					new Dictionary<string, object>() {
 						{"type", ex.GetType() },
@@ -99,13 +49,6 @@ namespace Digital_School
 					true);
 				ex = ex.InnerException;
 			}
-
-			if(ex is InvalidOperationException && ex.InnerException.Message.Contains("Anti-XSRF")) {
-				Server.Transfer("~/ErrorXSRF.html");
-				Server.ClearError();
-			}
 		}
-
-		
 	}
 }

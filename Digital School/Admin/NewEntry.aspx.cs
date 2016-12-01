@@ -23,12 +23,14 @@ namespace Digital_School.Admin
 				hSuccess.Visible = false;
 		}
 		protected void Class_ServerValidate(object source, ServerValidateEventArgs args) {
-			args.IsValid = Convert.ToInt32(db.QueryValue("countClass", new Dictionary<string, object>() { { "@CId", txtClassLevel.Text.Trim() } }, true)) == 0;
+            int res = Convert.ToInt32(db.QueryValue("countClass", new Dictionary<string, object>() { { "@CName", txtClassLabel.Text.Trim() } }, true));
+
+            args.IsValid = res == 0;
 			if (!args.IsValid)
 				hSuccess.Visible = false;
 		}
 		protected void Section_ServerValidate(object source, ServerValidateEventArgs args) {
-			args.IsValid = Convert.ToInt32(db.QueryValue("countSection", new Dictionary<string, object>() { { "@SId", txtSectionSerial.Text.Trim() } }, true)) == 0;
+			args.IsValid = Convert.ToInt32(db.QueryValue("countSection", new Dictionary<string, object>() { { "@SName", txtSectionLabel.Text.Trim() } }, true)) == 0;
 			if (!args.IsValid)
 				hSuccess.Visible = false;
 		}
@@ -53,16 +55,16 @@ namespace Digital_School.Admin
 
 		protected void btnAddClass_Click(object sender, EventArgs e) {
 			if (IsValid) {
-				db.Execute("INSERT INTO class VALUES(" + txtClassLevel.Text.Trim() + ", '" + txtClassLabel.Text.Trim() + "');", null);
-				hSuccess.InnerText = "Class " + txtClassLevel.Text + " with Label " + txtClassLabel.Text + " successfully added.";
+				db.Execute("INSERT INTO class VALUES(null,'" + txtClassLabel.Text.Trim() + "');", null);
+				hSuccess.InnerText = "Class "+ txtClassLabel.Text + " successfully added.";
 				hSuccess.Visible = true;
 			}
 		}
 
 		protected void btnAddSection_Click(object sender, EventArgs e) {
 			if (IsValid) {
-				db.Execute("INSERT INTO section VALUES(" + txtSectionSerial.Text.Trim() + ", '" + txtSectionLabel.Text.Trim()+ "');", null);
-				hSuccess.InnerText = "Section " + txtSectionSerial.Text + " with Label " + txtSectionLabel.Text + " successfully added.";
+				db.Execute("INSERT INTO section VALUES(null, '" + txtSectionLabel.Text.Trim()+ "');", null);
+				hSuccess.InnerText = "Section "+ txtSectionLabel.Text + " successfully added.";
 				hSuccess.Visible = true;
 			}
 		}
@@ -79,6 +81,20 @@ namespace Digital_School.Admin
 			if (IsValid) {
 				db.Execute("INSERT INTO portion VALUES(null, '" + txtMarkPortion.Text.Trim() + "');", null);
 				hSuccess.InnerText = "Mark Portion " + txtMarkPortion.Text + " successfully added.";
+				hSuccess.Visible = true;
+			}
+		}
+
+		protected void Term_ServerValidate(object source, ServerValidateEventArgs args) {
+			args.IsValid = Convert.ToInt32(db.QueryValue("countTerm", new Dictionary<string, object>() { { "@term", txtTerm.Text.Trim() } }, true)) == 0;
+			if (!args.IsValid)
+				hSuccess.Visible = false;
+		}
+
+		protected void btnAddTerm_Click(object sender, EventArgs e) {
+			if (IsValid) {
+				db.Execute("INSERT INTO term VALUES(null, '" + txtTerm.Text.Trim() + "');", null);
+				hSuccess.InnerText = "Term " + txtTerm.Text.Trim() + " successfully added.";
 				hSuccess.Visible = true;
 			}
 		}

@@ -85,22 +85,22 @@ namespace Digital_School.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl success2;
         
         /// <summary>
-        /// txtClass control.
+        /// ddlToClass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtClass;
+        protected global::System.Web.UI.WebControls.DropDownList ddlToClass;
         
         /// <summary>
-        /// txtSection control.
+        /// ddlToSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSection;
+        protected global::System.Web.UI.WebControls.DropDownList ddlToSection;
         
         /// <summary>
         /// txtRoll control.

@@ -89,21 +89,22 @@
 					<hr />
 					<%-- Text Boxes for updating info --%>
 					<div class="form-group">
-						<label for="txtClass" class="col-md-4 col-sm-6 control-label text-static">
-							Level of Class
+						<label for="ddlClass" class="col-md-4 col-sm-6 control-label text-static">
+							Class
 						</label>
 						<div class="col-md-8 col-sm-6">
-							<asp:TextBox ID="txtClass" placeholder="Level of Class" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
+							<asp:DropDownList ID="ddlToClass" CssClass="form-control" runat="server" DataTextField="Text"
+								DataValueField="Value" AutoPostBack="true"></asp:DropDownList>
 						</div>
 					</div>
 					<br />
 					<div class="form-group">
-						<label for="txtSection" class="col-md-4 col-sm-6 control-label text-static">
-							Serial of Section
+						<label for="ddlSection" class="col-md-4 col-sm-6 control-label text-static">
+							Section
 						</label>
 						<div class="col-md-8 col-sm-6">
-							<asp:TextBox ID="txtSection" placeholder="Serial of Section" CssClass="form-control"
-								runat="server" TextMode="Number"></asp:TextBox>
+							<asp:DropDownList ID="ddlToSection" CssClass="form-control" runat="server" DataTextField="Text"
+								DataValueField="Value" AutoPostBack="true"></asp:DropDownList>
 						</div>
 					</div>
 					<br />
@@ -113,7 +114,7 @@
 						</label>
 						<div class="col-md-8 col-sm-6">
 							<asp:TextBox ID="txtRoll" placeholder="Roll of Student" CssClass="form-control" runat="server"
-								TextMode="Number"></asp:TextBox>
+								TextMode="Number" min="1"></asp:TextBox>
 						</div>
 					</div>
 					<div class="form-group">

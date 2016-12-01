@@ -15,9 +15,9 @@ namespace Digital_School.Student
 		protected void Page_Load(object sender, EventArgs e) {
 			if (!IsPostBack) {
 				MySQLDatabase db = new MySQLDatabase();
-				List<Dictionary<string, string>> res = db.Query("getAllTeacher", null, true);
+				var res = new TeacherTable(db).GetAllTeacher();
 				foreach(var item in res) {
-					ddlTo.Items.Add(new ListItem(item["name"], item["id"]));
+					ddlTo.Items.Add(new ListItem(item.FirstName + " " + item.LastName, item.ID.ToString()));
 				}
 				divSuccess.Visible = false;
 			}

@@ -1,0 +1,7 @@
+<Settings>
+  <Setting key="Notification On Transaction">True</Setting>
+  <Setting key="Notification On Answer">False</Setting>
+  <Setting key="Notification On Question">False</Setting>
+  <Setting key="Notification On Event">True</Setting>
+  <Setting key="Responses Will Be Removed After Creating Result">True</Setting>
+</Settings>

@@ -37,7 +37,7 @@ namespace Digital_School.Admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList Responses;
+        protected global::System.Web.UI.WebControls.Panel Responses;
         
         /// <summary>
         /// btnRemoveRes control.

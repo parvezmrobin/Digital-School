@@ -18,26 +18,39 @@ namespace Digital_School.Admin
 				true);
 
 			if (!IsPostBack) {
-				PopulateCB();
+                PopulateCB();
 				hSuccess.Visible = false;
+                
 			}
 		}
 
 		private void PopulateCB() {
-			cbSettings.DataSource = Statics.Settings.Select(x => new {
+           
+            cbSettings.DataSource = Digital_School.Settings.Setting.Select(x => new {
 				Text = x.Key,
 				Value = x.Key
 			});
 			cbSettings.DataBind();
 			foreach (ListItem item in cbSettings.Items) {
-				item.Selected = Statics.Settings[item.Text];
+				item.Selected = Digital_School.Settings.Setting[item.Text];
 			}
 		}
 
 		protected void Unnamed_Click(object sender, EventArgs e) {
+           // string s = null;
 			foreach (ListItem item in cbSettings.Items) {
-				Statics.Settings[item.Text] = item.Selected;
+                Digital_School.Settings.Setting[item.Text] = item.Selected;
+                //if (item.Selected)
+                //{
+                //    s = s + "1" + " ";
+                //}
+                //else
+                //{
+                //    s = s + "0" + " ";
+                //}
 			}
+            //Statics.JsonWriter(s);
+            Digital_School.Settings.WriteXml();
 			hSuccess.Visible = true;
 		}
 

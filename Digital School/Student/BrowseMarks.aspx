@@ -15,24 +15,23 @@
 				<div class="col-md-5 col-lg-4">
 					<div class="form-horizontal">
 						<div class="form-group">
-							<asp:Label Text="Select Year" AssociatedControlID="ddlYear" runat="server" CssClass="col-md-2 control-label" />
+							<asp:Label Text="Year" AssociatedControlID="ddlYear" runat="server" CssClass="col-md-2 control-label" />
 							<div class="col-md-10">
-								<asp:DropDownList ID="ddlYear" OnDataBound="LoadDDLSubject" OnSelectedIndexChanged="LoadDDLSubject" CssClass="form-control" runat="server" AutoPostBack="true">
+								<asp:DropDownList ID="ddlYear" OnDataBound="LoadDDLSubject" OnSelectedIndexChanged="LoadDDLTerm" 
+									CssClass="form-control" runat="server" AutoPostBack="true" DataTextField="Text" DataValueField="Value">
 								</asp:DropDownList>
 							</div>
 						</div>
 						<div class="form-group">
-							<asp:Label Text="Select Term" AssociatedControlID="ddlTerm" runat="server" CssClass="col-md-2 control-label" />
+							<asp:Label Text="Term" AssociatedControlID="ddlTerm" runat="server" CssClass="col-md-2 control-label" />
 							<div class="col-md-10">
-								<asp:DropDownList ID="ddlTerm" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="LoadGridView">
-									<asp:ListItem Text="First Term" Value="1"></asp:ListItem>
-									<asp:ListItem Text="Second Term" Value="2"></asp:ListItem>
-									<asp:ListItem Text="Final Term" Value="3"></asp:ListItem>
+								<asp:DropDownList ID="ddlTerm" CssClass="form-control" runat="server" AutoPostBack="true" 
+									OnSelectedIndexChanged="LoadDDLSubject" DataTextField="Text" DataValueField="Value">
 								</asp:DropDownList>
 							</div>
 						</div>
 						<div class="form-group">
-							<asp:Label Text="Select Subject" AssociatedControlID="ddlSubject" runat="server"
+							<asp:Label Text="Subject" AssociatedControlID="ddlSubject" runat="server"
 								CssClass="col-md-2 control-label" />
 							<div class="col-md-10">
 								<asp:DropDownList ID="ddlSubject" OnSelectedIndexChanged="LoadGridView" OnDataBound="LoadGridView" CssClass="form-control" runat="server" AutoPostBack="true">

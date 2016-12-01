@@ -22,10 +22,7 @@
 		})
 	</script>
 	<div class="row">
-		<div class="visible-sm">
-			<br />
-			<br />
-		</div>
+		
 		<h3 class="text-success text-center" id="hSuccess" runat="server"></h3>
 		<div class="panel panel-primary col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1"
 			style="border-width:2px">
@@ -53,36 +50,30 @@
 					</div>
 				</div>
 			</div>
+            
 			<h2 class="panel-heading text-center">Add Class</h2>
 			<div class="panel-body form-horizontal">
-				<ul class="text-info">
-					<li>Level is a unique numeric number like 1, 2, 3</li>
-					<li>Label is what user will see as the name of class</li>
-					<li>Example of Label: 9, Nine, IX</li>
+				<%--<ul class="text-info">
+					<li>Hints</li>
+					
 				</ul>
-
-				<div class="form-group">
-					<div class="col-sm-6">
-						<asp:TextBox TextMode="Number" runat="server" placeholder="Level" ID="txtClassLevel"
-							CssClass="form-control"></asp:TextBox>
-						<asp:RequiredFieldValidator ErrorMessage="Level cannot be empty" ValidationGroup="Class"
-							CssClass="text-danger" Display="Dynamic"
-							ControlToValidate="txtClassLevel"
-							runat="server" />
-						<asp:CustomValidator ErrorMessage="A class with this level already exists" CssClass="text-danger"
-							ValidationGroup="Class" ControlToValidate="txtClassLevel" runat="server" Display="Dynamic" OnServerValidate="Class_ServerValidate" />
-					</div>
-					<div class="col-sm-6">
-						<asp:TextBox TextMode="SingleLine" runat="server" placeholder="Label" ID="txtClassLabel"
-							CssClass="form-control"></asp:TextBox>
-						<asp:RequiredFieldValidator ErrorMessage="Label cannot be empty" CssClass="text-danger"
-							ValidationGroup="Class" ControlToValidate="txtClassLabel" Display="Dynamic"
-							runat="server" />
-					</div>
-				</div>
+                <hr />--%>
+                <div class="form-group">
+                    <asp:Label Text="Class" AssociatedControlID="txtClassLabel" CssClass="col-sm-3 control-label"
+                        runat="server" />
+                    <div class="col-sm-9">
+                        <asp:TextBox TextMode="SingleLine" runat="server" placeholder="Class" ID="txtClassLabel"
+                            CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ErrorMessage="Class cannot be empty" CssClass="text-danger"
+                            ValidationGroup="Class" ControlToValidate="txtClassLabel" Display="Dynamic"
+                            runat="server" />
+                        <asp:CustomValidator ErrorMessage="This class already exists" Display="Dynamic" CssClass="text-danger"
+                            ValidationGroup="Class" ControlToValidate="txtClassLabel" runat="server" OnServerValidate="Class_ServerValidate" />
+                    </div>
+                </div>
 				<div class="panel-footer">
 					<div class="form-group">
-						<div class="col-sm-12">
+						<div class="col-sm-offset-3 col-sm-9">
 							<asp:Button Text="Add Class" ID="btnAddClass" CssClass="btn btn-default" runat="server"
 								ValidationGroup="Class" OnClick="btnAddClass_Click"  />
 						</div>
@@ -92,40 +83,62 @@
 			</div>
 			<h2 class="text-center panel-heading">Add Section</h2>
 			<div class="panel-body form-horizontal">
-				<ul class="text-info">
-					<li>Serial is a unique numeric number like 1, 2, 3</li>
-					<li>Label is what user will see as the name of section</li>
-					<li>Example of Label: B, II, Second, Rose</li>
+				<%--<ul class="text-info">
+					<li>Hints</li>
+
 				</ul>
-				<hr />
-				<div class="form-group">
-					<div class="col-sm-6">
-						<asp:TextBox TextMode="Number" runat="server" placeholder="Serial" ID="txtSectionSerial"
-							CssClass="form-control"></asp:TextBox>
-						<asp:RequiredFieldValidator ErrorMessage="Serial cannot be empty" ValidationGroup="Section"
-							CssClass="text-danger" Display="Dynamic"
-							ControlToValidate="txtSectionSerial"
-							runat="server" />
-						<asp:CustomValidator ErrorMessage="A section with this serial already exists" CssClass="text-danger"
-							ValidationGroup="Section" ControlToValidate="txtSectionSerial" runat="server" Display="Dynamic" OnServerValidate="Section_ServerValidate" />
-					</div>
-					<div class="col-sm-6">
-						<asp:TextBox TextMode="SingleLine" runat="server" placeholder="Label" ID="txtSectionLabel"
-							CssClass="form-control"></asp:TextBox>
-						<asp:RequiredFieldValidator ErrorMessage="Label cannot be empty" CssClass="text-danger"
-							ValidationGroup="Section" ControlToValidate="txtSectionLabel"
-							runat="server" Display="Dynamic" />
-					</div>
-				</div>
+				<hr />--%>
+                <div class="form-group">
+                    <asp:Label Text="Section" AssociatedControlID="txtSectionLabel" CssClass="col-sm-3 control-label"
+                        runat="server" />
+                    <div class="col-sm-9">
+                        <asp:TextBox TextMode="SingleLine" runat="server" placeholder="Section" ID="txtSectionLabel"
+                            CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ErrorMessage="Section cannot be empty" CssClass="text-danger"
+                            ValidationGroup="Section" ControlToValidate="txtSectionLabel"
+                            runat="server" Display="Dynamic" />
+                        <asp:CustomValidator ErrorMessage="This section already exists" Display="Dynamic" CssClass="text-danger"
+                            ValidationGroup="Section" ControlToValidate="txtSectionLabel" runat="server" OnServerValidate="Section_ServerValidate" />
+                    </div>
+                </div>
+
+				
 				<div class="panel-footer">
 					<div class="form-group">
-						<div class="col-sm-12">
+						<div class="col-sm-offset-3 col-sm-9">
 							<asp:Button Text="Add Section" ID="btnAddSection" CssClass="btn btn-default" runat="server"
 								ValidationGroup="Section" OnClick="btnAddSection_Click" />
 						</div>
 					</div>
 				</div>
 
+			</div>
+			<h2 class="panel-heading text-center">Add Term</h2>
+			<div class="panel-body form-horizontal">
+				<div class="form-group">
+					<asp:Label Text="Term" AssociatedControlID="txtTerm" CssClass="col-sm-3 control-label"
+						runat="server" />
+					<div class="col-sm-9">
+						<asp:TextBox runat="server" ID="txtTerm" CssClass="form-control" placeholder="Write Term Name"
+							TextMode="SingleLine" Style="max-width: none" />
+						<asp:RequiredFieldValidator ErrorMessage="Term field cannot be empty" CssClass="text-danger"
+							Display="Dynamic" ControlToValidate="txtTerm"
+							runat="server" ValidationGroup="Term" />
+						<asp:CustomValidator ErrorMessage="This term already exists" Display="Dynamic"
+							CssClass="text-danger"
+							ValidationGroup="Term" ControlToValidate="txtTerm" runat="server"
+							OnServerValidate="Term_ServerValidate" />
+					</div>
+				</div>
+				<div class="panel-footer">
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-9">
+							<asp:Button Text="Add Term" ID="btnAddTerm" CssClass="btn btn-default"
+								runat="server"
+								ValidationGroup="Term" OnClick="btnAddTerm_Click" />
+						</div>
+					</div>
+				</div>
 			</div>
 			<h2 class="text-center panel-heading">Add Subject</h2>
 			<div class="panel-body form-horizontal">
@@ -170,6 +183,7 @@
 				</div>
 
 			</div>
+
 			<h2 class="panel-heading text-center">Add Mark Portion</h2>
 			<div class="panel-body form-horizontal">
 				<div class="form-group">

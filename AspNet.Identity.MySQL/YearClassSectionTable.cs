@@ -14,23 +14,30 @@ namespace AspNet.Identity.MySQL
 			db = database;
 		}
 
-		public bool HasYearClassSection(int yearId, int classId, int sectionId) {
+		/// <summary>
+		/// Checks if given Year, Class, Section combination exists
+		/// </summary>
+		/// <param name="yearId">Id of corresponding year entry</param>
+		/// <param name="classId">Id of corresponding class entry</param>
+		/// <param name="sectionId">Id of corresponding section entry</param>
+		/// <returns>True if given Year, Class, Section combination exists, False otherwise</returns>
+		public bool HasYearClassSection(object yearId, object classId, object sectionId) {
 			return Convert.ToInt32(db.QueryValue("countYearClassSection", new Dictionary<string, object>() {
 						{"@YId", yearId },
 						{"@CId", classId },
 						{"@SId", sectionId }
 					}, true)) > 0;
 		}
+		
 
-		public bool HasYearClassSection(string yearId, string classId, string sectionId) {
-			return HasYearClassSection(
-				Convert.ToInt32(yearId),
-				Convert.ToInt32(classId),
-				Convert.ToInt32(sectionId)
-				);
-		}
-
-		public int AddYearClassSection(int yearId, int classId, int sectionId) {
+		/// <summary>
+		/// Add a new Year, Class, Section combination
+		/// </summary>
+		/// <param name="yearId">Id of corresponding year entry</param>
+		/// <param name="classId">Id of corresponding class entry</param>
+		/// <param name="sectionId">Id of corresponding section entry</param>
+		/// <returns>Number of entries added</returns>
+		public int AddYearClassSection(object yearId, object classId, object sectionId) {
 			return Convert.ToInt32(db.QueryValue("addYearClassSection",
 				new Dictionary<string, object>() {
 					{"@YId", yearId },
@@ -38,49 +45,41 @@ namespace AspNet.Identity.MySQL
 					{"@SId", sectionId }
 				}, true));
 		}
+		
 
-		public int AddYearClassSection(string yearId, string classId, string sectionId) {
-			return AddYearClassSection(
-				Convert.ToInt32(yearId),
-				Convert.ToInt32(classId),
-				Convert.ToInt32(sectionId)
-				);
-		}
-
-		public int GetYearClassSectionId(int yearId, int ClassId, int SectionId) {
+		/// <summary>
+		/// Return Id of given Year, Class, Section combination
+		/// </summary>
+		/// <param name="yearId">Id of corresponding year entry</param>
+		/// <param name="classId">Id of corresponding class entry</param>
+		/// <param name="sectionId">Id of corresponding section entry</param>
+		/// <returns>Id of given Year, Class, Section combination</returns>
+		public int GetYearClassSectionId(object yearId, object ClassId, object SectionId) {
 			return Convert.ToInt32(db.QueryValue("getYearClassSectionId", new Dictionary<string, object>() {
 				{"@pclassid", ClassId },
 				{"@psectionid", SectionId },
 				{"@pyearid", yearId }
 			}, true));
 		}
+		
 
-		public int GetYearClassSectionId(int yearId, string classId, string sectionId) {
-			return GetYearClassSectionId(
-				yearId,
-				Convert.ToInt32(classId),
-				Convert.ToInt32(sectionId)
-				);
-		}
-
-		public int GetYearClassSectionId(string yearId, string classId, string sectionId) {
-			return GetYearClassSectionId(
-				Convert.ToInt32(yearId),
-				Convert.ToInt32(classId),
-				Convert.ToInt32(sectionId)
-				);
-		}
-
-		public List<TextValuePair> GetClassByYear(int yearId) {
+		/// <summary>
+		/// List of classes exist in given year
+		/// </summary>
+		/// <param name="yearId">Id of corresponding year entry</param>
+		/// <returns>List of TextValuePair where Text is the label of class and Value is the level of class</returns>
+		public List<TextValuePair> GetClassByYear(object yearId) {
 			return db.Query("getClassByYId", new Dictionary<string, object>() { { "@yid", yearId } }, true).
 				Select(x => new TextValuePair { Text = x["class"], Value = x["classid"] }).ToList();
 		}
 
-		public List<TextValuePair> GetClassByYear(string yearId) {
-			return GetClassByYear(Convert.ToInt32(yearId));
-		}
-
-		public List<TextValuePair> GetSectionByYearClass(int yearId, int classId) {
+		/// <summary>
+		/// List of classes exist in given class in given year
+		/// </summary>
+		/// <param name="yearId">Id of corresponding year entry</param>
+		/// <param name="classId">Id of corresponding class entry</param>
+		/// <returns>List of TextValuePair where Text is the label of section and Value is the serial of class</returns>
+		public List<TextValuePair> GetSectionByYearClass(object yearId, object classId) {
 			return db.Query("getSectionByYIdCId",
 				new Dictionary<string, object>() {
 					{"@YId", yearId },
@@ -91,8 +90,27 @@ namespace AspNet.Identity.MySQL
 				}).ToList();
 		}
 
-		public List<TextValuePair> GetSectionByYearClass(string yearId, string classId) {
-			return GetSectionByYearClass(Convert.ToInt32(yearId), Convert.ToInt32(classId));
+		/// <summary>
+		/// Removes given class from given year
+		/// </summary>
+		/// <param name="yearId">Id of corresponding year entry</param>
+		/// <param name="classId">Id of corresponding class entry</param>
+		/// <returns>Number of entries removed</returns>
+		public int RemoveClassFromYear(object yearId, object classId) {
+			return db.Execute("removeYCSByYIdCId", new Dictionary<string, object>() {
+				{"@YId", yearId },
+				{"@CId", classId }
+			}, true);
 		}
+		
+		    public int RemoveSectionFromYCSId(object yearId, object classId, object sectionId)
+        {
+            return db.Execute("	removeSectionByYCSId", new Dictionary<string, object>() {
+                {"@YId", yearId },
+                {"@CId", classId },
+                {"@SId",sectionId }
+            }, true);
+        }
+		
 	}
 }

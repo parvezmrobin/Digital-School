@@ -38,7 +38,7 @@
 							studentId: _studentId,
 							classId: _classId,
 							sectionId: _sectionId,
-							termId: _termId,
+							termYearClassSectionId: _termId,
 							mark: _mark,
 							teacherId: _teacherId
 						},
@@ -54,6 +54,7 @@
 							var hf = textbox.parent().children('input[type="hidden"]').first();
 							var xml = $(data);
 							hf.val(xml.find('Value').text());
+
 							$('#ppp').val(xml.find('Value').text());
 							$('#inpNumber').val(parseInt(xml.find('Value').text()));
 						}
@@ -92,6 +93,7 @@
 		input[type="number"].form-control {
 			border: none;
 			max-width:100px;
+			min-width:50px;
 		}
 	</style>
 	<div class="row">
@@ -99,7 +101,7 @@
 			<br />
 			<br />
 		</div>
-		<div class="panel panel-primary">
+		<div class="panel panel-primary" style="border:none">
 			<h2 class="panel-heading text-center">Mark Input</h2>
 			<div class="panel-body">
 				<div class="form-horizontal col-md-5">
@@ -126,7 +128,7 @@
 						<asp:Label AssociatedControlID="ddlTerm" runat="server" CssClass="control-label col-sm-4">Term</asp:Label>
 						<div class="col-sm-8">
 							<asp:DropDownList ID="ddlTerm" CssClass="form-control" runat="server"
-								AutoPostBack="true" DataTextField="Text" DataValueField="Value">
+								AutoPostBack="true" DataTextField="Text" DataValueField="Value" >
 							</asp:DropDownList>
 						</div>
 					</div>
@@ -135,19 +137,10 @@
 						<asp:Label AssociatedControlID="ddlSubject" runat="server" CssClass="control-label col-sm-4">Subject</asp:Label>
 						<div class="col-sm-8">
 							<asp:DropDownList ID="ddlSubject" CssClass="form-control" runat="server" DataTextField="Text"
-								DataValueField="Value" AutoPostBack="true" OnSelectedIndexChanged="LoadGridView">
-							</asp:DropDownList>
-						</div>
-					</div>
-					<%--<br />
-					<div class="form-group">
-						<asp:Label AssociatedControlID="ddlStudent" runat="server" CssClass="control-label col-sm-4">Student</asp:Label>
-						<div class="col-sm-8">
-							<asp:DropDownList ID="ddlStudent" CssClass="form-control" runat="server" DataTextField="Text"
 								DataValueField="Value" AutoPostBack="true">
 							</asp:DropDownList>
 						</div>
-					</div>--%>
+					</div>
 				</div>
 				<div class="col-md-7">
 					<div class="table-responsive">
@@ -155,7 +148,7 @@
 							AutoGenerateColumns="false" OnRowDataBound="gvMark_RowDataBound" Style="border-color: lightgoldenrodyellow" HeaderStyle-CssClass="text-info">
 						</asp:GridView>
 					</div>
-					<input type="hidden" id="prevValue" />
+					<input type="hidden"  id="prevValue" />
 					<input type="text" id="inpNumber" />
 					<input type="text" id="ppp" class="vugichugi" value="abcd" />
 				</div>

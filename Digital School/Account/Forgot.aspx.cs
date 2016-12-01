@@ -20,13 +20,18 @@ namespace Digital_School.Account
             {
                 // Validate the user's email address
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                ApplicationUser user = manager.FindByName(Email.Text);
-                if (user == null || !manager.IsEmailConfirmed(user.Id))
+                ApplicationUser user = manager.FindByName(UserName.Text);
+                if (user == null)
                 {
-                    FailureText.Text = "The user either does not exist or is not confirmed.";
+                    FailureText.Text = "The user either does not exist.";
                     ErrorMessage.Visible = true;
                     return;
                 }
+				if (user.EmailConfirmed) {
+					FailureText.Text = "The email is not confirmed.";
+					ErrorMessage.Visible = true;
+					return;
+				}
 				// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
 				// Send email with the code and the redirect to reset password page
 				string code = manager.GeneratePasswordResetToken(user.Id);

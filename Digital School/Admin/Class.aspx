@@ -18,10 +18,7 @@
 			return confirm('Are you sure to create a new class with name \'' + $('#<%: txtLabel.ClientID %>').val() + '\' and level \'' + $('#<%: txtLevel.ClientID %>').val() + '\'?');
 		}--%>
 	</script>
-	<div class="visible-sm">
-		<br />
-		<br />
-	</div>
+	
 
 	<div class="row" style="border: 2px solid skyblue; border-radius: 5px 5px">
 
@@ -45,12 +42,13 @@
 						<br />
 
 						<div class="form-group">
-							<asp:GridView runat="server" ID="gvExistingClass" BorderColor="Transparent" Caption='<span class="text-info" style="font-size:xx-large">Classes</span>'
-								AutoGenerateColumns="false" HeaderStyle-CssClass="text-info"
+							<asp:GridView runat="server" ID="gvExistingClass" BorderColor="Transparent" Caption='<span class="text-info" style="font-size:xx-large"></span>'
+								AutoGenerateColumns="false" HeaderStyle-CssClass="text-info" OnRowDeleting="gvExistingClass_RowDeleting"
 								CssClass="table table-striped table-hover">
 								<Columns>
-									<asp:BoundField HeaderText="Level" DataField="Value" />
-									<asp:BoundField HeaderText="Label" DataField="Text" />
+									<asp:BoundField HeaderText="Level" DataField="Value" Visible="false"/>
+									<asp:BoundField HeaderText="Class" DataField="Text" />
+                                    <asp:CommandField ShowDeleteButton="true" />
 								</Columns>
 							</asp:GridView>
 						</div>
@@ -75,6 +73,8 @@
 					<asp:CheckBoxList runat="server" ID="cbSection" DataTextField="Text" DataValueField="Value"
 						RepeatDirection="Horizontal" CssClass="table" RepeatColumns="5" title="Select Sections" >
 					</asp:CheckBoxList>
+                    <br />
+                    <asp:HyperLink NavigateUrl="~/Admin/NewEntry.aspx" runat="server" Text="Add New Section" />
 					<%--<asp:CustomValidator ErrorMessage="A class must contain at least one section" Display="Dynamic"
 						CssClass="text-danger" ControlToValidate="cbSection" runat="server" OnServerValidate="Unnamed_ServerValidate" />--%>
 				</div>
@@ -82,8 +82,9 @@
 			</div>
 			<div class="panel-footer form-horizontal">
 				<div class="form-group">
+                    
 					<asp:Button Text="Assign" ID="btnAssignClass" OnClick="btnAssignClass_Click" ToolTip="Assign selected section(s) to selected class"
-						CssClass="btn btn-default" runat="server" OnClientClick="return confirm('Are you sure to assign selected class and section[s] to selected year?');" />
+						CssClass="btn btn-default col-sm-offset-1 col-xs-offset-2" runat="server" OnClientClick="return confirm('Are you sure to assign selected class and section[s] to selected year?');" />
 				</div>
 			</div>
 		</div>
@@ -91,7 +92,7 @@
 	<br />
 	<div class="row" style="border: 2px solid skyblue; border-radius: 5px 5px">
 		<%-- Class & Section --%>
-
+        
 		<h2 class="text-center text-info">Sections According to Class</h2>
 		<div id="ClassWiseOverview" class="panel panel-info col-md-6" style="border: none">
 			<p style="font-size: xx-large" class="panel-heading">Overview</p>
@@ -108,11 +109,13 @@
 							</div>
 						</div>
 						<div class="from-group">
-							<asp:GridView runat="server" ID="gvExistingSection" BorderColor="Transparent" CssClass="table table-striped table-hover"
-								AutoGenerateColumns="false" HeaderStyle-CssClass="text-info" Caption='<span class="text-info" style="font-size:xx-large">Sections</span>'>
+							<asp:GridView runat="server"  ID="gvExistingSection" BorderColor="Transparent" CssClass="table table-striped table-hover"
+								  OnRowDeleting="gvExistingSection_RowDeleting" AutoGenerateColumns="false" HeaderStyle-CssClass="text-info" Caption='<span class="text-info" style="font-size:xx-large"></span>'>
 								<Columns>
-									<asp:BoundField HeaderText="Serial" DataField="Value" />
-									<asp:BoundField HeaderText="Label" DataField="Text" />
+									<asp:BoundField HeaderText="Serial" DataField="Value"  />
+									<asp:BoundField HeaderText="Section" DataField="Text" />
+                                    <asp:CommandField ShowDeleteButton="true" />
+                                    
 								</Columns>
 							</asp:GridView>
 						</div>
@@ -135,10 +138,16 @@
 
 			</div>
 			<div class="panel-footer form-horizontal">
+				<div class="from-group">
+					<ul>
+						<li class="text-danger">Clicking this button will create
+							a new section</li>
+					</ul>
+				</div>
 				<div class="form-group">
 					<asp:Button Text="Assign" ID="btnAssignSection" ToolTip="Assign selected section(s) to selected class"
 						OnClick="btnAssignSection_Click"
-						CssClass="btn btn-default" runat="server" OnClientClick="return confirm('Are you sure to assign selected section[s] to selected class?');" />
+						CssClass="btn btn-default col-sm-offset-1 col-xs-offset-2" runat="server" OnClientClick="return confirm('Are you sure to assign selected section[s] to selected class?');" />
 				</div>
 			</div>
 		</div>
@@ -174,5 +183,5 @@
 			<h2 class="text-center panel-heading">Create Class</h2>
 			
 		</div>--%>
-	</div>
+	
 </asp:Content>
