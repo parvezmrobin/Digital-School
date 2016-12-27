@@ -42,7 +42,7 @@
 			<asp:Label Text="Father's Name" AssociatedControlID="txtFathersName" runat="server"
 				CssClass="col-md-2 control-label" />
 			<div class="col-md-10">
-				<asp:TextBox runat="server" ID="txtFathersName" CssClass="form-control" />
+				<asp:TextBox runat="server" ID="txtFathersName" CssClass="form-control" TextMode="SingleLine" />
 			</div>
 		</div>
 		<br />
@@ -156,6 +156,7 @@
 				<asp:FileUpload EnableViewState="true" ID="fuImage" CssClass="form-control" Width="280px"
 					ToolTip="Upload a file with extension .jpg, .jpeg, .png, .bmp" runat="server"
 					AllowMultiple="false" />
+                
 				<asp:CustomValidator ErrorMessage="Upload an image with extension .jpg, .jpeg, .png or .bmp"
 					CssClass="text-danger"
 					Display="Dynamic" OnServerValidate="imgValidator_ServerValidate" ControlToValidate="fuImage"

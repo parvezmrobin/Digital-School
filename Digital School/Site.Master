@@ -155,8 +155,8 @@
 								</div>
 								<div class="navbar-collapse collapse" id="navAdmin" style="overflow: visible">
 									<ul class="nav navbar-nav navbar-right" >
-										<li id="adminSettings"><a runat="server" href="~/Admin/Settings"><span class="glyphicon glyphicon-cog">
-										</span> Settings</a></li>
+										<li id="adminTabulation"><a runat="server" href="~/Common/Tabulatation"><span class="glyphicon glyphicon-list-alt">
+										</span> Tabulation</a></li>
 										<li id="adminAccount"><a runat="server" href="~/Admin/Account"><span class="glyphicon glyphicon-user">
 										</span> Account</a></li>
 										<li id="adminManage" class="dropdown">

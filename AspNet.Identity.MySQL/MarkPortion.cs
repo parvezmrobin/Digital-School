@@ -14,4 +14,9 @@ namespace AspNet.Identity.MySQL.Mark
 		public Teacher Teacher { get; set; }
 		public int Percentage { get; set; }
 	}
+
+	public class MarkPortionMark : MarkPortion
+	{
+		public object Mark { get; set; }
+	}
 }

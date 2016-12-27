@@ -16,5 +16,11 @@ namespace AspNet.Identity.MySQL
 		public override string ToString() {
 			return SubjectCode + " - " + Name + " (" + TotalMark + ")";
 		}
+
+		public string ToString(bool includeMark) {
+			if (includeMark)
+				return this.ToString();
+			return SubjectCode + " - " + Name;
+		}
 	}
 }

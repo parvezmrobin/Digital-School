@@ -1,5 +1,6 @@
 ﻿using AspNet.Identity.MySQL;
 using Digital_School.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,54 +17,48 @@ namespace Digital_School.Student
 		private MySQLDatabase db = new MySQLDatabase();
 
 		protected void Page_Init(object sender, EventArgs e) {
-			var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
 			if (!IsPostBack) {
-				var res = db.Query("getYearBySUId",
-					new Dictionary<string, object>() { { "@SUId", studentId } },
-					true);
-				ddlYear.Items.Clear();
-				foreach (var item in res) {
-					ddlYear.Items.Add(new ListItem(item["year"], item["SYCSRId"]));
-				}
+				var studentId = new StudentTable(db).GetStudentId(User.Identity.GetUserId());
+				ddlYear.DataSource = new StudentYearClassSectionRollTable(db).
+					GetYearByStudentId(studentId);
+				ddlYear.DataBind();
 
-				res = db.Query("getPortionBySYCSRId",
-					new Dictionary<string, object>() { { "@SYCSRId", ddlYear.SelectedValue } },
-					true);
-				ddlPortion.Items.Clear();
-				foreach (var item in res) {
-					ddlPortion.Items.Add(new ListItem(item["portionname"], item["portionid"]));
-				}
-				ddlPortion.Items.Insert(0, new ListItem("All", "all"));
-				ReloadChart(null, null);
+				LoadDDLTerm(null, null);		
 			}			
 		}
 
+		protected void LoadDDLTerm(object o, EventArgs e) {
+			ddlTerm.DataSource = new TermYearClassSectionTable(db).
+					GetTermByYearClassSection(int.Parse(ddlYear.SelectedValue));
+			ddlTerm.DataBind();
+
+			LoadDDLSubject(null, null);
+		}
+
+		protected void LoadDDLSubject(object o, EventArgs e) {
+			ddlSubject.DataSource = new TeacherSubjectTable(db).
+					GetTeacherSubject(ddlYear.SelectedValue).
+					Select(x => new TextValuePair { Text = x.SubjectCode + " - " + x.Name, Value = x.TeacherSubjectId }).ToList();
+			ddlSubject.DataBind();
+
+			ReloadChart(null, null);
+		}
+
 		protected void ReloadChart(object sender, EventArgs e) {
-			var studentId = new UserTable<ApplicationUser>(db).GetUserId(User.Identity.Name);
+			var studentId = new StudentTable(db).GetStudentId(User.Identity.GetUserId());
+			var SYCSRId = new StudentYearClassSectionRollTable(db).
+				GetStudentYearClassSectionRollId(ddlYear.SelectedValue, studentId);
 
-			var dataSource = (ddlPortion.SelectedValue == "all") ?
-				db.Query("getMarkBySYCSRIdTid",
-				new Dictionary<string, object>() {
-					{ "@SYCSRId", ddlYear.SelectedValue },
-					{ "@TId", ddlTerm.SelectedValue } },
-				true) :
-				db.Query("getMarkBySYCSRIdTidPId",
-				new Dictionary<string, object>() {
-					{ "@SYCSRId", ddlYear.SelectedValue },
-					{ "@PId", ddlPortion.SelectedValue },
-					{ "@TId", ddlTerm.SelectedValue } },
-				true);
 
-			Series series;
-			foreach (var grp in dataSource.GroupBy(x => x["Portion Name"])) {
-				series = new Series(grp.Key);
-				
-				series.ChartType = SeriesChartType.Spline;
-				Chart1.Series.Add(series);
-				
-				foreach (var item in grp) {
-					series.Points.AddXY(item["Subject"], item["Mark"]);
-				}
+			var dataSource = new MarkTable(db).
+				GetStudentMark(SYCSRId, ddlTerm.SelectedValue, ddlSubject.SelectedValue);
+
+			Series series = new Series(ddlSubject.SelectedItem.Text);
+			Chart1.Series.Add(series);
+			series.ChartType = SeriesChartType.Spline;
+			//var groups = dataSource.GroupBy(x => x.MarkPortionName);
+			foreach (var mark in dataSource) {
+				series.Points.AddXY(mark.MarkPortionName, mark.Mark);
 			}
 
 		}

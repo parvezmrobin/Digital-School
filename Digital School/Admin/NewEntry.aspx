@@ -186,6 +186,10 @@
 
 			<h2 class="panel-heading text-center">Add Mark Portion</h2>
 			<div class="panel-body form-horizontal">
+                <ul class="text-info" style="text-align:justify">
+					<li>Add Mark Portion like as Class Test, Monthly Test, Term Test etc.</li>
+				</ul>
+				<hr />
 				<div class="form-group">
 					<asp:Label Text="Mark Portion" AssociatedControlID="txtMarkPortion" CssClass="col-sm-3 control-label"
 						runat="server" />

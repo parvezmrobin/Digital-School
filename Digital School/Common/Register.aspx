@@ -64,18 +64,18 @@
 					<asp:Label runat="server" AssociatedControlID="Firstname" CssClass="col-md-2 control-label">First name</asp:Label>
 					<div class="col-md-10">
 						<asp:TextBox runat="server" ID="Firstname" CssClass="form-control" TextMode="SingleLine"
-							placeholder="Write first name [Required]" />
-						<asp:RequiredFieldValidator runat="server" ControlToValidate="Firstname"
-							CssClass="text-danger" ErrorMessage="The username field is required." />
+							placeholder="Write first name" />
+						<%--<asp:RequiredFieldValidator runat="server" ControlToValidate="Firstname"
+							CssClass="text-danger" ErrorMessage="The username field is required." />--%>
 					</div>
 				</div>
 				<div class="form-group">
 					<asp:Label runat="server" AssociatedControlID="Lastname" CssClass="col-md-2 control-label">Last name</asp:Label>
 					<div class="col-md-10">
 						<asp:TextBox runat="server" ID="Lastname" CssClass="form-control" TextMode="SingleLine"
-							placeholder="Write last name [Required]" />
-						<asp:RequiredFieldValidator runat="server" ControlToValidate="Lastname"
-							CssClass="text-danger" ErrorMessage="The username field is required." />
+							placeholder="Write last name" />
+						<%--<asp:RequiredFieldValidator runat="server" ControlToValidate="Lastname"
+							CssClass="text-danger" ErrorMessage="The username field is required." />--%>
 					</div>
 				</div>
 			</div>
@@ -218,7 +218,7 @@
 			<%--<input type="text" id="output" />--%>
 			<div class="form-group">
 				<div class="col-md-offset-2 col-md-10">
-					<asp:Button runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn btn-default" />
+					<asp:Button runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn btn-success" />
 				</div>
 			</div>
 		</div>

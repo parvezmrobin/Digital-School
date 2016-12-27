@@ -22,15 +22,6 @@ namespace Digital_School.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAlbum;
         
         /// <summary>
-        /// btnRemoveAlbum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRemoveAlbum;
-        
-        /// <summary>
         /// divImages control.
         /// </summary>
         /// <remarks>

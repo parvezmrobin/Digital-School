@@ -23,14 +23,14 @@ namespace Digital_School.Admin
 				hSuccess.Visible = false;
 		}
 		protected void Class_ServerValidate(object source, ServerValidateEventArgs args) {
-            int res = Convert.ToInt32(db.QueryValue("countClass", new Dictionary<string, object>() { { "@CName", txtClassLabel.Text.Trim() } }, true));
+            int res = Convert.ToInt32(db.QueryValue("countClass", new Dictionary<string, object>() { { "@CId", txtClassLabel.Text.Trim() } }, true));
 
             args.IsValid = res == 0;
 			if (!args.IsValid)
 				hSuccess.Visible = false;
 		}
 		protected void Section_ServerValidate(object source, ServerValidateEventArgs args) {
-			args.IsValid = Convert.ToInt32(db.QueryValue("countSection", new Dictionary<string, object>() { { "@SName", txtSectionLabel.Text.Trim() } }, true)) == 0;
+			args.IsValid = Convert.ToInt32(db.QueryValue("countSection", new Dictionary<string, object>() { { "@SId", txtSectionLabel.Text.Trim() } }, true)) == 0;
 			if (!args.IsValid)
 				hSuccess.Visible = false;
 		}

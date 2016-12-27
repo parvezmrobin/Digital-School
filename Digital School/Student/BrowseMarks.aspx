@@ -6,43 +6,61 @@
 		input.form-control {
 			max-width: 280px;
 		}
+
+		.failed {
+			color: red;
+			font-weight: bold;
+		}
 	</style>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("td").filter(function () {
+				return $(this).text() == "F";
+			}).attr('class', 'failed');
+		});
+	</script>
+
 	<div class="row">
-		<h2>Browse Your Exam Marks</h2>
+		<h2 class="text-center">Browse Your Exam Marks</h2>
 		<hr />
 		<asp:UpdatePanel runat="server">
 			<ContentTemplate>
-				<div class="col-md-5 col-lg-4">
+				<div>
 					<div class="form-horizontal">
 						<div class="form-group">
 							<asp:Label Text="Year" AssociatedControlID="ddlYear" runat="server" CssClass="col-md-2 control-label" />
 							<div class="col-md-10">
-								<asp:DropDownList ID="ddlYear" OnDataBound="LoadDDLSubject" OnSelectedIndexChanged="LoadDDLTerm" 
-									CssClass="form-control" runat="server" AutoPostBack="true" DataTextField="Text" DataValueField="Value">
+								<asp:DropDownList ID="ddlYear" OnDataBound="LoadDDLSubject" OnSelectedIndexChanged="LoadDDLTerm"
+									CssClass="form-control" runat="server" AutoPostBack="true" DataTextField="Text"
+									DataValueField="Value">
 								</asp:DropDownList>
 							</div>
 						</div>
+						<br />
 						<div class="form-group">
 							<asp:Label Text="Term" AssociatedControlID="ddlTerm" runat="server" CssClass="col-md-2 control-label" />
 							<div class="col-md-10">
-								<asp:DropDownList ID="ddlTerm" CssClass="form-control" runat="server" AutoPostBack="true" 
+								<asp:DropDownList ID="ddlTerm" CssClass="form-control" runat="server" AutoPostBack="true"
 									OnSelectedIndexChanged="LoadDDLSubject" DataTextField="Text" DataValueField="Value">
 								</asp:DropDownList>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" hidden>
 							<asp:Label Text="Subject" AssociatedControlID="ddlSubject" runat="server"
 								CssClass="col-md-2 control-label" />
 							<div class="col-md-10">
-								<asp:DropDownList ID="ddlSubject" OnSelectedIndexChanged="LoadGridView" OnDataBound="LoadGridView" CssClass="form-control" runat="server" AutoPostBack="true">
+								<asp:DropDownList ID="ddlSubject" OnSelectedIndexChanged="LoadGridView" OnDataBound="LoadGridView"
+									CssClass="form-control" runat="server" AutoPostBack="true">
 									<asp:ListItem Text="All" Value="All"></asp:ListItem>
 								</asp:DropDownList>
 							</div>
 						</div>
+						<br />
 					</div>
 				</div>
-
-				<div class="col-md-7 col-lg-8">
+				
+				<div class="col-md-12 table-responsive">
 					<asp:GridView CssClass="table table-striped table-hover" runat="server" ID="gvMark"
 						HeaderStyle-CssClass="text-info" AutoGenerateColumns="true" BorderColor="Transparent">
 					</asp:GridView>

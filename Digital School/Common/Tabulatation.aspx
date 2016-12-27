@@ -77,7 +77,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-8 col-md-6" style="overflow-x:auto">
+		<div class="col-md-12" style="overflow-x:auto">
 			<asp:GridView runat="server" ID="gv" CssClass="table table-striped table-hover" HeaderStyle-CssClass="text-info" OnRowDataBound="gv_RowDataBound">
 			</asp:GridView>
 		</div> 

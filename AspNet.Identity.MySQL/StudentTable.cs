@@ -26,5 +26,12 @@ namespace AspNet.Identity.MySQL
 					ID = x["studentid"]
 				}).ToList();
 		}
+
+		public int GetStudentId(object userId) {
+			return Convert.ToInt32(db.QueryValue("getSIdByUId",
+				new Dictionary<string, object>() {
+					{"@UId", userId }
+				}, true));
+		}
 	}
 }

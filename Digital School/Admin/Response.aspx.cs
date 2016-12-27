@@ -63,7 +63,12 @@ namespace Digital_School.Admin
 
 				string root = Server.MapPath("~");
 				var files = Directory.GetFiles(Server.MapPath("~/Response/" + resId));
-
+                if (files.Count() == 0)
+                {
+                    imgThumb.Visible = false;
+                    aAttachment.Visible = false;
+                    return;
+                }
 				var ext = Path.GetExtension(files[0]);
 				if (ext == ".zip" || ext == ".rar") {
 					//aImage.HRef = files[1];

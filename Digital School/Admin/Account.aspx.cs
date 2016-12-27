@@ -9,17 +9,16 @@ namespace Digital_School.Admin
 {
 	public partial class Account : System.Web.UI.Page
 	{
-		protected void Page_Load(object sender, EventArgs e) {
+		protected void Page_Init(object sender, EventArgs e) {
 			if (!IsPostBack) {
 				LoadDDLTeacher();
 				LoadDDLDesignation();
-				success1.Visible = false;
+                LoadDDLYear(null, null);
+                success1.Visible = false;
 				success2.Visible = false;
 				info.Visible = false;
-				//LoadStudentDDL();
 			}
-			
-		}
+        }
 
 		
 
@@ -57,5 +56,108 @@ namespace Digital_School.Admin
 			success1.Visible = true;
 			
 		}
-	}
+
+        protected void LoadDDLYear(object o, EventArgs e)
+        {
+            MySQLDatabase db = new MySQLDatabase();
+            ddlYear.DataSource = new YearTable(db).GetAllYear();
+            ddlYear.DataBind();
+
+            LoadDDLClass(null, null);
+            LoadDDLToClass(null, null);
+          
+        }
+        protected void LoadDDLClass(object o, EventArgs e)
+        {
+            MySQLDatabase db = new MySQLDatabase();
+            ddlClass.DataSource = new YearClassSectionTable(db).GetClassByYear(ddlYear.SelectedValue);
+            ddlClass.DataBind();
+
+            LoadDDLSection(null, null);
+        }
+        protected void LoadDDLSection(object o, EventArgs e)
+        {
+            MySQLDatabase db = new MySQLDatabase();
+            ddlSection.DataSource = new YearClassSectionTable(db).
+                GetSectionByYearClass(ddlYear.SelectedValue, ddlClass.SelectedValue);
+            ddlSection.DataBind();
+
+            LoadDDLStudent(null, null);
+        }
+        protected void LoadDDLStudent(object o,EventArgs e)
+        {
+            MySQLDatabase db = new MySQLDatabase();
+            int value =  new YearClassSectionTable(db).GetYearClassSectionId(ddlYear.SelectedValue, ddlClass.SelectedValue, ddlSection.SelectedValue);
+            ddlStudent.DataSource=db.Query("getStudentByYCSId", new Dictionary<string, object>() { { "@YCSId", value } }, true).
+                Select(x => new TextValuePair
+                {
+                    Value = x["studentid"],
+                    Text = x["firstname"]+x["lastname"],
+                    
+                    //Roll = Convert.ToInt32(x["roll"])
+                }).ToList();
+            //ddlStudent.DataSource = new StudentYearClassSectionRollTable(db).GetStudents(value);
+            ddlStudent.DataBind();
+
+            var value2 = new YearClassSectionTable(db).GetYearClassSectionId(ddlYear.SelectedValue, ddlClass.SelectedValue, ddlSection.SelectedValue);
+            txtRoll.Text = new StudentYearClassSectionRollTable(db).GetStudentRoll(value2, ddlStudent.SelectedValue).ToString();
+        }
+        protected void LoadDDLToClass(object o, EventArgs e)
+        {
+            MySQLDatabase db = new MySQLDatabase();
+            ddlToClass.DataSource = new YearClassSectionTable(db).GetClassByYear(ddlYear.SelectedValue);
+            ddlToClass.DataBind();
+            ddlToClass.SelectedValue = ddlClass.SelectedValue;
+            LoadDDLToSection(null, null);
+        }
+        protected void LoadDDLToSection(object o, EventArgs e)
+        {
+            MySQLDatabase db = new MySQLDatabase();
+            ddlToSection.DataSource = new YearClassSectionTable(db).
+                GetSectionByYearClass(ddlYear.SelectedValue, ddlToClass.SelectedValue);
+            ddlToSection.DataBind();
+            ddlToSection.SelectedValue = ddlSection.SelectedValue;
+        }
+       
+      
+        protected void ddlStudent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MySQLDatabase db = new MySQLDatabase();
+            //ddlToClass.SelectedIndex = ddlClass.SelectedIndex;
+            //ddlToSection.SelectedIndex = ddlSection.SelectedIndex;
+            var value = new YearClassSectionTable(db).GetYearClassSectionId(ddlYear.SelectedValue, ddlClass.SelectedValue, ddlSection.SelectedValue);
+            txtRoll.Text = new StudentYearClassSectionRollTable(db).GetStudentRoll(value, ddlStudent.SelectedValue).ToString();
+        }
+
+        protected void ddlClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDDLSection(null,null);
+            ddlToClass.SelectedValue = ddlClass.SelectedValue;
+            LoadDDLToSection(null, null);        
+        }
+
+        protected void ddlSection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDDLStudent(null, null);
+            
+            ddlToSection.SelectedValue = ddlSection.SelectedValue;
+        }
+
+        protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDDLClass(null, null);
+            LoadDDLToClass(null, null);
+        }
+
+        protected void btnApply_Click(object sender, EventArgs e)
+        {
+            MySQLDatabase db = new MySQLDatabase();
+            new StudentYearClassSectionRollTable(db).updateStudent(new StudentYearClassSectionRollTable(db)
+                .GetStudentYearClassSectionRollId(new YearClassSectionTable(db)
+                .GetYearClassSectionId(ddlYear.SelectedValue, ddlClass.SelectedValue, ddlSection.SelectedValue), ddlStudent.SelectedValue), new YearClassSectionTable(db)
+                .GetYearClassSectionId(ddlYear.SelectedValue, ddlToClass.SelectedValue, ddlToSection.SelectedValue), txtRoll.Text);
+
+        }
+
+    }
 }

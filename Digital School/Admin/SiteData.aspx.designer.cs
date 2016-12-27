@@ -13,15 +13,6 @@ namespace Digital_School.Admin {
     public partial class SiteData {
         
         /// <summary>
-        /// SummarySlideShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Digital_School.User_Control.Summary SummarySlideShow;
-        
-        /// <summary>
         /// SummaryGallery control.
         /// </summary>
         /// <remarks>
@@ -49,13 +40,13 @@ namespace Digital_School.Admin {
         protected global::Digital_School.User_Control.Summary SummaryHistoryContact;
         
         /// <summary>
-        /// Summary1 control.
+        /// SummaryApplicationResponse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Digital_School.User_Control.Summary Summary1;
+        protected global::Digital_School.User_Control.Summary SummaryApplicationResponse;
         
         /// <summary>
         /// SummaryApplication control.
@@ -65,5 +56,14 @@ namespace Digital_School.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Digital_School.User_Control.Summary SummaryApplication;
+        
+        /// <summary>
+        /// SummaryAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Digital_School.User_Control.Summary SummaryAccount;
     }
 }

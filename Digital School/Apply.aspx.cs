@@ -70,7 +70,7 @@ namespace Digital_School
 				dict.Add("email", txtEmail.Text);
 				dict.Add("gender", ddlGender.SelectedValue);
 				dict.Add("birthdate", txtBirthDate.Text);
-				dict.Add("phoneNumber", txtBirthDate.Text);
+				dict.Add("phoneNumber", txtPhone.Text);
 				dict.Add("address", txtAddress.Text);
 
 				if (Convert.ToInt32(Request.QueryString["type"]) == 2) {

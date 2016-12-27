@@ -1,10 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EditHistoryContact.aspx.cs" Inherits="Digital_School.Admin.EditHistoryContact" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Wizard ID="historyContactWiz" runat="server" CssClass="table" DisplaySideBar="false" StepNextButtonText="Contact" StepPreviousButtonText="History" StartNextButtonText="Contact" FinishPreviousButtonText="History" FinishCompleteButtonStyle-CssClass="hidden" StepPreviousButtonStyle-CssClass="btn btn-default" StepNextButtonStyle-CssClass="btn btn-default" StartNextButtonStyle-CssClass="btn btn-default" FinishPreviousButtonStyle-CssClass="btn btn-default">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+        <asp:Wizard ID="historyContactWiz" runat="server" DisplaySideBar="false" CssClass="table" StepNextButtonText="Contact" StepPreviousButtonText="History" StartNextButtonText="Contact" FinishPreviousButtonText="History" FinishCompleteButtonStyle-CssClass="hidden" StepPreviousButtonStyle-CssClass="btn btn-success" StepNextButtonStyle-CssClass="btn btn-success" StartNextButtonStyle-CssClass="btn btn-success" FinishPreviousButtonStyle-CssClass="btn btn-success">
         <WizardSteps>
             <asp:WizardStep>
                 <asp:TextBox ID="history" runat="server" TextMode="MultiLine" CssClass="form-control" />
-                <asp:Button ID="editButton" Text="Edit" runat="server" OnClick="editButton_Click" CssClass="btn btn-default" />
+                <asp:Button ID="editButton" Text="Edit" runat="server" OnClick="editButton_Click" CssClass="btn btn-danger" />
             </asp:WizardStep>
         </WizardSteps>
         <WizardSteps>
@@ -74,7 +76,7 @@
             CSE Discipline,<br />
             Khulna University,<br />
             Khulna.--%>
-                        <asp:Button ID="editContact" Text="Edit" runat="server" OnClick="editContact_Click" CssClass="btn btn-default" />
+                        <asp:Button ID="editContact" Text="Edit" runat="server" OnClick="editContact_Click" CssClass="btn btn-danger" />
                         <hr />
                         <address>
                             <strong>Support:</strong>
@@ -95,7 +97,7 @@
                         <strong>Longitude:</strong>
                         <input type="text" id="txtLongitude" class="form-control" />
                         <br />
-                        <input type="button" id="btntemp" value="Edit" class="btn btn-default" />
+                        <input type="button" id="btntemp" value="Edit" class="btn btn-danger" />
                     </div>
                     <div class="col-sm-6">
                         <div id="map" style="height: 400px"></div>
@@ -104,4 +106,7 @@
             </asp:WizardStep>
         </WizardSteps>
     </asp:Wizard>
+    </div>
+    </div>
+
 </asp:Content>

@@ -144,47 +144,45 @@ namespace AspNet.Identity.MySQL
 					}
 				}).ToList();
 		}
-		//public List<StudentMark> GetMark(
-		//	string teacherSubejctId = null,
-		//	string yearClassSectionId = null,
-		//	string studentId = null,
-		//	string termYearClassSectionId = null,
-		//	string studentYearClassSectionRollId = null,
-		//	string markPortionId = null) {
-		//	Dictionary<string, object> parameter = new Dictionary<string, object>(6);
 
-		//	parameter.Add("@TSId", string.IsNullOrEmpty(teacherSubejctId) ? null : teacherSubejctId);
-		//	parameter.Add("@YCSId", string.IsNullOrEmpty(yearClassSectionId) ? null : yearClassSectionId);
-		//	parameter.Add("@SId", string.IsNullOrEmpty(studentId) ? null : studentId);
-		//	parameter.Add("@TYCSId", string.IsNullOrEmpty(termYearClassSectionId) ? null : termYearClassSectionId);
-		//	parameter.Add("@SYCSRId", string.IsNullOrEmpty(studentYearClassSectionRollId) ? null : studentYearClassSectionRollId);
-		//	parameter.Add("@MPId", string.IsNullOrEmpty(markPortionId) ? null : markPortionId);
+		public List<Mark.MarkPortionMark> GetStudentMark(object studentYearClassSectionRollId, object termYearClassSectionRollId) {
+			return db.Query("getMarkBySYCSRIdTYCSId",
+				new Dictionary<string, object>() {
+					{"@SYCSRId", studentYearClassSectionRollId },
+					{"@TYCSId", termYearClassSectionRollId }
+				}, true)
+				.Select(x => new Mark.MarkPortionMark {
+					Mark = x["mark"],
+					MarkPortionID = x["markPortionId"],
+					MarkPortionName = x["portionName"],
+					Percentage = Convert.ToInt32(x["percentage"]),
+					Subject = new Subject {
+						Name = x["subject"],
+						SubjectCode = x["subjectcode"]
+					}
+				}).ToList();
+		}
 
-		//	return db.Query("getMark", parameter, true).
-		//		Select(x => new StudentMark {
-		//			Student = new Student {
-		//				FirstName = x["firstname"],
-		//				LastName = x["lastname"],
-		//				Roll = Convert.ToInt32(x["roll"]),
-		//				ID = x["studentid"],
-		//				UserId = x["userid"]
-		//			},
-		//			Mark = x["mark"],
-		//			MarkId = x["markid"],
-		//			PortionName = x["portionname"],
-		//			Subject = x["subject"]
-		//		}).ToList();
-		//}
+		public List<Mark.MarkPortionMark> GetStudentMark(object studentYearClassSectionRollId, object termYearClassSectionRollId, object teacherSubjectId) {
+			return db.Query("getMarkBySYCSRIdTYCSIdTSId",
+				new Dictionary<string, object>() {
+					{"@SYCSRId", studentYearClassSectionRollId },
+					{"@TYCSId", termYearClassSectionRollId },
+					{"@TSId", teacherSubjectId }
+				}, true)
+				.Select(x => new Mark.MarkPortionMark {
+					Mark = x["mark"],
+					MarkPortionID = x["markPortionId"],
+					MarkPortionName = x["portionName"],
+					Percentage = Convert.ToInt32(x["percentage"]),
+					Subject = new Subject {
+						Name = x["subject"],
+						SubjectCode = x["subjectcode"]
+					}
+				}).ToList();
+		}
+		
 
-		//public List<StudentMark> GetMark(int? teacherSubejctId, int? yearClassSectionId, int? studentId, int? termYearClassSectionId, int? studentYearClassSectionRollId, int? markPortionId) {
-		//	return GetMark(teacherSubejctId.HasValue ? teacherSubejctId.ToString() : null,
-		//		yearClassSectionId.HasValue ? yearClassSectionId.ToString() : null,
-		//		studentId.HasValue ? studentId.ToString() : null,
-		//		termYearClassSectionId.HasValue ? termYearClassSectionId.ToString() : null,
-		//		studentYearClassSectionRollId.HasValue ? studentYearClassSectionRollId.ToString() : null,
-		//		markPortionId.HasValue ? markPortionId.ToString() : null);
-
-		//}
 		public List<StudentMark> GetYearlyMark(object yearClassSectionId) {
 			return db.Query("getTotalMarkByYCSId", new Dictionary<string, object>() { { "@YCSId", yearClassSectionId } }, true).
 				Select(x => new StudentMark {

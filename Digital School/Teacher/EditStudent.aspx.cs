@@ -53,7 +53,7 @@ namespace Digital_School.Teacher
 					{"@TUN", User.Identity.Name },
 					{"@YCSId", YCSId }
 				}, true).Select(x => new {
-					Text = x["student"],
+					Text = x["firstname"]+x["lastname"],
 					Value = x["studentid"]
 				}).ToList();
 			ddlStudent.DataBind();

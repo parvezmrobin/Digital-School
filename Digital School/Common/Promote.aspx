@@ -9,6 +9,7 @@
 		</style>
 		<h2 class="text-info" style="text-align: center"><%: Title %></h2>
 		<hr />
+		<h3 class="text-success text-center" id="hPromote" runat="server">Promoted Successfully</h3>
 		<asp:UpdatePanel runat="server">
 			<ContentTemplate>
 				<div class="col-md-6">
@@ -81,6 +82,7 @@
 					</div>
 				</div>
 				<div class="col-md-6">
+					<br />
 					<asp:GridView runat="server" ID="gvPromote" CssClass="table table-striped table-hover" AutoGenerateColumns="false" HeaderStyle-CssClass="text-info">
 						<Columns>
 							<asp:TemplateField>

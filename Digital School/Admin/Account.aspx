@@ -50,6 +50,16 @@
 			<p class="panel-heading" style="font-size: xx-large">Student Account</p>
 			<div class="panel-body">
 				<div class="form-horizontal">
+                    <div class="form-group">
+						<asp:Label Text="Select Year" AssociatedControlID="ddlYear" runat="server"
+							CssClass="col-md-4 col-sm-6 control-label" />
+						<div class="col-md-8 col-sm-6">
+							<asp:DropDownList ID="ddlYear" DataTextField="Text" DataValueField="Value" AutoPostBack="true"
+								CssClass="form-control" runat="server" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged">
+							</asp:DropDownList>
+						</div>
+					</div>
+					<br />
 					<div class="form-group">
 						<asp:Label Text="Select Class" AssociatedControlID="ddlClass" runat="server" CssClass="col-md-4 col-sm-6 control-label" />
 						<div class="col-md-8 col-sm-6">
@@ -88,13 +98,14 @@
 					</h3>
 					<hr />
 					<%-- Text Boxes for updating info --%>
+                   
 					<div class="form-group">
-						<label for="ddlClass" class="col-md-4 col-sm-6 control-label text-static">
+						<label for="ddlToClass" class="col-md-4 col-sm-6 control-label text-static">
 							Class
 						</label>
 						<div class="col-md-8 col-sm-6">
 							<asp:DropDownList ID="ddlToClass" CssClass="form-control" runat="server" DataTextField="Text"
-								DataValueField="Value" AutoPostBack="true"></asp:DropDownList>
+								DataValueField="Value" AutoPostBack="true" OnSelectedIndexChanged="LoadDDLToSection"></asp:DropDownList>
 						</div>
 					</div>
 					<br />
@@ -104,7 +115,7 @@
 						</label>
 						<div class="col-md-8 col-sm-6">
 							<asp:DropDownList ID="ddlToSection" CssClass="form-control" runat="server" DataTextField="Text"
-								DataValueField="Value" AutoPostBack="true"></asp:DropDownList>
+								DataValueField="Value"></asp:DropDownList>
 						</div>
 					</div>
 					<br />

@@ -199,7 +199,7 @@
     <Content Include="Admin\Subject.aspx" />
     <Content Include="Admin\Term.aspx" />
     <Content Include="LoadLatLong.asmx" />
-    <Content Include="Registration\Register.aspx" />
+    <Content Include="Common\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
@@ -241,7 +241,7 @@
     </Content>
     <Content Include="Images.aspx" />
     <Content Include="Post.aspx" />
-    <Content Include="Registration\RegistrationWebService.asmx" />
+    <Content Include="Common\RegistrationWebService.asmx" />
     <Content Include="Slideshow\Blue.png" />
     <Content Include="Slideshow\DarkRed.png" />
     <Content Include="Slideshow\Green.png" />
@@ -255,7 +255,7 @@
     <Content Include="Teacher\InputMark.aspx" />
     <Content Include="Teacher\Mark.aspx" />
     <Content Include="Teacher\MarkWebService.asmx" />
-    <Content Include="Admin\Tabulatation.aspx" />
+    <Content Include="Common\Tabulatation.aspx" />
     <Content Include="Teacher\TransactionHistory.aspx" />
     <Content Include="User Control\SelectableImage.ascx" />
     <Content Include="Student\Summary.aspx" />
@@ -266,7 +266,7 @@
     <Content Include="Teacher\InputResult.aspx" />
     <Content Include="Teacher\Miscellaneous.aspx" />
     <Content Include="Teacher\Notification.aspx" />
-    <Content Include="Teacher\Promote.aspx" />
+    <Content Include="Common\Promote.aspx" />
     <Content Include="Teacher\StudentGroup.aspx" />
     <Content Include="Teacher\Summary.aspx" />
     <Content Include="Teacher\Transaction.aspx" />
@@ -281,7 +281,7 @@
     </Content>
     <Content Include="Xml\slideshow.xml" />
     <Content Include="Admin\Web.config" />
-    <Content Include="Registration\Web.config" />
+    <Content Include="Common\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
@@ -486,11 +486,11 @@
     <Compile Include="Models\MultipleValue.cs" />
     <Compile Include="Models\SingleValue.cs" />
     <Compile Include="Models\Transaction.cs" />
-    <Compile Include="Registration\Register.aspx.cs">
+    <Compile Include="Common\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Registration\Register.aspx.designer.cs">
+    <Compile Include="Common\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\RegisterExternalLogin.aspx.cs">
@@ -638,7 +638,7 @@
       <DependentUpon>Post.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registration\RegistrationWebService.asmx.cs">
+    <Compile Include="Common\RegistrationWebService.asmx.cs">
       <DependentUpon>RegistrationWebService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
@@ -712,11 +712,11 @@
       <DependentUpon>MarkWebService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Admin\Tabulatation.aspx.cs">
+    <Compile Include="Common\Tabulatation.aspx.cs">
       <DependentUpon>Tabulatation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Tabulatation.aspx.designer.cs">
+    <Compile Include="Common\Tabulatation.aspx.designer.cs">
       <DependentUpon>Tabulatation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Teacher\TransactionHistory.aspx.cs">
@@ -789,11 +789,11 @@
     <Compile Include="Teacher\Notification.aspx.designer.cs">
       <DependentUpon>Notification.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Teacher\Promote.aspx.cs">
+    <Compile Include="Common\Promote.aspx.cs">
       <DependentUpon>Promote.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Teacher\Promote.aspx.designer.cs">
+    <Compile Include="Common\Promote.aspx.designer.cs">
       <DependentUpon>Promote.aspx</DependentUpon>
     </Compile>
     <Compile Include="Teacher\StudentGroup.aspx.cs">
