@@ -81,7 +81,8 @@ namespace Digital_School.Admin
 
 		protected void btnAddTerm_Click(object sender, EventArgs e) {
 			TermYearClassSectionTable termTable = new TermYearClassSectionTable(db);
-			var YCSId = new YearClassSectionTable(db).GetYearClassSectionId(ddlYear.SelectedValue, ddlClass.SelectedValue, ddlSection.SelectedValue);
+			var YCSId = new YearClassSectionTable(db).
+				GetYearClassSectionId(ddlYear.SelectedValue, ddlClass.SelectedValue, ddlSection.SelectedValue);
             //termTable.RemoveTermByYearClassSection(YCSId);
             foreach (GridViewRow row in gvAddTerm.Rows) {
 				if ((row.FindControl("cb") as CheckBox).Checked) {
@@ -89,8 +90,8 @@ namespace Digital_School.Admin
 					if (string.IsNullOrEmpty(percentage))
 						continue;
 					var termId = (row.FindControl("hf") as HiddenField).Value;
-                    bool alreadyExsist = Convert.ToInt32(termTable.CheckTermByTermId(termId)) == 0;
-                    if (alreadyExsist){
+                    bool alreadyExsist = termTable.CheckTermByTermId(termId, YCSId);
+                    if (!alreadyExsist){
                         termTable.AddTermYearClassSection(termId, YCSId.ToString(), percentage);
                     }
 				}

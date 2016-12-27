@@ -13,7 +13,8 @@ namespace Digital_School.Teacher
 			SummaryPromote.Click += delegate { Response.Redirect("~/Common/Promote", true); };
 			SummaryEditStudent.Click += delegate { Response.Redirect("~/Teacher/EditStudent", true); };
 			SummaryStudentGroup.Click += delegate { Response.Redirect("~/Teacher/StudentGroup", true); };
-            SummaryTabulation.Click += delegate { Response.Redirect("~/Common/Tabulatation", true); };
+			SummaryTabulation.Click += delegate { Response.Redirect("~/Common/Tabulatation", true); };
+			SummaryStudentDetail.Click += delegate { Response.Redirect("~/Common/StudentDetails", true); };
 		}
 	}
 }

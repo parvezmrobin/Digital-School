@@ -225,21 +225,20 @@ namespace AspNet.Identity.MySQL
 		public int RemoveTermByYearClassSection(int yearId, string classId, string sectionId) {
 			return RemoveTermByYearClassSection(YCSTable.GetYearClassSectionId(yearId, classId, sectionId));
 		}
-		
-		public int RemoveTermByTYCSId(int termYearClassSectionId)
-        {
-            return db.Execute("removeTermByTYCSId", new Dictionary<string, object>()
-            {
-                {"@TYCSId",termYearClassSectionId }
-            }, true);
-        }
-        public object CheckTermByTermId(object termId)
-        {
-            return db.QueryValue("countTerms", new Dictionary<string, object>()
-            {
-                {"@tId",termId }
-            },true);
-        }
+
+		public int RemoveTermByTYCSId(int termYearClassSectionId) {
+			return db.Execute("removeTermByTYCSId", new Dictionary<string, object>()
+			{
+				{"@TYCSId",termYearClassSectionId }
+			}, true);
+		}
+		public bool CheckTermByTermId(object termId, object YCSId) {
+			return Convert.ToInt32(
+				db.QueryValue("countTerms", new Dictionary<string, object>(){
+					{"@tId",termId },
+					{"@YCSId", YCSId }
+				}, true)) > 0;
+		}
 
 
 	}

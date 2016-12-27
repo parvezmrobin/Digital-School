@@ -7,54 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Digital_School.Teacher {
+namespace Digital_School.Common {
     
     
-    public partial class Miscellaneous {
+    public partial class StudentDetails {
         
         /// <summary>
-        /// SummaryPromote control.
+        /// ddlYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Digital_School.User_Control.Summary SummaryPromote;
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear;
         
         /// <summary>
-        /// SummaryTabulation control.
+        /// ddlClass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Digital_School.User_Control.Summary SummaryTabulation;
+        protected global::System.Web.UI.WebControls.DropDownList ddlClass;
         
         /// <summary>
-        /// SummaryEditStudent control.
+        /// ddlSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Digital_School.User_Control.Summary SummaryEditStudent;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSection;
         
         /// <summary>
-        /// SummaryStudentGroup control.
+        /// gvStudentDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Digital_School.User_Control.Summary SummaryStudentGroup;
-        
-        /// <summary>
-        /// SummaryStudentDetail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Digital_School.User_Control.Summary SummaryStudentDetail;
+        protected global::System.Web.UI.WebControls.GridView gvStudentDetails;
     }
 }

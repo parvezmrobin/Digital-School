@@ -198,6 +198,7 @@
     <Content Include="Admin\Section.aspx" />
     <Content Include="Admin\Subject.aspx" />
     <Content Include="Admin\Term.aspx" />
+    <Content Include="Common\StudentDetails.aspx" />
     <Content Include="LoadLatLong.asmx" />
     <Content Include="Common\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
@@ -478,6 +479,13 @@
     </Compile>
     <Compile Include="Admin\Term.aspx.designer.cs">
       <DependentUpon>Term.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\StudentDetails.aspx.cs">
+      <DependentUpon>StudentDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\StudentDetails.aspx.designer.cs">
+      <DependentUpon>StudentDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoadLatLong.asmx.cs">
       <DependentUpon>LoadLatLong.asmx</DependentUpon>

@@ -13,5 +13,7 @@
 			runat="server" WidthClass="col-md-6 col-lg-4" ID="SummaryEditStudent" />
 		<uc1:Summary Title="Student Group" Detail="Create,edit or delete student group"
 			runat="server" WidthClass="col-md-6 col-lg-4" ID="SummaryStudentGroup" />
+		<uc1:Summary Title="Student Details" Detail="View Student Detail Information"
+			runat="server" WidthClass="col-md-6 col-lg-4" ID="SummaryStudentDetail" />
 	</div>
 </asp:Content>

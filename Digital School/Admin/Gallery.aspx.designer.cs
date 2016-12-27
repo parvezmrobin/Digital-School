@@ -13,6 +13,24 @@ namespace Digital_School.Admin {
     public partial class Gallery {
         
         /// <summary>
+        /// txtNewAlbum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNewAlbum;
+        
+        /// <summary>
+        /// btnCreateAlbum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateAlbum;
+        
+        /// <summary>
         /// divAlbum control.
         /// </summary>
         /// <remarks>
@@ -22,13 +40,13 @@ namespace Digital_School.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAlbum;
         
         /// <summary>
-        /// divImages control.
+        /// btnRemoveAlbum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divImages;
+        protected global::System.Web.UI.WebControls.Button btnRemoveAlbum;
         
         /// <summary>
         /// fuImages control.
@@ -38,5 +56,23 @@ namespace Digital_School.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fuImages;
+        
+        /// <summary>
+        /// divImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divImage;
+        
+        /// <summary>
+        /// divImages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divImages;
     }
 }

@@ -157,6 +157,8 @@
 									<ul class="nav navbar-nav navbar-right" >
 										<li id="adminTabulation"><a runat="server" href="~/Common/Tabulatation"><span class="glyphicon glyphicon-list-alt">
 										</span> Tabulation</a></li>
+										<li id="adminStudentDetail"><a runat="server" href="~/Common/StudentDetails"><span class="glyphicon glyphicon-list-alt">
+										</span> Students</a></li>
 										<li id="adminAccount"><a runat="server" href="~/Admin/Account"><span class="glyphicon glyphicon-user">
 										</span> Account</a></li>
 										<li id="adminManage" class="dropdown">

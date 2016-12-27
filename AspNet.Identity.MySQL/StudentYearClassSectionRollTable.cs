@@ -20,7 +20,8 @@ namespace AspNet.Identity.MySQL
 					ID=x["studentid"],
 					FirstName = x["firstname"],
 					LastName = x["lastname"],
-					Roll = Convert.ToInt32(x["roll"])
+					Roll = Convert.ToInt32(x["roll"]),
+					UserId = x["userid"]
 				}).ToList();
 		}
 
