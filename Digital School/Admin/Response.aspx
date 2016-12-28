@@ -2,6 +2,7 @@
 	CodeBehind="Response.aspx.cs" Inherits="Digital_School.Admin.Response" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+	
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('#<%:imgThumb.ClientID%>').click(function () {
@@ -20,7 +21,7 @@
 				<asp:Button Text="Next" ID="btnNext" CssClass="btn btn-primary btn-next"
 					runat="server" />			
 		</div>
-		<hr />
+		
 		<div>
 			<div class="form-horizontal">
 				<div class="form-group">
@@ -32,6 +33,7 @@
 						<%--<img runat="server" id="imgThumb" src="#" class="img img-responsive img-thumbnail"
 							title="Click this thumbnail to see full size image" />--%>
 					<asp:ImageButton ImageUrl="#" runat="server" ID="imgThumb" CssClass="col-sm-3" />
+					
 				</div>
 			</div>
 		</div>

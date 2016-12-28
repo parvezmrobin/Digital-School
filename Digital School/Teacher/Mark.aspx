@@ -149,8 +149,8 @@
 						</asp:GridView>
 					</div>
 					<input type="hidden"  id="prevValue" />
-					<input type="text" id="inpNumber" />
-					<input type="text" id="ppp" class="vugichugi" value="abcd" />
+					<input type="text" id="inpNumber" hidden />
+					<input type="text" id="ppp" class="vugichugi" value="abcd" hidden />
 				</div>
 			</div>
 		</div>

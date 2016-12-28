@@ -22,15 +22,6 @@ namespace Digital_School.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Applications;
         
         /// <summary>
-        /// btnRemoveApp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRemoveApp;
-        
-        /// <summary>
         /// Responses control.
         /// </summary>
         /// <remarks>
@@ -38,14 +29,5 @@ namespace Digital_School.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Responses;
-        
-        /// <summary>
-        /// btnRemoveRes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRemoveRes;
     }
 }

@@ -38,7 +38,7 @@ namespace Digital_School.Admin
 				lblFathersName.Text = row["fathersname"];
 				lblMothersName.Text = row["mothersname"];
 				lblGenderName.Text = (row["gender"] == "1") ? "Female" : (row["gender"] == "2") ? "Male" : "Other";
-				lblBirthDate.Text = row["birthdate"];
+				lblBirthDate.Text = DateTime.Parse(row["birthdate"]).ToString("D");
 				lblAddress.Text = row["address"];
 				lblEmail.Text = row["email"];
 				lblPhoneNo.Text = row["phoneNumber"];
@@ -62,29 +62,32 @@ namespace Digital_School.Admin
 				}
 
 				string root = Server.MapPath("~");
-				var files = Directory.GetFiles(Server.MapPath("~/Response/" + resId));
-                if (files.Count() == 0)
-                {
-                    imgThumb.Visible = false;
-                    aAttachment.Visible = false;
-                    return;
-                }
-				var ext = Path.GetExtension(files[0]);
-				if (ext == ".zip" || ext == ".rar") {
-					//aImage.HRef = files[1];
-					imgThumb.ImageUrl = "~/" + files[1].Substring(root.Length);
-					if (files.Length > 1)
-						aAttachment.HRef = files[0];
-					//imgThumb.OnClientClick = "window.open('" + "file:///"+ files[1] + "','_blank')";
+				if (Directory.Exists(Server.MapPath("~/Response/" + resId))) {
+					var files = Directory.GetFiles(Server.MapPath("~/Response/" + resId));
+					if (files.Count() == 0) {
+						imgThumb.Visible = false;
+						aAttachment.Visible = false;
+						return;
+					}
+					var ext = Path.GetExtension(files[0]);
+					if (ext == ".zip" || ext == ".rar") {
+						//aImage.HRef = files[1];
+						imgThumb.ImageUrl = "../" + files[1].Substring(root.Length);
+						if (files.Length > 1)
+							aAttachment.HRef = files[0];
+						//imgThumb.OnClientClick = "window.open('" + "file:///"+ files[1] + "','_blank')";
 
+					} else {
+						//aImage.HRef = files[0];
+						//imgThumb.OnClientClick = "window.open('" + "file:///" + files[0] + "','_blank')";
+						imgThumb.ImageUrl = "../" + files[0].Substring(root.Length);
+						if (files.Length > 1)
+							aAttachment.HRef = files[1];
+					}
 				} else {
-					//aImage.HRef = files[0];
-					//imgThumb.OnClientClick = "window.open('" + "file:///" + files[0] + "','_blank')";
-					imgThumb.ImageUrl = "~/" + files[0].Substring(root.Length);
-					if (files.Length > 1)
-						aAttachment.HRef = files[1];
+					imgThumb.Visible = false;
+					aAttachment.Visible = false;
 				}
-
 			}
 		}
 	}

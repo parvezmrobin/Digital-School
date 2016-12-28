@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Application & Reponses" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Application.aspx.cs" Inherits="Digital_School.Admin.Application" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+	<style>
+		.panel{
+			border-color:transparent;
+		}
+	</style>
 	<h2 class="text-info text-center"><%:Title %></h2>
 	<hr />
 	<div class="row">
@@ -10,7 +15,7 @@
 				<br />
 				<div>
 					<asp:CheckBox Visible="false" Text="Show inactives" ToolTip="Show inactive applications as well" AutoPostBack="true" runat="server" />
-					<asp:Button Text="Remove" CssClass="btn btn-danger" ID="btnRemoveApp" ToolTip="Remove selected application and all corresponding responses" style="float:right" runat="server" />
+					<%--<asp:Button Text="Remove" CssClass="btn btn-danger" ID="btnRemoveApp" ToolTip="Remove selected application and all corresponding responses" style="float:right" runat="server" />--%>
 				</div>
 			</div>
 		</div>
@@ -18,11 +23,11 @@
 			<p class="panel-heading" style="font-size: xx-large">Responses</p>
 			<div class="panel-body">
 				<asp:Panel id="Responses" runat="server"></asp:Panel>
-				<br />
+<%--				<br />
 				<div>
 					<asp:Button Text="Remove" CssClass="btn btn-danger" ID="btnRemoveRes" ToolTip="Remove selected responses"
 						Style="float: right" runat="server" />
-				</div>
+				</div>--%>
 			</div>
 		</div>
 	</div>
